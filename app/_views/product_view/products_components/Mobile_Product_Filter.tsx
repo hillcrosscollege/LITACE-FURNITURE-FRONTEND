@@ -25,7 +25,7 @@ const Mobile_Product_Filter = () => {
 
         {/* Modal content */}
         <DialogContent className="min-w-[90%] lg:hidden md:min-w-[60%] border-0 overflow-y-auto p-0 bg-white">
-          <Product_Filter style="w-full" />
+          {/* <Product_Filter style="w-full" /> */}
         </DialogContent>
       </Dialog>
     </div>
