@@ -1,7 +1,7 @@
-import { products } from "../home_data";
 import App_Paragraph from "@/components/app_ui/App_Paragraph";
 import Home_Product_Card from "./Home_Product_Card";
 import App_Full_Text from "@/components/shared/App_Full_Text";
+import { popularProducts } from "@/app/tmp/popularProducts";
 
 const Home_Popular = () => {
   return (
@@ -28,7 +28,7 @@ const Home_Popular = () => {
         }
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {[...products, ...products].map((product, index) => (
+        {popularProducts.map((product, index) => (
           <Home_Product_Card {...product} key={index} />
         ))}
       </div>

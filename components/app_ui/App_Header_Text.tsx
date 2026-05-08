@@ -16,7 +16,7 @@ export default App_Header_Text;
 const Title_Head = ({ text, extra, style }: IText) => {
   return (
     <h1
-      className={`font-bold font-heading text-3xl md:text-5xl xl:text-7xl ${style}`}
+      className={`font-bold font-heading text-3xl md:text-5xl xl:text-6xl ${style}`}
     >
       {text} {extra}
     </h1>
@@ -43,7 +43,7 @@ const Mini_Head = ({ text, extra, style }: IText) => {
 
 const Card_Head = ({ text, extra, style }: IText) => {
   return (
-    <h4 className={`text-xl font-heading md:text-2xl ${style}`}>
+    <h4 className={`text-xl font-heading  ${style}`}>
       {text} {extra}
     </h4>
   );

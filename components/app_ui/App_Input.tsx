@@ -19,7 +19,7 @@ const App_Input = <T extends Record<string, any>>({
       <Label htmlFor={String(name)} className="mb-2">
         {String(name)}
       </Label>
-      <div className="flex justify-center items-center gap-2 px-2 border-gray-400 bg-white outline-0 border rounded-lg">
+      <div className="flex justify-center items-center gap-2 border-gray-400 bg-white outline-0 border rounded-lg">
         <div className="flex flex-1 justify-center  items-center gap-2 ">
           {icon1 && icon1}
           <Input

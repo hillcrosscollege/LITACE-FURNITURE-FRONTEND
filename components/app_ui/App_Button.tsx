@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { IButton } from "@/types";
 
@@ -6,7 +7,7 @@ const App_Button = ({ text, icon, btnStyle, onPress }: IButton) => {
   return (
     <Button
       onClick={onPress}
-      className={`cursor-pointer ${btnStyle}`}
+      className={cn("cursor-pointer", btnStyle)}
       type="submit"
     >
       {text} {icon && icon}

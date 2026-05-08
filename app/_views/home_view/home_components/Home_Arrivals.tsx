@@ -1,6 +1,6 @@
 import App_Full_Text from "@/components/shared/App_Full_Text";
-import { products } from "../home_data";
 import Home_Product_Card from "./Home_Product_Card";
+import { newArrivals } from "@/app/tmp/popularProducts";
 
 const Home_Arrivals = () => {
   return (
@@ -27,7 +27,7 @@ const Home_Arrivals = () => {
         }}
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {products.map((product, index) => (
+        {newArrivals.map((product, index) => (
           <Home_Product_Card {...product} key={index} />
         ))}
       </div>
