@@ -5,7 +5,17 @@ import Image from "next/image";
 const About_Litace = () => {
   const whowearedata = [
     "We are a supplier and manufacturer of quality furniture for churches, schools, offices, events and hotels. We are strategically based in the industrial area of Sebenza in Edenvale, Johannesburg.",
-    "This is part of what gives us an unfair advantage in the logistical footprint of South Africa and SADC countries such as Botswana, Namibia, Zambia, Zimbabwe, Mozambique, Lesotho, Swaziland, Malawi, and more.",
+    "This is part of what gives us an unfair advantage in the logistical footprint of South Africa and SADC countries such as Botswana, Namibia, Zambia, Zimbabwe, Mozambique, Lesotho, Swaziland, Malawi, etc.",
+  ];
+
+  const furnitureCategories = [
+    "Church and Conference Chairs",
+    "Office Chairs",
+    "School Desks and Chairs",
+    "Wedding, Funeral and Events Chairs",
+    "Office Desks and Tables",
+    "Pulpits and Podiums",
+    "Antique and French Styled Chairs",
   ];
   return (
     <section className="containerclass mt-20 flex flex-col lg:flex-row gap-12 justify-between">
@@ -17,12 +27,12 @@ const About_Litace = () => {
           )),
         ]}
         <div className="grid grid-cols-2 gap-4 mt-6">
-          {[1, 2, 3, 4, 5, 6].map((item, index) => (
+          {furnitureCategories.map((item, index) => (
             <div
               className="border-l-2 border-primary pl-4 rounded-sm py-3 bg-white"
               key={index}
             >
-              <p>Furnitures and more</p>
+              <p>{item}</p>
             </div>
           ))}
         </div>

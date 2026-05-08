@@ -28,8 +28,8 @@ const Home_Hero = () => {
   }, []);
 
   return (
-    <section className="w-full py-24 h-full relative overflow-x-clip">
-      {/* <section className="w-full bg-linear-to-br from-lightPrimary to-primary py-12"> */}
+    // <section className="w-full py-24 h-full relative overflow-x-clip">
+    <section className="w-full bg-linear-to-br from-lightPrimary to-primary py-24 relative overflow-x-clip">
       <div
         className="
       absolute -top-24 -left-24

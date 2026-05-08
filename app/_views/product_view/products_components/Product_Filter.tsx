@@ -62,10 +62,10 @@ const Product_Filter = ({
         <div className="grid grid-cols-3 lg:flex lg:flex-col gap-4 p-4">
           {categories.map((item) => (
             <App_CheckBox
-              key={item}
-              label={item}
-              checked={tempCategories.includes(item)}
-              onChange={() => toggleCategory(item)}
+              key={item.name}
+              label={item.name}
+              checked={tempCategories.includes(item.name)}
+              onChange={() => toggleCategory(item.name)}
             />
           ))}
         </div>

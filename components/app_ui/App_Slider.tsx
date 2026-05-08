@@ -14,7 +14,10 @@ type Props = {
 };
 
 const App_Slider = ({ images, dots, btn, imgContainerStyle, loop }: Props) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: loop ? true : false });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: loop ? true : false,
+    duration: 45,
+  });
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const scrollTo = (index: number) => emblaApi?.scrollTo(index);

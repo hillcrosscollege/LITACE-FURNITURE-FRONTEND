@@ -226,11 +226,30 @@ const images = [
   "/tmp/images/diamond_black_2.jpg",
 ];
 
+// export const categories = [
+//   "conference-chairs",
+//   "school-furniture",
+//   "office-furniture",
+//   "decor-events",
+// ];
+
 export const categories = [
-  "conference-chairs",
-  "school-furniture",
-  "office-furniture",
-  "decor-events",
+  {
+    name: "Conference Chairs",
+    image: "/tmp/images/conference_chair.jpg",
+  },
+  {
+    name: "School Furniture",
+    image: "/tmp/images/conference_chair.jpg",
+  },
+  {
+    name: "Office Furniture",
+    image: "/tmp/images/conference_chair.jpg",
+  },
+  {
+    name: "Decor Events",
+    image: "/tmp/images/conference_chair.jpg",
+  },
 ];
 
 const subCategories = [
@@ -272,7 +291,7 @@ export const productsData: IProduct[] = Array.from({ length: 70 }, (_, i) => {
 
     description: descriptions[i % descriptions.length],
 
-    category: categories[i % categories.length],
+    category: categories[i % categories.length].name,
 
     subCategory: subCategories[i % subCategories.length],
 

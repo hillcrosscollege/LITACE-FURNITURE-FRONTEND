@@ -10,8 +10,8 @@ const Home_View = () => {
     <>
       <Home_Hero />
       <Home_Hero_Card />
-      <Home_Popular />
       <Home_Category />
+      <Home_Popular />
       <Home_Arrivals />
       <Home_Review />
     </>

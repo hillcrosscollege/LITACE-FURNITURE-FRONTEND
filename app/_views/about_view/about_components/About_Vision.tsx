@@ -5,16 +5,16 @@ const About_Vision = () => {
   return (
     <section className="my-20 containerclass flex flex-col md:flex-row gap-6">
       <App_Full_Text
-        containerStyle="flex-col bg-primary p-20 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500  border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)] relative overflow-hidden"
+        containerStyle="flex-col flex-1 bg-primary p-20 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500  border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)] relative overflow-hidden"
         text={{
           textContentStyle: "flex-col",
           header: {
-            text: "New Arrivals",
+            text: "Our Vision",
             type: "cardhead",
             style: "tracking-tighter font-bold text-white",
           },
           para: {
-            text: "All our furniture is manufactured to the highest standards using premium materials and expert craftsmanship.",
+            text: "To become the gold standard when furniture and decor supplies are the subject matter",
             style: "text-white text-base",
           },
         }}
@@ -31,17 +31,17 @@ const About_Vision = () => {
         }
       />
       <App_Full_Text
-        containerStyle="flex-col bg-white p-20 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500 hover:bg-surface-container border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)] relative overflow-hidden"
+        containerStyle="flex-col flex-1 bg-white p-20 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500 hover:bg-surface-container border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)] relative overflow-hidden"
         text={{
           textContentStyle: "flex-col",
           header: {
-            text: "New Arrivals",
+            text: "Secret Sauce",
             type: "cardhead",
             style:
               "tracking-tighter font-bold transition-colors duration-300 group-hover:text-primary",
           },
           para: {
-            text: "All our furniture is manufactured to the highest standards using premium materials and expert craftsmanship.",
+            text: "Our secret sauce is not that much of a secret. It’s merely the power of imagination entwined with a passion for excellence. Truth be told… It requires style and grace.",
             style:
               "text-gray-500 text-base transition-colors duration-300 group-hover:text-gray-700",
           },

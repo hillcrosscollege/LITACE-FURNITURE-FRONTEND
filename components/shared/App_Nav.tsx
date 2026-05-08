@@ -60,9 +60,11 @@ const App_Nav = () => {
             </button>
 
             {/* Signup Button */}
-            <button className="hidden md:block bg-primary text-white px-4 py-2 rounded-lg text-sm hover:opacity-90">
-              Sign Up
-            </button>
+            <Link href="/sign-up">
+              <button className="hidden md:block bg-primary text-white px-4 py-2 rounded-lg text-sm hover:opacity-90">
+                Sign Up
+              </button>
+            </Link>
 
             {/* Mobile Menu Button */}
             <button onClick={() => setOpen(!open)} className="md:hidden">
