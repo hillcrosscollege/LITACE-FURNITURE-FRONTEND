@@ -226,7 +226,7 @@ const images = [
   "/tmp/images/diamond_black_2.jpg",
 ];
 
-const categories = [
+export const categories = [
   "conference-chairs",
   "school-furniture",
   "office-furniture",

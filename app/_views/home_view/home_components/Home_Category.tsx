@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { products } from "../home_data";
 import App_Full_Text from "@/components/shared/App_Full_Text";
+import { categories } from "@/app/tmp/popularProducts";
 
 const Home_Category = () => {
   return (
@@ -27,7 +27,7 @@ const Home_Category = () => {
         }}
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {products.map((product, index) => (
+        {categories.map((category, index) => (
           <div key={index}>
             <div className="aspect-square bg-white rounded-xl overflow-hidden mb-6 border border-purple-50">
               <Image
@@ -40,7 +40,7 @@ const Home_Category = () => {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
             </div>
-            <h3 className="font-headline font-bold text-lg">Category</h3>
+            <h3 className="font-headline font-bold text-lg">{category}</h3>
           </div>
         ))}
       </div>

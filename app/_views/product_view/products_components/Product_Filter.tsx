@@ -2,10 +2,10 @@
 import App_Header_Text from "@/components/app_ui/App_Header_Text";
 import App_Number_Slider from "@/components/app_ui/App_Number_Slider";
 import { cn } from "@/lib/utils";
-import { categories } from "../products_data";
 import App_CheckBox from "@/components/app_ui/App_CheckBox";
 import { SetStateAction, useState } from "react";
 import App_Button from "@/components/app_ui/App_Button";
+import { categories } from "@/app/tmp/popularProducts";
 
 const Product_Filter = ({
   style,
@@ -62,10 +62,10 @@ const Product_Filter = ({
         <div className="grid grid-cols-3 lg:flex lg:flex-col gap-4 p-4">
           {categories.map((item) => (
             <App_CheckBox
-              key={item.id}
-              label={item.name}
-              checked={tempCategories.includes(item.name)}
-              onChange={() => toggleCategory(item.name)}
+              key={item}
+              label={item}
+              checked={tempCategories.includes(item)}
+              onChange={() => toggleCategory(item)}
             />
           ))}
         </div>
