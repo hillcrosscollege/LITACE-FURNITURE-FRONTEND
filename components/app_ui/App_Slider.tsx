@@ -4,6 +4,7 @@ import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Fade from "embla-carousel-fade";
 
 type Props = {
   images: string[];
@@ -14,10 +15,13 @@ type Props = {
 };
 
 const App_Slider = ({ images, dots, btn, imgContainerStyle, loop }: Props) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: loop ? true : false,
-    duration: 45,
-  });
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: loop ? true : false,
+      duration: 45,
+    },
+    [Fade()],
+  );
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const scrollTo = (index: number) => emblaApi?.scrollTo(index);

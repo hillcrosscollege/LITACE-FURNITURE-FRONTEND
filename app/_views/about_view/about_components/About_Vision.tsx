@@ -5,17 +5,18 @@ const About_Vision = () => {
   return (
     <section className="my-20 containerclass flex flex-col md:flex-row gap-6">
       <App_Full_Text
-        containerStyle="flex-col flex-1 bg-primary p-20 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500  border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)] relative overflow-hidden"
+        className="flex-col flex-1 bg-secondary p-20 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500  border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)] relative overflow-hidden"
         text={{
-          textContentStyle: "flex-col",
+          className: "flex-col",
           header: {
-            text: "Our Vision",
-            type: "cardhead",
-            style: "tracking-tighter font-bold text-white",
+            children: "Our Vision",
+            variant: "sectionTitle",
+            className: "tracking-tighter font-bold text-white",
           },
           para: {
-            text: "To become the gold standard when furniture and decor supplies are the subject matter",
-            style: "text-white text-base",
+            children:
+              "To become the gold standard when furniture and decor supplies are the subject matter",
+            className: "text-white text-base",
           },
         }}
         extra={
@@ -24,25 +25,26 @@ const About_Vision = () => {
             <div className="p-3 rounded-lg bg-white">
               <Truck
                 size={30}
-                className="text-primary transition-all duration-500 transform group-hover:-scale-x-100 "
+                className="text-secondary transition-all duration-500 transform group-hover:-scale-x-100 "
               />
             </div>
           </>
         }
       />
       <App_Full_Text
-        containerStyle="flex-col flex-1 bg-white p-20 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500 hover:bg-surface-container border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)] relative overflow-hidden"
+        className="flex-col flex-1 bg-white p-20 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500 hover:bg-surface-container border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)] relative overflow-hidden"
         text={{
-          textContentStyle: "flex-col",
+          className: "flex-col",
           header: {
-            text: "Secret Sauce",
-            type: "cardhead",
-            style:
+            children: "Secret Sauce",
+            variant: "sectionTitle",
+            className:
               "tracking-tighter font-bold transition-colors duration-300 group-hover:text-primary",
           },
           para: {
-            text: "Our secret sauce is not that much of a secret. It’s merely the power of imagination entwined with a passion for excellence. Truth be told… It requires style and grace.",
-            style:
+            children:
+              "Our secret sauce is not that much of a secret. It’s merely the power of imagination entwined with a passion for excellence. Truth be told… It requires style and grace.",
+            className:
               "text-gray-500 text-base transition-colors duration-300 group-hover:text-gray-700",
           },
         }}

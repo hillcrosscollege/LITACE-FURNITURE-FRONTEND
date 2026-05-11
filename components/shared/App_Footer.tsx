@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { footerData } from "./data";
-import App_Header_Text from "../app_ui/App_Header_Text";
+import App_Header_Text from "../app_ui/App_Text";
 import Image from "next/image";
 import { Logo } from "@/assets/img";
 

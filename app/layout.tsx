@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat, Cormorant } from "next/font/google";
+import { Inter, Cormorant } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,17 +8,18 @@ const inter = Inter({
   weight: ["400", "500", "600"],
 });
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  weight: ["500", "600", "700"],
-});
+// const montserrat = Montserrat({
+//   subsets: ["latin"],
+//   variable: "--font-heading",
+//   weight: ["500", "600", "700"],
+// });
+// _Garamond
 
 const cormorant = Cormorant({
   subsets: ["latin"],
-  variable: "--font-accent",
+  variable: "--font-heading",
   style: ["italic"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -34,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${montserrat.variable} ${cormorant.variable} h-full antialiased`}
+      className={`${inter.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

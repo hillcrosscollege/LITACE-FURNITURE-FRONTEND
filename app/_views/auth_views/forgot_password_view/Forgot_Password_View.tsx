@@ -1,7 +1,7 @@
 "use client";
 import App_Button from "@/components/app_ui/App_Button";
 import { useForgotPassword } from "./forgot_password_hook/useForgotPassword";
-import App_Header_Text from "@/components/app_ui/App_Header_Text";
+import App_Header_Text from "@/components/app_ui/App_Text";
 import App_Input from "@/components/app_ui/App_Input";
 import { Mail } from "lucide-react";
 import Link from "next/link";

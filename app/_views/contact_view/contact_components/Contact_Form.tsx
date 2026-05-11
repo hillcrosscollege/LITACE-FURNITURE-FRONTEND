@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import App_Input from "@/components/app_ui/App_Input";
 import App_Text_Area from "@/components/app_ui/App_Text_Area";
 import { useContactForm } from "../contact_hook.tsx/useContactForm";
-import App_Header_Text from "@/components/app_ui/App_Header_Text";
+import App_Header_Text from "@/components/app_ui/App_Text";
 import App_Button from "@/components/app_ui/App_Button";
 
 const Contact_Form = () => {

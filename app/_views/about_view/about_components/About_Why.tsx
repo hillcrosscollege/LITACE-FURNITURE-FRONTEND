@@ -6,31 +6,32 @@ const About_Why = () => {
   return (
     <section className="containerclass mb-20 grid gap-8">
       <App_Double_Text
-        textContentStyle="gap-y-1"
+        className="gap-y-1"
         header={{
-          text: "Why Choose Litace",
-          type: "subhead",
+          children: "Why Choose Litace",
+          variant: "sectionTitle",
         }}
         para={{
-          text: "Our commitment to quality and service sets us apart",
+          children: "Our commitment to quality and service sets us apart",
         }}
       />
       <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
         {[1, 2, 3, 4].map((item, index) => (
           <App_Full_Text
             key={index}
-            containerStyle="flex-col bg-white p-6 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500 hover:bg-surface-container border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)]"
+            className="flex-col bg-white p-6 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500 hover:bg-surface-container border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)]"
             text={{
-              textContentStyle: "flex-col",
+              className: "flex-col",
               header: {
-                text: "New Arrivals",
-                type: "cardhead",
-                style:
+                children: "New Arrivals",
+                variant: "sectionTitle",
+                className:
                   "tracking-tighter font-bold transition-colors duration-300 group-hover:text-primary",
               },
               para: {
-                text: "All our furniture is manufactured to the highest standards using premium materials and expert craftsmanship.",
-                style:
+                children:
+                  "All our furniture is manufactured to the highest standards using premium materials and expert craftsmanship.",
+                className:
                   "text-gray-500 text-base transition-colors duration-300 group-hover:text-gray-700",
               },
             }}

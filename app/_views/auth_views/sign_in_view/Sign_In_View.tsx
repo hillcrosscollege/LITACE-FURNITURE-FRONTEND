@@ -1,6 +1,6 @@
 "use client";
 import App_Button from "@/components/app_ui/App_Button";
-import App_Header_Text from "@/components/app_ui/App_Header_Text";
+import App_Header_Text from "@/components/app_ui/App_Text";
 import App_Input from "@/components/app_ui/App_Input";
 import { useSignIn } from "./sign_in_hook/useSignIn";
 import { EyeIcon, Lock, Mail } from "lucide-react";

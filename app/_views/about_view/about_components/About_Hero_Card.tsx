@@ -10,17 +10,16 @@ const About_Hero_Card = () => {
           return (
             <App_Full_Text
               key={index}
-              containerStyle="items-center gap-x-2 md:gap-x-4 items-center w-[48%] md:w-auto"
+              className="items-center gap-x-2 md:gap-x-4 items-center w-[48%] md:w-auto"
               text={{
-                textContentStyle: "gap-y-1",
+                className: "gap-y-1",
                 header: {
-                  text: item.title,
-                  type: "mini",
-                  style: "uppercase tracking-widest",
+                  children: item.title,
+                  className: "uppercase tracking-widest",
                 },
                 para: {
-                  text: item.subtitle,
-                  style: "text-[10px]",
+                  children: item.subtitle,
+                  className: "text-[10px]",
                 },
               }}
               extra={<Icon size={20} className="text-primary" />}

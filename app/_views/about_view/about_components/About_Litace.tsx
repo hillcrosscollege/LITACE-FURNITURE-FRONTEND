@@ -1,6 +1,7 @@
-import App_Header_Text from "@/components/app_ui/App_Header_Text";
+import App_Header_Text from "@/components/app_ui/App_Text";
 import App_Paragraph from "@/components/app_ui/App_Paragraph";
 import Image from "next/image";
+import App_Text from "@/components/app_ui/App_Text";
 
 const About_Litace = () => {
   const whowearedata = [
@@ -20,10 +21,21 @@ const About_Litace = () => {
   return (
     <section className="containerclass mt-20 flex flex-col lg:flex-row gap-12 justify-between">
       <aside className="lg:w-[50%] xl:w-[45%] flex flex-col gap-4">
-        <App_Header_Text text="Who Are We" type="subhead" />
+        <div className="flex items-center gap-4">
+          <div className="flex gap-2">
+            {[1, 2, 3].map((item) => (
+              <div className={`h-2 w-2 rounded-full bg-secondary`}></div>
+            ))}
+          </div>
+          <App_Text
+            children={"LITACE INTERIORS"}
+            className="text-xs font-bold tracking-wider text-primary"
+          />
+        </div>
+        <App_Text children="Who Are We" variant="heading" />
         {[
           whowearedata.map((item, index) => (
-            <App_Paragraph text={item} key={index} />
+            <App_Text children={item} key={index} />
           )),
         ]}
         <div className="grid grid-cols-2 gap-4 mt-6">
@@ -38,7 +50,7 @@ const About_Litace = () => {
         </div>
       </aside>
       <div className="lg:w-[50%] xl:w-[45%] relative flex justify-items-end">
-        <div className="w-[70%] h-[90%] z-[-1] bg-primary/50 absolute top-0 right-0 rounded-t-xl rounded-br-xl"></div>
+        <div className="w-[70%] h-[90%] z-[-1] bg-secondary/50 absolute top-0 right-0 rounded-t-xl rounded-br-xl"></div>
         <Image
           src={
             "https://lh3.googleusercontent.com/aida-public/AB6AXuCwduLZd_XqDq3CPIxMl1X7MotMkVuW_oI24rzX1972f9k2aLnT65ko8h8l5BwjJgn9g5H3F60d1hPmmqOlXrF_jEFu59I3tO0XhdqeBVZEDOFtVKn4q4pXrf5Oz_NPQN6snF-yrlurUy0h_kH64N4CbPo53bDRYvd81ZMJGkeHDsuaDLaxd6LNtqUshkC87o8e2rLfvjWVsyhlrTqrk58avmrzePkampMqSE0xFkh9LKvr43F_cnvwTBuAOWakTDB8gNr29It8O2g"

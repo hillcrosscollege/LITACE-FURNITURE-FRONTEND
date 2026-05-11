@@ -1,3 +1,5 @@
+import { variants } from "@/components/app_ui/App_Text";
+import { HTMLMotionProps } from "motion/react";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import type { ReactNode } from "react";
 import {
@@ -6,6 +8,16 @@ import {
   RegisterOptions,
   UseFormRegister,
 } from "react-hook-form";
+
+type TextVariantType = keyof typeof variants;
+type TextTags = "h1" | "h2" | "h3" | "h4" | "p";
+
+export interface IAppText {
+  variant?: TextVariantType;
+  className?: string;
+  children: ReactNode;
+  motionObj?: HTMLMotionProps<TextTags>;
+}
 
 export interface IText {
   text: string;
@@ -43,16 +55,22 @@ export interface IImg {
 }
 
 export interface IDoubleText {
-  header?: IHeader;
-  para?: IParagraph;
-  textContentStyle?: string;
+  header?: IAppText;
+  para?: IAppText;
+  className?: string;
+}
+export interface IDoubleBtn {
+  btn1: IButton;
+  btn2: IButton;
+  className?: string;
 }
 
 export interface IFullText {
   text: IDoubleText;
   btn?: IButton;
-  containerStyle?: string;
+  className?: string;
   extra?: ReactNode;
+  dbtn?: IDoubleBtn;
 }
 
 export interface IGrouped {

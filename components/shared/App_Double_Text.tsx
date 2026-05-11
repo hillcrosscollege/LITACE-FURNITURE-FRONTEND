@@ -1,13 +1,19 @@
-import { IDoubleText } from "@/types";
-import App_Header_Text from "../app_ui/App_Header_Text";
-import App_Paragraph from "../app_ui/App_Paragraph";
+import { IAppText, IDoubleText } from "@/types";
+import App_Text from "../app_ui/App_Text";
+import { cn } from "@/lib/utils";
 
-const App_Double_Text = ({ para, header, textContentStyle }: IDoubleText) => {
+const renderText = (item: IAppText) => (
+  <App_Text variant={item.variant} className={item.className}>
+    {item.children}
+  </App_Text>
+);
+
+const App_Double_Text = ({ header, para, className }: IDoubleText) => {
   return (
-    <aside className={`flex flex-col gap-2 ${textContentStyle}`}>
-      {header && <App_Header_Text {...header} />}
-      {para && <App_Paragraph {...para} />}
-    </aside>
+    <div className={cn("flex flex-col gap-2", className)}>
+      {header && renderText(header)}
+      {para && renderText(para)}
+    </div>
   );
 };
 

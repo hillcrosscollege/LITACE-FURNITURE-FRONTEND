@@ -1,4 +1,4 @@
-import App_Header_Text from "@/components/app_ui/App_Header_Text";
+import App_Header_Text from "@/components/app_ui/App_Text";
 import App_Paragraph from "@/components/app_ui/App_Paragraph";
 
 const Single_Product_More_Info = () => {

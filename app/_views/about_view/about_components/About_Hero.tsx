@@ -2,18 +2,19 @@ import App_Full_Text from "@/components/shared/App_Full_Text";
 
 const About_Hero = () => {
   return (
-    <section className="w-full bg-linear-to-br from-lightPrimary to-primary py-32">
+    <section className="w-full bg-linear-to-b from-primary/20 via-secondary/10 to-transparent py-32">
       <App_Full_Text
-        containerStyle="flex-col"
+        className="flex-col"
         text={{
-          textContentStyle: "gap-y-4 text-center text-white",
+          className: "gap-y-4 text-center text-primary",
           header: {
-            text: "Excellence in Furniture",
-            type: "title",
+            children: "Excellence in Furniture",
+            variant: "hero",
           },
           para: {
-            text: "Supplier and manufacturer of quality furniture for churches, schools, offices, events, and hotels across South Africa and SADC countries.",
-            style: "text-white max-w-xl mx-auto text-base md:text-lg",
+            children:
+              "Supplier and manufacturer of quality furniture for churches, schools, offices, events, and hotels across South Africa and SADC countries.",
+            className: "text-muted max-w-xl lg:text-lg mx-auto",
           },
         }}
         extra={

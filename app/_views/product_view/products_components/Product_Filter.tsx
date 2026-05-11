@@ -1,5 +1,5 @@
 "use client";
-import App_Header_Text from "@/components/app_ui/App_Header_Text";
+import App_Header_Text from "@/components/app_ui/App_Text";
 import App_Number_Slider from "@/components/app_ui/App_Number_Slider";
 import { cn } from "@/lib/utils";
 import App_CheckBox from "@/components/app_ui/App_CheckBox";
