@@ -7,32 +7,34 @@ const Contact_Section_Two = () => {
     <section className="containerclass my-20 flex flex-col lg:flex-row gap-6 lg:gap-0 justify-between">
       <div className="lg:w-[50%] flex flex-col gap-y-10">
         <App_Double_Text
-          textContentStyle="gap-y-4"
+          className="gap-y-4"
           header={{
-            text: "Get More Information",
-            type: "subhead",
+            children: "Get More Information",
+            variant: "cardTitle",
           }}
           para={{
-            text: "Serving clients across South Africa and SADC countries with reliable delivery and quality service",
-            style: "max-w-md text-base md:text-lg",
+            children:
+              "Serving clients across South Africa and SADC countries with reliable delivery and quality service",
+            className: "max-w-md text-base md:text-lg",
           }}
         />
         <div className="grid gap-4 grid-cols-2 ">
           {[1, 2, 3, 4].map((item, index) => (
             <App_Full_Text
               key={index}
-              containerStyle="flex-col bg-white p-3 lg:p-6 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500 hover:bg-surface-container border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)]"
+              className="flex-col bg-white p-3 lg:p-6 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500 hover:bg-surface-container border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)]"
               text={{
-                textContentStyle: "flex-col",
+                className: "flex-col",
                 header: {
-                  text: "Contact",
-                  type: "cardhead",
-                  style:
+                  children: "Contact",
+                  variant: "cardTitle",
+                  className:
                     "tracking-tighter font-bold transition-colors duration-300 group-hover:text-primary",
                 },
                 para: {
-                  text: "All our furniture is manufactured to the highest standards.",
-                  style:
+                  children:
+                    "All our furniture is manufactured to the highest standards.",
+                  className:
                     "text-gray-500 text-sm md:text-base transition-colors duration-300 group-hover:text-gray-700",
                 },
               }}

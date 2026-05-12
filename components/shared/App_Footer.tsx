@@ -3,6 +3,7 @@ import { footerData } from "./data";
 import App_Header_Text from "../app_ui/App_Text";
 import Image from "next/image";
 import { Logo } from "@/assets/img";
+import App_Text from "../app_ui/App_Text";
 
 const App_Footer = () => {
   return (
@@ -27,10 +28,10 @@ const App_Footer = () => {
             {footerData.map((item, index) => (
               <div key={index}>
                 {/* <h5 className="text-white font-medium mb-4">{item.name}</h5> */}
-                <App_Header_Text
-                  text={item.name}
-                  type="mini"
-                  style="uppercase text-primary font-bold text-xs tracking-[0.2em] mb-4"
+                <App_Text
+                  children={item.name}
+                  variant="sectionSub"
+                  className="uppercase text-primary font-bold text-xs tracking-[0.2em] mb-4"
                 />
                 <div className="flex flex-col gap-2">
                   {item.list.map((item, index) => (

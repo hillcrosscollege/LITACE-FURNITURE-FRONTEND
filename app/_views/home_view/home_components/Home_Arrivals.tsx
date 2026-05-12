@@ -6,17 +6,17 @@ const Home_Arrivals = () => {
   return (
     <section className="containerclass py-12 grid gap-8">
       <App_Full_Text
-        containerStyle="flex flex-col md:flex-row justify-between md:items-center gap-4 md:gap-0"
+        className="flex flex-col md:flex-row justify-between md:items-center gap-4 md:gap-0"
         text={{
-          textContentStyle: "flex-col",
+          className: "flex-col",
           header: {
-            text: "New Arrivals",
-            type: "subhead",
-            style: "tracking-tighter",
+            children: "New Arrivals",
+            variant: "heading",
+            className: "tracking-tighter",
           },
           para: {
-            text: "Latest additions to our collection",
-            style: "max-w-md italic",
+            children: "Latest additions to our collection",
+            className: "max-w-md italic",
           },
         }}
         btn={{

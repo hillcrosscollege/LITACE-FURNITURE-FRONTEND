@@ -20,9 +20,9 @@ const Sign_Up_View = () => {
       className="gap-4 justify-center w-[70%] rounded-xl shadow-xl mx-auto my-auto flex flex-col bg-white h-fit p-8"
     >
       <App_Header_Text
-        text="Sign Up"
-        type="cardhead"
-        style="font-bold text-primary text-center"
+        children="Sign Up"
+        variant="cardTitle"
+        className="font-bold text-primary text-center"
       />
       <App_Input
         icon1={<User size={20} className="text-primary" />}

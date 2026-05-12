@@ -14,7 +14,7 @@ const Single_Product_Add_Review = () => {
   } = useSingleProductReviewForm();
   return (
     <div className="grid gap-8">
-      <App_Header_Text text="Customer Review" type="cardhead" />
+      <App_Header_Text children="Customer Review" variant="cardTitle" />
       <div className="grid-cols-2 gap-8 grid">
         {[1, 2, 3].map((item) => (
           <div key={item} className="flex gap-2">
@@ -23,9 +23,9 @@ const Single_Product_Add_Review = () => {
             </div>
             <div className="flex-1">
               <App_Double_Text
-                textContentStyle="gap-y-0"
-                header={{ text: "User Name", type: "mini" }}
-                para={{ text: "2026-04-12", style: "text-xs" }}
+                className="gap-y-0"
+                header={{ children: "User Name", variant: "sectionSub" }}
+                para={{ children: "2026-04-12", className: "text-xs" }}
               />
               <p className="w-[90%] text-sm mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
@@ -36,7 +36,7 @@ const Single_Product_Add_Review = () => {
           </div>
         ))}
       </div>
-      <App_Header_Text text="Leave A Review" type="cardhead" />
+      <App_Header_Text children="Leave A Review" variant="cardTitle" />
 
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl">
         <App_Input

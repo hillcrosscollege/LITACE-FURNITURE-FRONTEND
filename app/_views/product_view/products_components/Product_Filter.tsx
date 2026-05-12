@@ -57,7 +57,7 @@ const Product_Filter = ({
       <div className="p-4 bg-white"></div>
       <div className="w-full bg-white flex-1">
         <div className="lg:py-4 lg:px-4 lg:border-b font-semibold">
-          <App_Header_Text text="CATEGORIES" type="cardhead" />
+          <App_Header_Text children="CATEGORIES" variant="cardTitle" />
         </div>
         <div className="grid grid-cols-3 lg:flex lg:flex-col gap-4 p-4">
           {categories.map((item) => (
@@ -72,7 +72,7 @@ const Product_Filter = ({
       </div>
       <div className="w-full bg-white">
         <div className="lg:py-4 lg:px-4 lg:items-start lg:border-b font-semibold flex lg:flex-col gap-6 items-center w-full">
-          <App_Header_Text text="PRICE RANGE" type="cardhead" />
+          <App_Header_Text children="PRICE RANGE" variant="cardTitle" />
           <App_Number_Slider price={tempPrice} setPrice={setTempPrice} />
         </div>
       </div>

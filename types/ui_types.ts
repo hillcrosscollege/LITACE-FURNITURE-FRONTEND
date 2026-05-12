@@ -63,6 +63,7 @@ export interface IDoubleBtn {
   btn1: IButton;
   btn2: IButton;
   className?: string;
+  motionObj?: HTMLMotionProps<"div">;
 }
 
 export interface IFullText {

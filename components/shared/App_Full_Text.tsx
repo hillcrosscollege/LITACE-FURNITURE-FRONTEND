@@ -29,6 +29,7 @@ const App_Full_Text = ({ className, btn, text, extra, dbtn }: IFullText) => {
           btn1={dbtn.btn1}
           btn2={dbtn.btn2}
           className={dbtn.className}
+          motionObj={dbtn.motionObj}
         />
       )}
     </div>

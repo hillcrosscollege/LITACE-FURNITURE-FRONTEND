@@ -18,15 +18,16 @@ const Verify_Email_View = () => {
       className="gap-4 justify-center w-[70%] rounded-xl shadow-xl mx-auto my-auto flex flex-col bg-white h-fit p-8"
     >
       <App_Double_Text
-        textContentStyle="gap-y-1 z-1"
+        className="gap-y-1 z-1"
         header={{
-          text: "Verify Email",
-          type: "cardhead",
-          style: "font-semibold text-primary",
+          children: "Verify Email",
+          variant: "cardTitle",
+          className: "font-semibold text-primary",
         }}
         para={{
-          text: "Enter the code sent to your.email.com for verification of email.",
-          style: "text-slate-600 text-base font-semibold",
+          children:
+            "Enter the code sent to your.email.com for verification of email.",
+          className: "text-slate-600 text-base font-semibold",
         }}
       />
       <App_Input

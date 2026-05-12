@@ -4,17 +4,18 @@ const Contact_Hero = () => {
   return (
     <section className="w-full bg-linear-to-br from-lightPrimary to-primary py-32">
       <App_Full_Text
-        containerStyle="flex-col"
+        className="flex-col"
         text={{
-          textContentStyle: "gap-y-4 text-center text-white",
+          className: "gap-y-4 text-center text-white",
           header: {
-            text: "Contact Our Support",
-            type: "title",
-            style: "max-w-3xl mx-auto",
+            children: "Contact Our Support",
+            variant: "cardTitle",
+            className: "max-w-3xl mx-auto",
           },
           para: {
-            text: "Supplier and manufacturer of quality furniture for churches, schools, offices, events, and hotels across South Africa and SADC countries.",
-            style: "text-white max-w-xl mx-auto text-base md:text-lg",
+            children:
+              "Supplier and manufacturer of quality furniture for churches, schools, offices, events, and hotels across South Africa and SADC countries.",
+            className: "text-white max-w-xl mx-auto text-base md:text-lg",
           },
         }}
         extra={

@@ -3,7 +3,11 @@ import App_Text from "../app_ui/App_Text";
 import { cn } from "@/lib/utils";
 
 const renderText = (item: IAppText) => (
-  <App_Text variant={item.variant} className={item.className}>
+  <App_Text
+    variant={item.variant}
+    className={item.className}
+    motionObj={item.motionObj}
+  >
     {item.children}
   </App_Text>
 );

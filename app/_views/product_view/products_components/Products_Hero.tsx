@@ -4,13 +4,13 @@ const Products_Hero = () => {
   return (
     <section className="w-full bg-linear-to-br from-lightPrimary to-primary py-20">
       <App_Full_Text
-        containerStyle="flex-col"
+        className="flex-col"
         text={{
-          textContentStyle: "gap-y-4 text-center text-white",
+          className: "gap-y-4 text-center text-white",
           header: {
-            text: "Litace Products",
-            type: "title",
-            style: "max-w-3xl mx-auto",
+            children: "Litace Products",
+            variant: "hero",
+            className: "max-w-3xl mx-auto",
           },
         }}
         extra={

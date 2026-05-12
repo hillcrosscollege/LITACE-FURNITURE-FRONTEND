@@ -6,13 +6,13 @@ const Home_Review = () => {
     <section className="my-20 containerclass grid gap-8">
       <App_Double_Text
         header={{
-          text: "What Our Clients Say",
-          type: "subhead",
-          style: "tracking-tighter",
+          children: "What Our Clients Say",
+          variant: "heading",
+          className: "tracking-tighter",
         }}
         para={{
-          text: "Trusted across South Africa and SADC",
-          style: "italic max-w-md",
+          children: "Trusted across South Africa and SADC",
+          className: "italic max-w-md",
         }}
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -27,16 +27,16 @@ const Home_Review = () => {
               been unparalleled. Truly built for the African landscape."
             </p>
             <App_Double_Text
-              textContentStyle="gap-y-1"
+              className="gap-y-1"
               header={{
-                text: "Director of Education",
-                type: "mini",
-                style:
+                children: "Director of Education",
+                variant: "cardText",
+                className:
                   "font-bold text-sm uppercase tracking-widest text-primary",
               }}
               para={{
-                text: "SADC Regional Council",
-                style: "text-xs uppercase opacity-60",
+                children: "SADC Regional Council",
+                className: "text-xs uppercase opacity-60",
               }}
             />
           </div>

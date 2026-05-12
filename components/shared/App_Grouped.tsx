@@ -8,7 +8,7 @@ const App_Grouped = ({ full_text, img, groupStyle }: IGrouped) => {
       <App_Full_Text
         text={full_text.text}
         btn={full_text.btn}
-        containerStyle={full_text.containerStyle}
+        className={full_text.className}
         extra={full_text.extra}
       />
 

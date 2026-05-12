@@ -20,15 +20,16 @@ const Auth_Layout = ({ children }: { children: React.ReactNode }) => {
             />
             <section className="absolute left-4 top-4 bottom-4 py-20 inset-0  flex flex-col justify-center items-center gap-8">
               <App_Double_Text
-                textContentStyle="gap-y-2 z-1 items-center"
+                className="gap-y-2 z-1 items-center"
                 header={{
-                  text: "Litace Furnitures",
-                  type: "subhead",
-                  style: "text-white",
+                  children: "Litace Furnitures",
+                  variant: "subheading",
+                  className: "text-white",
                 }}
                 para={{
-                  text: "Our commitment to quality and service sets us apart",
-                  style: "text-white text-lg font-semibold",
+                  children:
+                    "Our commitment to quality and service sets us apart",
+                  className: "text-white text-lg font-semibold",
                 }}
               />
               <div className="bg-white border border-primary p-4 rounded-xl z-1 w-[70%]"></div>

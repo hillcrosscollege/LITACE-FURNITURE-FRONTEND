@@ -20,9 +20,9 @@ const Sign_In_View = () => {
       className="space-y-5 justify-center w-[70%] rounded-xl shadow-xl mx-auto my-auto flex flex-col bg-white h-fit p-8"
     >
       <App_Header_Text
-        text="Login"
-        type="cardhead"
-        style="font-semibold text-primary"
+        children="Login"
+        variant="cardTitle"
+        className="font-semibold text-primary"
       />
       <App_Input
         icon1={<Mail size={20} className="text-primary" />}

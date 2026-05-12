@@ -3,9 +3,21 @@ import Home_Hero_Image_Card from "./Home_Hero_Image_Card";
 import App_Slider from "@/components/app_ui/App_Slider";
 import App_Text from "@/components/app_ui/App_Text";
 import App_Full_Text from "@/components/shared/App_Full_Text";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 const Home_Hero = () => {
+  const heroTexts = ["Home", "School", "Office", "Church"];
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % heroTexts.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="w-full py-24 h-full relative overflow-x-clip">
       {/* // <section className="w-full bg-linear-to-br from-lightPrimary to-primary py-24 relative overflow-x-clip"> */}
@@ -75,10 +87,33 @@ const Home_Hero = () => {
                     The Gold Standard{" "}
                     <span className="block">
                       for{" "}
-                      <span className="text-primary font-normal font-accent italic">
-                        Home.
-                        {/* School, Office{" "} */}
-                      </span>
+                      <AnimatePresence mode="wait">
+                        <motion.span
+                          key={heroTexts[active]}
+                          initial={{
+                            opacity: 0,
+                            y: 20,
+                            // filter: "blur(8px)",
+                          }}
+                          animate={{
+                            opacity: 1,
+                            y: 0,
+                            filter: "blur(0px)",
+                          }}
+                          exit={{
+                            opacity: 0,
+                            y: -10,
+                            filter: "blur(8px)",
+                          }}
+                          transition={{
+                            duration: 0.4,
+                            ease: [0.22, 1, 0.36, 1],
+                          }}
+                          className="text-primary font-normal font-accent italic inline-block"
+                        >
+                          {heroTexts[active]}.
+                        </motion.span>
+                      </AnimatePresence>
                     </span>
                     {/* <span>&amp; Church</span> */}
                   </>
@@ -92,6 +127,20 @@ const Home_Hero = () => {
             }}
             dbtn={{
               className: "mt-4 w-[60%] flex gap-4",
+              motionObj: {
+                initial: {
+                  opacity: 0,
+                  y: 20,
+                },
+                animate: {
+                  opacity: 1,
+                  y: 0,
+                },
+                transition: {
+                  delay: 0.4,
+                  duration: 0.8,
+                },
+              },
               btn1: {
                 text: "Shop Now",
                 btnStyle: "text-white py-5 rounded-full flex-1",

@@ -7,17 +7,18 @@ const Home_Popular = () => {
   return (
     <section className="containerclass py-12 grid gap-8">
       <App_Full_Text
-        containerStyle="flex flex-col md:flex-row-reverse justify-between md:items-center gap-4 md:gap-0"
+        className="flex flex-col md:flex-row-reverse justify-between md:items-center gap-4 md:gap-0"
         text={{
-          textContentStyle: "flex-col-reverse gap-y-1",
+          className: "flex-col-reverse gap-y-1",
           header: {
-            text: "Popular Products",
-            type: "subhead",
-            style: "tracking-tighter",
+            children: "Popular Products",
+            variant: "heading",
+            className: "tracking-tighter",
           },
           para: {
-            text: "curated",
-            style: "text-xs uppercase tracking-[0.2em] text-primary font-bold",
+            children: "curated",
+            className:
+              "text-xs uppercase tracking-[0.2em] text-primary font-bold",
           },
         }}
         extra={

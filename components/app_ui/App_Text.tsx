@@ -59,20 +59,21 @@ const App_Text = ({
   children,
   motionObj,
 }: IAppText) => {
-  const Component = variants[variant].tag as keyof JSX.IntrinsicElements;
+  const Component = variants[variant].tag as keyof typeof motionComponents;
   const MotionComponent = motionComponents[Component];
 
   return (
     <MotionComponent
       className={cn(variants[variant].className, className)}
-      motionObj={{
-        initial: { opacity: 0, y: 40 },
-        animate: { opacity: 1, y: 0 },
-        transition: {
-          duration: 1,
-          delay: 1,
-        },
-      }}
+      // motionObj={{
+      //   initial: { opacity: 0, y: 40 },
+      //   animate: { opacity: 1, y: 0 },
+      //   transition: {
+      //     duration: 1,
+      //     delay: 1,
+      //   },
+      // }}
+      {...motionObj}
     >
       {children}
     </MotionComponent>

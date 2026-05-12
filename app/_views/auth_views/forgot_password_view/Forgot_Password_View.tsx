@@ -21,15 +21,15 @@ const Forgot_Password_View = () => {
       className="space-y-5 justify-center w-[70%] rounded-xl shadow-xl mx-auto my-auto flex flex-col bg-white h-fit p-8"
     >
       <App_Double_Text
-        textContentStyle="gap-y-1 z-1"
+        className="gap-y-1 z-1"
         header={{
-          text: "Forgot Password?",
-          type: "cardhead",
-          style: "font-semibold text-primary",
+          children: "Forgot Password?",
+          variant: "cardTitle",
+          className: "font-semibold text-primary",
         }}
         para={{
-          text: "We can help you recover your password with few steps.",
-          style: "text-slate-600 text-base font-semibold",
+          children: "We can help you recover your password with few steps.",
+          className: "text-slate-600 text-base font-semibold",
         }}
       />
       <div>

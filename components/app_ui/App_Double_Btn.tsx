@@ -1,10 +1,10 @@
-import React from "react";
 import App_Button from "./App_Button";
 import { IDoubleBtn } from "@/types/ui_types";
+import { motion } from "motion/react";
 
-const App_Double_Btn = ({ className, btn1, btn2 }: IDoubleBtn) => {
+const App_Double_Btn = ({ className, btn1, btn2, motionObj }: IDoubleBtn) => {
   return (
-    <div className={className}>
+    <motion.div className={className} {...motionObj}>
       <App_Button
         btnStyle={btn1.btnStyle}
         text={btn1.text}
@@ -19,7 +19,7 @@ const App_Double_Btn = ({ className, btn1, btn2 }: IDoubleBtn) => {
         onPress={btn2.onPress}
         type={btn2.type}
       />
-    </div>
+    </motion.div>
   );
 };
 
