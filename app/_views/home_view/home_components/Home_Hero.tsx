@@ -19,51 +19,28 @@ const Home_Hero = () => {
   }, []);
 
   return (
-    <section className="w-full py-24 h-full relative overflow-x-clip">
-      {/* // <section className="w-full bg-linear-to-br from-lightPrimary to-primary py-24 relative overflow-x-clip"> */}
+    <section className="w-full py-12 md:py-20 lg:py-24 h-full relative overflow-x-clip">
       <div className="absolute -top-24 -left-24 w-[28rem] h-[28rem] rounded-full bg-secondary/20 blur-3xl pointer-events-none" />
-
-      {/* <div
-        className="
-      absolute top-[20%] right-[-8rem]
-      w-[24rem] h-[24rem]
-      rounded-full
-      bg-pink-300/20
-      blur-3xl
-      pointer-events-none
-    "
-      /> */}
-
-      {/* <div
-        className="
-      absolute bottom-[-10rem] left-[35%]
-      w-[22rem] h-[22rem]
-      rounded-full
-      bg-blue-300/20
-      blur-3xl
-      pointer-events-none
-    "
-      /> */}
-      <div className="containerclass flex justify-between items-center">
-        <div className=" w-[50%] ">
-          <div className="flex items-center gap-4 mb-4">
+      <div className="containerclass flex flex-col md:flex-row  items-center md:justify-between">
+        <div className="md:w-[50%] flex flex-col justify-center items-center text-center md:items-start md:text-left">
+          <div className="flex items-center gap-4 mb-4 ">
             <div className="flex gap-2">
               {[1, 2, 3].map((item) => (
                 <div
-                  className={`h-2 w-2 rounded-full bg-secondary`}
+                  className={`h-1 w-1 rounded-full bg-secondary`}
                   key={item}
                 ></div>
               ))}
             </div>
             <App_Text
               children={"LITACE INTERIORS"}
-              className="text-xs font-bold tracking-wider text-primary"
+              className="text-[10px] md:text-xs font-bold tracking-wider text-primary"
             />
           </div>
           <App_Full_Text
-            className=" flex flex-col gap-10"
+            className=" flex flex-col gap-4 lg:gap-10"
             text={{
-              className: "gap-6",
+              className: "gap-2 lg:gap-6",
               header: {
                 motionObj: {
                   initial: {
@@ -120,13 +97,14 @@ const Home_Hero = () => {
                 ),
               },
               para: {
-                className: "lg:text-lg w-[80%]",
+                className: "lg:text-lg lg:w-[80%]",
                 children:
                   "Premier manufacturer and supplier across the SADC region. Elevating communal spaces through artisanal precision.",
               },
             }}
             dbtn={{
-              className: "mt-4 w-[60%] flex gap-4",
+              className:
+                "lg:mt-4 w-[90%] lg:w-[60%] mx-auto md:ml-0 flex gap-2",
               motionObj: {
                 initial: {
                   opacity: 0,
@@ -143,7 +121,7 @@ const Home_Hero = () => {
               },
               btn1: {
                 text: "Shop Now",
-                btnStyle: "text-white py-5 rounded-full flex-1",
+                btnStyle: "text-white py-3 lg:py-5 rounded-full flex-1",
                 onPress: () => {
                   console.log("Shop Now");
                 },
@@ -151,7 +129,7 @@ const Home_Hero = () => {
               btn2: {
                 text: "Learn More",
                 btnStyle:
-                  "flex-1 py-5 rounded-full bg-transparent border border-primary text-primary",
+                  "flex-1 py-3 lg:py-5 rounded-full bg-transparent border border-primary text-primary",
                 onPress: () => {
                   console.log("Learn More");
                 },
@@ -160,7 +138,7 @@ const Home_Hero = () => {
           />
         </div>
         <motion.div
-          className="lg:w-[45%] lg:h-[600px] w-[50%] relative"
+          className="md:w-[45%] md:h-[400px] lg:h-[600px] mt-6 lg:mt-0 w-full relative"
           animate={{
             y: [0, -12, 0],
           }}
@@ -172,10 +150,10 @@ const Home_Hero = () => {
         >
           <App_Slider
             images={[
-              "/tmp/images/conference_chair-2.png",
-              "/tmp/images/conference_chair-2.png",
-              "/tmp/images/conference_chair-2.png",
-              "/tmp/images/conference_chair-2.png",
+              "/conference_chair-2.png",
+              "/home_sofa.png",
+              "/conference_chair-2.png",
+              "/home_sofa.png",
             ]}
             imgContainerStyle="flex-[0_0_100%] bg-gradient-to-br from-primary/20 via-secondary/10 to-transparent"
             loop={true}

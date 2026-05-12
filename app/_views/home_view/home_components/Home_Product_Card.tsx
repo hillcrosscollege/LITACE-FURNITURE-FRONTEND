@@ -3,7 +3,6 @@ import App_Paragraph from "@/components/app_ui/App_Paragraph";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { IProduct } from "../home_types";
-import Chair from "@/app/tmp/images/diamond_black_1.jpg";
 
 const Home_Product_Card = (product: IProduct) => {
   return (
@@ -13,7 +12,7 @@ const Home_Product_Card = (product: IProduct) => {
     >
       <div className="aspect-square relative bg-white rounded-xl overflow-hidden mb-4 border border-purple-50">
         {product.tag && (
-          <div className="bg-primary text-xs absolute top-2 left-2 rounded-lg text-white px-4 py-1">
+          <div className="bg-secondary text-xs absolute top-2 left-2 rounded-lg text-white px-3 py-1">
             <p>New</p>
           </div>
         )}

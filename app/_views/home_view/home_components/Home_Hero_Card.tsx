@@ -3,7 +3,7 @@ import { features } from "../home_data";
 
 const Home_Hero_Card = () => {
   return (
-    <section className="  py-12 bg-primary/10">
+    <section className="py-12 bg-primary/10">
       <div className="flex flex-wrap md:flex-nowrap gap-y-10 justify-between containerclass">
         {features.map((item, index) => {
           const Icon = item.icon;

@@ -236,19 +236,19 @@ const images = [
 export const categories = [
   {
     name: "Conference Chairs",
-    image: "/tmp/images/conference_chair.jpg",
+    image: "/conference_chair-2.png",
   },
   {
     name: "School Furniture",
-    image: "/tmp/images/conference_chair.jpg",
+    image: "/home_sofa.png",
   },
   {
     name: "Office Furniture",
-    image: "/tmp/images/conference_chair.jpg",
+    image: "/conference_chair-2.png",
   },
   {
     name: "Decor Events",
-    image: "/tmp/images/conference_chair.jpg",
+    image: "/home_sofa.png",
   },
 ];
 
