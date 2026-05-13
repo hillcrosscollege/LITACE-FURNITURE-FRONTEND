@@ -9,7 +9,7 @@ const App_Footer = () => {
   return (
     <footer className="bg-primary/20">
       <section className="containerclass pt-20 pb-4 grid gap-16">
-        <div className="flex">
+        <div className="flex flex-col md:flex-row">
           <div className="w-[50%] flex flex-col gap-6">
             <Image
               alt="Litace"

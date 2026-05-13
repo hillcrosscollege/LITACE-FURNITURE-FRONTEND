@@ -26,7 +26,7 @@ const Home_Product_Card = (product: IProduct) => {
       </div>
 
       <div className="space-y-1">
-        <h3 className="font-headline font-bold text-lg">{product.name}</h3>
+        <h3 className="font-headline font-semibold">{product.name}</h3>
 
         <p className="text-sm font-body text-on-surface-variant italic">
           {product.category}
@@ -35,7 +35,7 @@ const Home_Product_Card = (product: IProduct) => {
         <div className="flex justify-between items-center pt-4">
           <App_Paragraph
             text={`R ${product.price}`}
-            style="font-black text-xl text-primary"
+            style="font-black text-primary"
           />
 
           <App_Button

@@ -11,6 +11,11 @@ const App_Nav = () => {
 
   return (
     <header className="top-0 sticky z-50 bg-white/80 backdrop-blur-xl shadow-sm">
+      <div className="bg-black p-2">
+        <p className="text-[10px] uppercase text-white text-center">
+          LITACE INTERIORS - Furnitures - SouthAfrica
+        </p>
+      </div>
       <div className=" border-b border-purple-100">
         <nav className="containerclass flex justify-between items-center py-3 max-w-screen-2xl mx-auto">
           {/* Logo */}
@@ -89,7 +94,6 @@ const App_Nav = () => {
           </div>
         )}
       </div>
-      <div className="bg-primary p-4"></div>
     </header>
   );
 };
