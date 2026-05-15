@@ -1,4 +1,6 @@
+"use client";
 import App_Full_Text from "@/components/shared/App_Full_Text";
+import { ArrowRightCircleIcon } from "lucide-react";
 
 const About_Hero = () => {
   return (
@@ -8,13 +10,14 @@ const About_Hero = () => {
         text={{
           className: "gap-y-4 text-center text-primary",
           header: {
+            className: "max-w-3xl mx-auto",
             children: "Excellence in Furniture",
             variant: "hero",
           },
           para: {
             children:
               "Supplier and manufacturer of quality furniture for churches, schools, offices, events, and hotels across South Africa and SADC countries.",
-            className: "text-muted max-w-xl lg:text-lg mx-auto",
+            className: "text-muted max-w-xl lg:text-lg mx-auto font-semibold",
           },
         }}
         extra={
@@ -22,6 +25,40 @@ const About_Hero = () => {
             <p>About Us</p>
           </div>
         }
+        dbtn={{
+          className: "lg:mt-4 w-[90%] lg:w-[40%] mx-auto  flex gap-2 mt-4",
+          motionObj: {
+            initial: {
+              opacity: 0,
+              y: 20,
+            },
+            animate: {
+              opacity: 1,
+              y: 0,
+            },
+            transition: {
+              delay: 0.4,
+              duration: 0.8,
+            },
+          },
+          btn1: {
+            text: "Shop Now",
+            btnStyle:
+              "text-white py-3 lg:py-6 rounded-full flex-1 gap-4 items-center font-bold lg:text-lg",
+            onPress: () => {
+              console.log("Shop Now");
+            },
+            icon: <ArrowRightCircleIcon size={30} />,
+          },
+          btn2: {
+            text: "Contact Us",
+            btnStyle:
+              "flex-1 py-3 lg:py-6 rounded-full bg-transparent border border-primary text-primary font-bold lg:text-lg",
+            onPress: () => {
+              console.log("Learn More");
+            },
+          },
+        }}
       />
     </section>
   );

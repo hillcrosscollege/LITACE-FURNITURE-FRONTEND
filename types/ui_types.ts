@@ -82,7 +82,7 @@ export interface IGrouped {
 
 export interface IAppInput<T extends Record<string, any>> {
   name: Path<T>;
-  errors: FieldErrors<T>;
+  errors?: FieldErrors<T>;
   register: UseFormRegister<T>;
   rules?: RegisterOptions<T, Path<T>>;
   className?: string;
@@ -90,4 +90,5 @@ export interface IAppInput<T extends Record<string, any>> {
   containerStyle?: string;
   icon1?: ReactNode;
   icon2?: ReactNode;
+  showLabel?: boolean;
 }

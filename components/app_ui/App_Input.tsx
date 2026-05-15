@@ -13,12 +13,15 @@ const App_Input = <T extends Record<string, any>>({
   containerStyle,
   icon1,
   icon2,
+  showLabel = true,
 }: IAppInput<T>) => {
   return (
     <div className={`${cn(containerStyle)}`}>
-      <Label htmlFor={String(name)} className="mb-2">
-        {String(name)}
-      </Label>
+      {showLabel && (
+        <Label htmlFor={String(name)} className="mb-2">
+          {String(name)}
+        </Label>
+      )}
       <div className="flex justify-center items-center gap-2 border-gray-400 bg-white outline-0 border rounded-lg">
         <div className="flex flex-1 justify-center  items-center gap-2 ">
           {icon1 && icon1}
@@ -33,7 +36,7 @@ const App_Input = <T extends Record<string, any>>({
         </div>
         {icon2 && icon2}
       </div>
-      {errors[name] && (
+      {errors && errors[name] && (
         <p className="text-sm text-destructive mt-1">
           {errors[name]?.message as string}
         </p>

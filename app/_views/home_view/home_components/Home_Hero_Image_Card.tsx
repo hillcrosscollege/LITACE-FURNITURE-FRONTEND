@@ -1,6 +1,6 @@
 const Home_Hero_Image_Card = () => {
   return (
-    <div className="absolute -bottom-10 -left-10 bg-white p-2 rounded-xl asymmetric-shadow max-w-xs hidden md:block border border-secondary">
+    <div className="absolute bottom-20 -left-20 bg-white p-2 rounded-xl asymmetric-shadow max-w-xs hidden md:block border border-secondary">
       <span className="font-label text-xs uppercase tracking-tighter text-primary block mb-2 font-bold">
         Featured Piece
       </span>

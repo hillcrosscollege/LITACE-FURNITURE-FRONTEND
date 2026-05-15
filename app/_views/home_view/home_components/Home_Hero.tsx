@@ -3,6 +3,7 @@ import Home_Hero_Image_Card from "./Home_Hero_Image_Card";
 import App_Slider from "@/components/app_ui/App_Slider";
 import App_Text from "@/components/app_ui/App_Text";
 import App_Full_Text from "@/components/shared/App_Full_Text";
+import { ArrowRightCircleIcon, ArrowRightIcon } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
@@ -22,7 +23,7 @@ const Home_Hero = () => {
     <section className="w-full py-12 md:py-20 lg:py-24 h-full relative overflow-x-clip">
       <div className="absolute -top-24 -left-24 w-[28rem] h-[28rem] rounded-full bg-secondary/20 blur-3xl pointer-events-none" />
       <div className="containerclass flex flex-col md:flex-row  items-center md:justify-between">
-        <div className="md:w-[50%] flex flex-col justify-center items-center text-center md:items-start md:text-left">
+        <div className="md:w-[55%] flex flex-col justify-center items-center text-center md:items-start md:text-left">
           <div className="flex items-center gap-4 mb-4 ">
             <div className="flex gap-2">
               {[1, 2, 3].map((item) => (
@@ -57,8 +58,7 @@ const Home_Hero = () => {
                 },
                 variant: "hero",
 
-                className:
-                  "font-heading tracking-tight leading-[1.1] font-extrabold",
+                className: "font-heading tracking-tight leading-[1.1]",
                 children: (
                   <>
                     The Gold Standard{" "}
@@ -86,7 +86,7 @@ const Home_Hero = () => {
                             duration: 0.4,
                             ease: [0.22, 1, 0.36, 1],
                           }}
-                          className="text-primary font-normal font-accent italic inline-block"
+                          className="text-primary italic inline-block"
                         >
                           {heroTexts[active]}.
                         </motion.span>
@@ -97,7 +97,7 @@ const Home_Hero = () => {
                 ),
               },
               para: {
-                className: "lg:text-lg lg:w-[80%]",
+                className: "lg:text-lg lg:w-[70%] font-semibold text-muted",
                 children:
                   "Premier manufacturer and supplier across the SADC region. Elevating communal spaces through artisanal precision.",
               },
@@ -121,15 +121,17 @@ const Home_Hero = () => {
               },
               btn1: {
                 text: "Shop Now",
-                btnStyle: "text-white py-3 lg:py-5 rounded-full flex-1",
+                btnStyle:
+                  "text-white py-3 lg:py-6 rounded-full flex-1 gap-4 items-center font-bold lg:text-lg",
                 onPress: () => {
                   console.log("Shop Now");
                 },
+                icon: <ArrowRightCircleIcon size={30} />,
               },
               btn2: {
                 text: "Learn More",
                 btnStyle:
-                  "flex-1 py-3 lg:py-5 rounded-full bg-transparent border border-primary text-primary",
+                  "flex-1 py-3 lg:py-6 rounded-full bg-transparent border border-primary text-primary font-bold lg:text-lg",
                 onPress: () => {
                   console.log("Learn More");
                 },

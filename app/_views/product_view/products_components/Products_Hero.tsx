@@ -2,7 +2,7 @@ import App_Full_Text from "@/components/shared/App_Full_Text";
 
 const Products_Hero = () => {
   return (
-    <section className="w-full bg-linear-to-br from-lightPrimary to-primary py-20">
+    <section className="w-full bg-linear-to-b from-primary/20 via-secondary/10 to-transparent py-20">
       <App_Full_Text
         className="flex-col"
         text={{
@@ -10,7 +10,7 @@ const Products_Hero = () => {
           header: {
             children: "Litace Products",
             variant: "hero",
-            className: "max-w-3xl mx-auto",
+            className: "max-w-3xl mx-auto text-primary",
           },
         }}
         extra={

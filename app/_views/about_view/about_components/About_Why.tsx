@@ -26,7 +26,7 @@ const About_Why = () => {
                 children: "New Arrivals",
                 variant: "sectionTitle",
                 className:
-                  "tracking-tighter font-bold transition-colors duration-300 group-hover:text-primary",
+                  "tracking-tighter font-bold transition-colors duration-300 group-hover:text-secondary",
               },
               para: {
                 children:
@@ -36,10 +36,10 @@ const About_Why = () => {
               },
             }}
             extra={
-              <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary transition-all duration-500">
+              <div className="p-3 rounded-lg bg-secondary/10 group-hover:bg-secondary transition-all duration-500">
                 <Truck
                   size={30}
-                  className="text-primary group-hover:text-white transition-all duration-500 transform group-hover:-scale-x-100 "
+                  className="text-secondary group-hover:text-white transition-all duration-500 transform group-hover:-scale-x-100 "
                 />
               </div>
             }

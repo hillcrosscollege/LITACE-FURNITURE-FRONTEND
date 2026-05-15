@@ -22,7 +22,7 @@ const App_Nav = () => {
           <div className="flex items-center gap-2">
             <Image
               alt="Litace Logo"
-              className="h-10 w-auto"
+              className="w-32"
               src={Logo.src}
               width={400}
               height={400}

@@ -5,7 +5,7 @@ const About_Vision = () => {
   return (
     <section className="my-20 containerclass flex flex-col md:flex-row gap-6">
       <App_Full_Text
-        className="flex-col flex-1 bg-secondary p-20 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500  border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)] relative overflow-hidden"
+        className="flex-col flex-1 bg-navblue p-20 rounded-lg shadow-md items-start gap-y-4 group transition-all duration-500  border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)] relative overflow-hidden"
         text={{
           className: "flex-col",
           header: {
@@ -25,7 +25,7 @@ const About_Vision = () => {
             <div className="p-3 rounded-lg bg-white">
               <Truck
                 size={30}
-                className="text-secondary transition-all duration-500 transform group-hover:-scale-x-100 "
+                className="text-primary transition-all duration-500 transform group-hover:-scale-x-100 "
               />
             </div>
           </>
