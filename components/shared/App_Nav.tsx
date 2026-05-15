@@ -8,6 +8,12 @@ import Image from "next/image";
 
 const App_Nav = () => {
   const [open, setOpen] = useState(false);
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Products", href: "/products" },
+    { name: "Contact", href: "/contact" },
+  ];
 
   return (
     <header className="top-0 sticky z-50 bg-white/80 backdrop-blur-xl shadow-sm">
@@ -30,7 +36,7 @@ const App_Nav = () => {
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* <div className="hidden md:flex items-center space-x-8">
             <Link className="text-sm font-medium hover:text-primary" href="/">
               Home
             </Link>
@@ -55,6 +61,35 @@ const App_Nav = () => {
             >
               Contact
             </Link>
+          </div> */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="
+        text-base
+        font-medium
+        relative
+        transition-colors
+        duration-300
+        hover:text-primary
+
+        after:absolute
+        after:left-0
+        after:-bottom-1
+        after:h-[2px]
+        after:w-0
+        after:bg-primary
+        after:transition-all
+        after:duration-300
+
+        hover:after:w-full
+      "
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
 
           {/* Right Actions */}

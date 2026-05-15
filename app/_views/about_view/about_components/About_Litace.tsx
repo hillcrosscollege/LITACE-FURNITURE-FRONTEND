@@ -24,7 +24,10 @@ const About_Litace = () => {
         <div className="flex items-center gap-4">
           <div className="flex gap-2">
             {[1, 2, 3].map((item) => (
-              <div className={`h-2 w-2 rounded-full bg-secondary`}></div>
+              <div
+                key={item}
+                className={`h-2 w-2 rounded-full bg-secondary`}
+              ></div>
             ))}
           </div>
           <App_Text
