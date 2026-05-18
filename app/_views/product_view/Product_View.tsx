@@ -82,7 +82,7 @@ const Product_View = () => {
     <>
       <Products_Hero />
 
-      <section className="containerclass my-20">
+      <section className="containerclass lg;my-20">
         <div className="flex flex-col gap-8">
           {/* <Product_Filter
             style="hidden lg:block"
@@ -118,7 +118,7 @@ const Product_View = () => {
             })}
           </div> */}
 
-          <div className="flex justify-between items-center w-full">
+          <div className="flex flex-col lg:flex-row justify-between items-center w-full">
             <App_Input
               containerStyle="w-full max-w-sm"
               showLabel={false}
@@ -126,12 +126,12 @@ const Product_View = () => {
               name="Search"
               placeholder="Search products..."
               register={register}
-              rules={{
-                required: "Password is required",
-              }}
+              // rules={{
+              //   required: "Password is required",
+              // }}
             />
 
-            <div className="flex flex-1 gap-4 flex-wrap justify-end">
+            <div className="flex gap-2 w-full mt-4 lg:mt-0 lg:gap-4  lg:justify-end overflow-x-auto">
               <App_Button
                 text="All"
                 onPress={() => {
