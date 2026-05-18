@@ -2,6 +2,7 @@ import App_Paragraph from "@/components/app_ui/App_Paragraph";
 import Home_Product_Card from "./Home_Product_Card";
 import App_Full_Text from "@/components/shared/App_Full_Text";
 import { popularProducts } from "@/app/tmp/popularProducts";
+import App_Text from "@/components/app_ui/App_Text";
 
 const Home_Popular = () => {
   return (
@@ -22,9 +23,9 @@ const Home_Popular = () => {
           },
         }}
         extra={
-          <App_Paragraph
-            text="Discover the pieces that define modern South African workspaces and educational hubs."
-            style="max-w-sm text-base md:text-lg"
+          <App_Text
+            children="Discover the pieces that define modern South African workspaces and educational hubs."
+            className="max-w-sm text-base"
           />
         }
       />

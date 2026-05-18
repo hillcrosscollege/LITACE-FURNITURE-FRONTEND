@@ -97,7 +97,8 @@ const Home_Hero = () => {
                 ),
               },
               para: {
-                className: "lg:text-lg lg:w-[70%] font-semibold text-muted",
+                className:
+                  "lg:text-lg lg:w-[70%] font-semibold text-muted font-accent",
                 children:
                   "Premier manufacturer and supplier across the SADC region. Elevating communal spaces through artisanal precision.",
               },
@@ -159,6 +160,7 @@ const Home_Hero = () => {
             ]}
             imgContainerStyle="flex-[0_0_100%] bg-gradient-to-br from-primary/20 via-secondary/10 to-transparent"
             loop={true}
+            fade
           />
           <Home_Hero_Image_Card />
         </motion.div>

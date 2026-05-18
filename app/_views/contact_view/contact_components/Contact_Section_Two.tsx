@@ -10,12 +10,12 @@ const Contact_Section_Two = () => {
           className="gap-y-4"
           header={{
             children: "Get More Information",
-            variant: "cardTitle",
+            variant: "heading",
           }}
           para={{
             children:
               "Serving clients across South Africa and SADC countries with reliable delivery and quality service",
-            className: "max-w-md text-base md:text-lg",
+            className: "max-w-md text-base font-accent text-muted",
           }}
         />
         <div className="grid gap-4 grid-cols-2 ">

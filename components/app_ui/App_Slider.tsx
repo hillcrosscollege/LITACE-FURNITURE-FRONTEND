@@ -12,15 +12,24 @@ type Props = {
   btn?: boolean;
   imgContainerStyle?: string;
   loop?: boolean;
+  fade?: boolean;
 };
 
-const App_Slider = ({ images, dots, btn, imgContainerStyle, loop }: Props) => {
+const App_Slider = ({
+  images,
+  dots,
+  btn,
+  imgContainerStyle,
+  loop,
+  fade,
+}: Props) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: loop ? true : false,
       duration: 45,
     },
-    [Fade()],
+    fade ? [Fade()] : [],
+    // [Fade()],
   );
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 

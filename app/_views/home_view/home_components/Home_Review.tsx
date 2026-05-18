@@ -12,7 +12,7 @@ const Home_Review = () => {
         }}
         para={{
           children: "Trusted across South Africa and SADC",
-          className: "italic max-w-md",
+          className: "font-accent max-w-md",
         }}
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">

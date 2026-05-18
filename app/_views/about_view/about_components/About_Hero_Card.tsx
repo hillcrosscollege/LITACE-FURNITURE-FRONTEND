@@ -3,26 +3,28 @@ import { features } from "../../home_view/home_data";
 
 const About_Hero_Card = () => {
   return (
-    <section className="  py-12 bg-primary/10">
+    <section className="py-12 bg-primary">
       <div className="flex flex-wrap md:flex-nowrap gap-y-10 justify-between containerclass">
         {features.map((item, index) => {
           const Icon = item.icon;
           return (
             <App_Full_Text
               key={index}
-              className="items-center gap-x-2 md:gap-x-4 items-center w-[48%] md:w-auto"
+              className="gap-x-2 md:gap-x-4 items-center w-[48%] md:w-auto font-semibold"
               text={{
                 className: "gap-y-1",
                 header: {
                   children: item.title,
-                  className: "uppercase tracking-widest",
+                  variant: "cardTitle",
+                  className:
+                    "uppercase tracking-widest text-white text-sm lg:text-lg",
                 },
                 para: {
                   children: item.subtitle,
-                  className: "text-[10px]",
+                  className: "text-sm text-white",
                 },
               }}
-              extra={<Icon size={20} className="text-primary" />}
+              extra={<Icon size={18} className="text-white" />}
             />
           );
         })}

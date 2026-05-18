@@ -16,7 +16,7 @@ const Single_Product_Section_Two = () => {
     <section className="containerclass mb-20 flex gap-6">
       <div className="w-[30%]">
         {tabs.map((item) => (
-          <div>
+          <div key={item}>
             <App_Button
               text={item}
               btnStyle={`rounded-none w-full py-6 ${active == item ? "bg-primary text-white" : "bg-white text-gray-500"}`}

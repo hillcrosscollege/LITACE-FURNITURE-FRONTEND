@@ -16,14 +16,14 @@ const Home_Arrivals = () => {
           },
           para: {
             children: "Latest additions to our collection",
-            className: "max-w-md italic",
+            className: "max-w-md font-accent text-muted",
           },
         }}
         btn={{
           text: "View All",
           onPress: () => {},
           btnStyle:
-            "bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm",
+            "bg-primary text-white px-8 py-5 rounded-full hover:bg-primary/90 transition-colors text-lg font-semibold",
         }}
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

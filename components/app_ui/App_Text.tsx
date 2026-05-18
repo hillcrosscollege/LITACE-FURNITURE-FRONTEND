@@ -2,7 +2,6 @@
 import { cn } from "@/lib/utils";
 import { IAppText } from "@/types";
 import { motion } from "motion/react";
-import { JSX } from "react";
 
 export const variants = {
   hero: {
@@ -22,12 +21,12 @@ export const variants = {
 
   cardTitle: {
     tag: "h4",
-    className: "font-heading text-xl md:text-2xl",
+    className: "font-heading text-lg",
   },
 
   body: {
     tag: "p",
-    className: "text-base text-muted",
+    className: "text-base text-muted lg:text-lg",
   },
 
   sectionTitle: {
@@ -65,14 +64,6 @@ const App_Text = ({
   return (
     <MotionComponent
       className={cn(variants[variant].className, className)}
-      // motionObj={{
-      //   initial: { opacity: 0, y: 40 },
-      //   animate: { opacity: 1, y: 0 },
-      //   transition: {
-      //     duration: 1,
-      //     delay: 1,
-      //   },
-      // }}
       {...motionObj}
     >
       {children}
