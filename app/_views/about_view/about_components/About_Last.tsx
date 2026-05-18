@@ -9,7 +9,7 @@ const About_Last = () => {
           className="gap-y-4 text-center text-primary"
           header={{
             children: "Regional Coverage",
-            variant: "sectionTitle",
+            variant: "heading",
           }}
           para={{
             children:

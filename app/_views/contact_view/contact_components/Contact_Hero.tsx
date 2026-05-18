@@ -2,9 +2,9 @@ import App_Full_Text from "@/components/shared/App_Full_Text";
 
 const Contact_Hero = () => {
   return (
-    <section className="w-full bg-linear-to-b from-primary/20 via-secondary/10 to-transparent py-32">
+    <section className="w-full bg-linear-to-b from-primary/20 via-secondary/10 to-transparent pt-16 lg:py-32">
       <App_Full_Text
-        className="flex-col"
+        className="flex-col contenterclass"
         text={{
           className: "gap-y-4 text-center text-white",
           header: {

@@ -4,7 +4,7 @@ import { ArrowRightCircleIcon } from "lucide-react";
 
 const About_Hero = () => {
   return (
-    <section className="w-full bg-linear-to-b from-primary/20 via-secondary/10 to-transparent py-32">
+    <section className="w-full bg-linear-to-b from-primary/20 via-secondary/10 to-transparent py-16 lg:py-32">
       <App_Full_Text
         className="flex-col"
         text={{

@@ -9,7 +9,7 @@ const About_Why = () => {
         className="gap-y-1"
         header={{
           children: "Why Choose Litace",
-          variant: "sectionTitle",
+          variant: "heading",
         }}
         para={{
           children: "Our commitment to quality and service sets us apart",

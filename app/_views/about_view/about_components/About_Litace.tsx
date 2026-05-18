@@ -41,10 +41,10 @@ const About_Litace = () => {
             <App_Text children={item} key={index} />
           )),
         ]}
-        <div className="grid grid-cols-2 gap-4 mt-6">
+        <div className="grid md:grid-cols-2 gap-4 mt-4 md:mt-6">
           {furnitureCategories.map((item, index) => (
             <div
-              className="border-l-2 border-primary pl-4 rounded-sm py-3 bg-white"
+              className="border-x-2 border-primary pl-4 rounded-sm py-1 md:py-3 bg-white"
               key={index}
             >
               <p>{item}</p>
@@ -55,13 +55,11 @@ const About_Litace = () => {
       <div className="lg:w-[50%] xl:w-[45%] relative flex justify-items-end">
         <div className="w-[70%] h-[90%] z-[-1] bg-secondary/50 absolute top-0 right-0 rounded-t-xl rounded-br-xl"></div>
         <Image
-          src={
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuCwduLZd_XqDq3CPIxMl1X7MotMkVuW_oI24rzX1972f9k2aLnT65ko8h8l5BwjJgn9g5H3F60d1hPmmqOlXrF_jEFu59I3tO0XhdqeBVZEDOFtVKn4q4pXrf5Oz_NPQN6snF-yrlurUy0h_kH64N4CbPo53bDRYvd81ZMJGkeHDsuaDLaxd6LNtqUshkC87o8e2rLfvjWVsyhlrTqrk58avmrzePkampMqSE0xFkh9LKvr43F_cnvwTBuAOWakTDB8gNr29It8O2g"
-          }
+          src={"/conference_chair-2.png"}
           alt="About-litace-image"
           width={400}
           height={400}
-          className="md:h-[90%] w-[90%] rounded-xl mt-8 lg:mt-auto"
+          className="md:h-[90%] w-[90%] rounded-xl mt-8 lg:mt-auto bg-white border border-primary from-primary/20 via-secondary/10 to-transparent"
         />
       </div>
     </section>

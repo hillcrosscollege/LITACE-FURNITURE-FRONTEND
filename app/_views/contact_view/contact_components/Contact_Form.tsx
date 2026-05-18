@@ -17,7 +17,7 @@ const Contact_Form = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-5 lg:w-[45%] bg-white p-6 rounded-lg flex flex-col shadow-md"
+      className="space-y-5 lg:w-[45%] bg-white p-6 rounded-lg flex flex-col shadow-lg shadow-primary/30"
     >
       <App_Header_Text
         children="Send us an email"
