@@ -1,13 +1,28 @@
+"use client";
 import App_Double_Btn from "@/components/app_ui/App_Double_Btn";
 import App_Slider from "@/components/app_ui/App_Slider";
 import App_Text from "@/components/app_ui/App_Text";
 import App_Full_Text from "@/components/shared/App_Full_Text";
 import Image from "next/image";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 const Single_Product_Top = () => {
+  const images = [
+    "/conference_chair-2.png",
+    "/home_sofa.png",
+    "/conference_chair-2.png",
+  ];
+  const [active, setActive] = useState(0);
   return (
     <section className="containerclass my-10 gap-x-8 flex justify-between">
-      <div className="w-[50%] flex flex-col gap-8">
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="w-[50%] flex flex-col gap-8"
+      >
         {/* <App_Slider
           images={[
             "/conference_chair-2.png",
@@ -19,24 +34,31 @@ const Single_Product_Top = () => {
           loop={true}
           fade
         /> */}
-        <div className="bg-linear-to-br from-primary/20 via-secondary/10 to-transparent flex justify-center items-center rounded-lg py-8">
+        <motion.div
+          key={active}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="bg-linear-to-br from-primary/20 via-secondary/10 to-transparent flex justify-center items-center rounded-lg py-8"
+        >
           <Image
-            src={`/conference_chair-2.png`}
+            src={images[active]}
             alt={"Product"}
             className=" object-cover rounded cursor-pointer"
             width={400}
             height={400}
           />
-        </div>
+        </motion.div>
         <div className=" flex gap-4 justify-between">
-          {[1, 2, 3].map((item) => (
+          {images.map((item, index) => (
             <div
-              key={item}
+              key={index}
               className="flex-1 flex justify-between items-center bg-linear-to-br from-primary/20 via-secondary/10 to-transparent rounded cursor-pointer"
+              onClick={() => setActive(index)}
             >
               <Image
                 key={item}
-                src={`/conference_chair-2.png`}
+                src={item}
                 alt={"Product"}
                 className=" object-cover rounded cursor-pointer"
                 width={400}
@@ -45,8 +67,14 @@ const Single_Product_Top = () => {
             </div>
           ))}
         </div>
-      </div>
-      <div className="w-[50%] flex flex-col gap-8 justify-center">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="w-[50%] flex flex-col gap-8 justify-center"
+      >
         <App_Full_Text
           className="flex-col-reverse gap-y-10"
           text={{
@@ -77,7 +105,7 @@ const Single_Product_Top = () => {
               "text-primary bg-transparent border border-primary flex-1 py-5",
           }}
         />
-      </div>
+      </motion.div>
     </section>
   );
 };

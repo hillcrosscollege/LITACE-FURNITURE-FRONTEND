@@ -25,8 +25,11 @@ const Single_Product_Add_Review = () => {
             <div className="flex-1">
               <App_Double_Text
                 className="gap-y-0"
-                header={{ children: "User Name", variant: "sectionSub" }}
-                para={{ children: "2026-04-12", className: "text-xs" }}
+                header={{ children: "User Name", variant: "cardHeading" }}
+                para={{
+                  children: "2026-04-12",
+                  className: "text-xs lg:text-sm",
+                }}
               />
               <p className="w-[90%] text-sm mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
