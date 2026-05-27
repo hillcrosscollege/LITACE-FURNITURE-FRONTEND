@@ -3,10 +3,12 @@ import App_Paragraph from "@/components/app_ui/App_Paragraph";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { IProduct } from "../../home_view/home_types";
+import Link from "next/link";
 
 const Single_Product = ({ name, tag, price, image }: IProduct) => {
   return (
-    <div
+    <Link
+      href={"/products/1"}
       className="bg-surface-container-low p-4 rounded-lg group transition-all bg-white duration-500 hover:bg-surface-container border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)] hover:border-2 hover:border-primary/50
     "
     >
@@ -46,7 +48,7 @@ const Single_Product = ({ name, tag, price, image }: IProduct) => {
           />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

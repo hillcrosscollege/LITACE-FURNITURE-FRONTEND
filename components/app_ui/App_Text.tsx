@@ -31,7 +31,7 @@ export const variants = {
 
   sectionTitle: {
     tag: "h2",
-    className: "font-bold text-lg md:text-xl lg:text-2xl",
+    className: "font-bold text-lg md:text-xl lg:text-2xl font-heading",
   },
 
   sectionSub: {
@@ -42,6 +42,56 @@ export const variants = {
   cardText: {
     tag: "p",
     className: "text-base text-muted text-accent",
+  },
+  // Dashboard variants
+  pageTitle: {
+    tag: "h1",
+    className: "font-accent font-semibold text-xl text-[#1e1a17]",
+  },
+
+  pageSub: {
+    tag: "p",
+    className: "text-xs text-muted mt-0.5",
+  },
+
+  sectionLabel: {
+    tag: "p",
+    className: "text-xs text-muted",
+  },
+
+  cardHeading: {
+    tag: "h3",
+    className: "font-accent font-semibold text-sm lg:text-base text-[#1e1a17]",
+  },
+
+  statValue: {
+    tag: "h2",
+    className: "font-accent font-semibold text-2xl text-[#1e1a17]",
+  },
+
+  statLabel: {
+    tag: "p",
+    className: "text-xs text-muted",
+  },
+
+  tableHeader: {
+    tag: "p",
+    className: "text-sm text-muted font-medium",
+  },
+
+  tableCell: {
+    tag: "p",
+    className: "text-xs text-[#1e1a17]",
+  },
+
+  tableCellMuted: {
+    tag: "p",
+    className: "text-[11px] text-muted",
+  },
+
+  badge: {
+    tag: "p",
+    className: "text-xs font-medium",
   },
 } as const;
 

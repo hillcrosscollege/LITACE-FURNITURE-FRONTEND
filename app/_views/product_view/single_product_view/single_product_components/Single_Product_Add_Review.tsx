@@ -1,3 +1,4 @@
+"use client";
 import App_Button from "@/components/app_ui/App_Button";
 import App_Header_Text from "@/components/app_ui/App_Text";
 import App_Input from "@/components/app_ui/App_Input";
@@ -13,8 +14,8 @@ const Single_Product_Add_Review = () => {
     onSubmit,
   } = useSingleProductReviewForm();
   return (
-    <div className="grid gap-8">
-      <App_Header_Text children="Customer Review" variant="cardTitle" />
+    <div className="flex flex-col gap-8 w-[70%]">
+      <App_Header_Text children="Customer Review" variant="sectionTitle" />
       <div className="grid-cols-2 gap-8 grid">
         {[1, 2, 3].map((item) => (
           <div key={item} className="flex gap-2">
@@ -36,9 +37,12 @@ const Single_Product_Add_Review = () => {
           </div>
         ))}
       </div>
-      <App_Header_Text children="Leave A Review" variant="cardTitle" />
+      {/* <App_Header_Text children="Leave A Review" variant="sectionTitle" />
 
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="max-w-xl mb-8 grid gap-4"
+      >
         <App_Input
           name="FullName"
           register={register}
@@ -75,7 +79,7 @@ const Single_Product_Add_Review = () => {
           type="submit"
           btnStyle="w-full text-white py-6"
         />
-      </form>
+      </form> */}
     </div>
   );
 };

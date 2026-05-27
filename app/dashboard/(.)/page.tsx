@@ -1,6 +1,7 @@
+import Dashboard_View from "@/app/_views/dashboard/dashboard_view/Dashboard_View";
+
 const Dashboard = () => {
-  // return <Attendance_View />;
-  return <>hi</>;
+  return <Dashboard_View />;
 };
 
 export default Dashboard;

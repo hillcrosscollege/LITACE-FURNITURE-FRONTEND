@@ -6,6 +6,7 @@ import App_Full_Text from "@/components/shared/App_Full_Text";
 import { ArrowRightCircleIcon, ArrowRightIcon } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { heroTextTransition, heroTextVariants } from "./home_animation";
 
 const Home_Hero = () => {
   const heroTexts = ["Home", "School", "Office", "Church"];
@@ -66,26 +67,33 @@ const Home_Hero = () => {
                       for{" "}
                       <AnimatePresence mode="wait">
                         <motion.span
+                          // key={heroTexts[active]}
+                          // variants={}
                           key={heroTexts[active]}
-                          initial={{
-                            opacity: 0,
-                            y: 20,
-                            // filter: "blur(8px)",
-                          }}
-                          animate={{
-                            opacity: 1,
-                            y: 0,
-                            filter: "blur(0px)",
-                          }}
-                          exit={{
-                            opacity: 0,
-                            y: -10,
-                            filter: "blur(8px)",
-                          }}
-                          transition={{
-                            duration: 0.4,
-                            ease: [0.22, 1, 0.36, 1],
-                          }}
+                          variants={heroTextVariants}
+                          initial="initial"
+                          animate="animate"
+                          exit="exit"
+                          transition={heroTextTransition}
+                          // initial={{
+                          //   opacity: 0,
+                          //   y: 20,
+                          //   // filter: "blur(8px)",
+                          // }}
+                          // animate={{
+                          //   opacity: 1,
+                          //   y: 0,
+                          //   filter: "blur(0px)",
+                          // }}
+                          // exit={{
+                          //   opacity: 0,
+                          //   y: -10,
+                          //   filter: "blur(8px)",
+                          // }}
+                          // transition={{
+                          //   duration: 0.4,
+                          //   ease: [0.22, 1, 0.36, 1],
+                          // }}
                           className="text-primary italic inline-block"
                         >
                           {heroTexts[active]}.

@@ -19,7 +19,6 @@ const App_Sidebar_Item = ({
   match?: MatchType;
 }) => {
   const pathname = usePathname();
-
   const isActive =
     match === "exact" ? pathname === link : pathname.startsWith(link);
 
@@ -29,13 +28,16 @@ const App_Sidebar_Item = ({
         asChild
         className={
           isActive
-            ? "bg-primary text-white hover:bg-primary"
-            : "text-gray-600 hover:bg-gray-100"
+            ? "bg-linear-to-r from-primary to-[#A855F7] text-white text-white hover:bg-white/25 hover:text-white rounded-lg font-medium border border-white/20 backdrop-blur-sm"
+            : "text-white/70 hover:bg-[#5B2C6F]/60 hover:text-white rounded-lg border border-transparent"
         }
       >
-        <Link href={link}>
-          <Icon size={18} />
-          {name}
+        <Link href={link} className="flex items-center gap-3 px-3 py-2.5">
+          <Icon
+            size={18}
+            className={isActive ? "text-white" : "text-white/60"}
+          />
+          <span className="text-sm">{name}</span>
         </Link>
       </SidebarMenuButton>
     </SidebarMenuItem>

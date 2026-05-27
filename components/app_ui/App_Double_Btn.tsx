@@ -1,10 +1,12 @@
+"use client";
+import { cn } from "@/lib/utils";
 import App_Button from "./App_Button";
 import { IDoubleBtn } from "@/types/ui_types";
 import { motion } from "motion/react";
 
 const App_Double_Btn = ({ className, btn1, btn2, motionObj }: IDoubleBtn) => {
   return (
-    <motion.div className={className} {...motionObj}>
+    <motion.div className={cn("flex gap-4", className)} {...motionObj}>
       <App_Button
         btnStyle={btn1.btnStyle}
         text={btn1.text}

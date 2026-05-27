@@ -1,4 +1,4 @@
-import App_Paragraph from "@/components/app_ui/App_Paragraph";
+import App_Double_Btn from "@/components/app_ui/App_Double_Btn";
 import App_Slider from "@/components/app_ui/App_Slider";
 import App_Text from "@/components/app_ui/App_Text";
 import App_Full_Text from "@/components/shared/App_Full_Text";
@@ -6,42 +6,76 @@ import Image from "next/image";
 
 const Single_Product_Top = () => {
   return (
-    <section className="bg-white p-6 rounded-xl containerclass my-10 gap-x-8 flex justify-between">
-      <div className="w-[40%]">
-        <Image
-          src="/conference_chair-2.png"
-          alt="product"
-          width={100}
-          height={100}
-          className="w-full h-full block"
-        />
+    <section className="containerclass my-10 gap-x-8 flex justify-between">
+      <div className="w-[50%] flex flex-col gap-8">
+        {/* <App_Slider
+          images={[
+            "/conference_chair-2.png",
+            "/home_sofa.png",
+            "/conference_chair-2.png",
+            "/home_sofa.png",
+          ]}
+          imgContainerStyle="flex-[0_0_100%] bg-gradient-to-br from-primary/20 via-secondary/10 to-transparent h-fit"
+          loop={true}
+          fade
+        /> */}
+        <div className="bg-linear-to-br from-primary/20 via-secondary/10 to-transparent flex justify-center items-center rounded-lg py-8">
+          <Image
+            src={`/conference_chair-2.png`}
+            alt={"Product"}
+            className=" object-cover rounded cursor-pointer"
+            width={400}
+            height={400}
+          />
+        </div>
+        <div className=" flex gap-4 justify-between">
+          {[1, 2, 3].map((item) => (
+            <div
+              key={item}
+              className="flex-1 flex justify-between items-center bg-linear-to-br from-primary/20 via-secondary/10 to-transparent rounded cursor-pointer"
+            >
+              <Image
+                key={item}
+                src={`/conference_chair-2.png`}
+                alt={"Product"}
+                className=" object-cover rounded cursor-pointer"
+                width={400}
+                height={400}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="flex-1 flex flex-col justify-between">
+      <div className="w-[50%] flex flex-col gap-8 justify-center">
         <App_Full_Text
-          className="flex-col gap-y-0"
+          className="flex-col-reverse gap-y-10"
           text={{
-            className: "gap-y-0",
+            className: "gap-y-4",
             header: {
               children: product.name,
-              variant: "cardTitle",
-              className: "font-semibold",
+              variant: "heading",
+              className: "font-semibold max-w-md leading-tight",
             },
             para: {
               children: `$ ${product.price}`,
+              className: "text-primary font-bold font-accent lg:text-2xl",
             },
           }}
-          extra={<div></div>}
+          extra={
+            <App_Text
+              children={product.description}
+              className="text-base max-w-xl"
+            />
+          }
         />
-        <App_Text children={product.description} className="text-base" />
-        <App_Slider
-          images={[
-            "/conference_chair-2.png",
-            "/conference_chair-2.png",
-            "/conference_chair-2.png",
-            "/conference_chair-2.png",
-            "/conference_chair-2.png",
-          ]}
-          btn={true}
+        <App_Double_Btn
+          className="w-[80%] gap-2"
+          btn1={{ text: "Add to Cart", btnStyle: "text-white flex-1 py-5" }}
+          btn2={{
+            text: "Buy Now",
+            btnStyle:
+              "text-primary bg-transparent border border-primary flex-1 py-5",
+          }}
         />
       </div>
     </section>

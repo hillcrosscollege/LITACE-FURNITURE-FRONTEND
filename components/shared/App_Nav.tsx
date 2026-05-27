@@ -67,25 +67,7 @@ const App_Nav = () => {
               <Link
                 key={link.name}
                 href={link.href}
-                className="
-        text-base
-        font-medium
-        relative
-        transition-colors
-        duration-300
-        hover:text-primary
-
-        after:absolute
-        after:left-0
-        after:-bottom-1
-        after:h-[2px]
-        after:w-0
-        after:bg-primary
-        after:transition-all
-        after:duration-300
-
-        hover:after:w-full
-      "
+                className=" text-base font-medium relative transition-colors duration-300 hover:text-primary after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.name}
               </Link>
@@ -95,9 +77,11 @@ const App_Nav = () => {
           {/* Right Actions */}
           <div className="flex items-center space-x-4">
             {/* Cart */}
-            <button className="hover:text-primary transition-colors">
-              <ShoppingCart className="w-6 h-6" />
-            </button>
+            <Link href="/cart">
+              <button className="hover:text-primary transition-colors">
+                <ShoppingCart className="w-6 h-6" />
+              </button>
+            </Link>
 
             {/* Signup Button */}
             <Link href="/sign-up">
@@ -134,57 +118,3 @@ const App_Nav = () => {
 };
 
 export default App_Nav;
-
-// import React from "react";
-
-// const App_Nav = () => {
-//   return (
-//     <header className=" top-0 sticky z-50 bg-white/80 backdrop-blur-xl shadow-sm border-b border-purple-100">
-//       <nav className="containerclass flex justify-between items-center py-4 max-w-screen-2xl mx-auto">
-//         <div className="flex items-center gap-2">
-//           <img
-//             alt="Litace Logo"
-//             className="h-10 w-auto"
-//             src="https://lh3.googleusercontent.com/aida/ADBb0ug5RF2MTOsgKopI55QUn-vPiv21ok2lbZgiOnkX48ogdPjfOYk67sSTYYFPX6cFmx4rgQEWYf9YsocmIwEMOsCGWm6QNy500zdsF-KN7a0iae1et6TvuEqB_e0k-jk7N6NWNMjQTS4zB2gTX6n12DXP3NbhlPOU0_-zgSy0dH7NlFX7170Nc-35o8RJhkujxTWSYAWAIcJgVKF2xxa3UrG1f3U0Nt4jQJiqvYb2QuZY0TaUgX6nGKwaayHJ-kwK1x_1vKL11Y5xOQ"
-//           />
-//         </div>
-//         <div className="hidden md:flex items-center space-x-8">
-//           <a
-//             className="font-headline text-sm italic text-primary border-b-2 border-primary font-bold"
-//             href="#"
-//           >
-//             Churches
-//           </a>
-//           <a
-//             className="font-headline text-sm italic text-slate-600 hover:text-primary transition-colors duration-300"
-//             href="#"
-//           >
-//             Schools
-//           </a>
-//           <a
-//             className="font-headline text-sm italic text-slate-600 hover:text-primary transition-colors duration-300"
-//             href="#"
-//           >
-//             Offices
-//           </a>
-//           <a
-//             className="font-headline text-sm italic text-slate-600 hover:text-primary transition-colors duration-300"
-//             href="#"
-//           >
-//             Events
-//           </a>
-//         </div>
-//         <div className="flex items-center space-x-6">
-//           <button className="material-symbols-outlined text-slate-900 text-2xl hover:text-primary transition-colors">
-//             shopping_cart
-//           </button>
-//           <button className="material-symbols-outlined text-slate-900 text-2xl hover:text-primary transition-colors">
-//             person
-//           </button>
-//         </div>
-//       </nav>
-//     </header>
-//   );
-// };
-
-// export default App_Nav;

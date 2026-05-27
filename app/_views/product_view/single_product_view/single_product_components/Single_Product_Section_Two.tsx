@@ -1,31 +1,60 @@
 "use client";
-import App_Button from "@/components/app_ui/App_Button";
-import { useState } from "react";
 import Single_Product_More_Info from "./Single_Product_More_Info";
 import Single_Product_Add_Review from "./Single_Product_Add_Review";
-type ActiveType = "More Info" | "Review";
+import Single_Product from "../../products_components/Single_Product";
+import App_Text from "@/components/app_ui/App_Text";
+import Image from "next/image";
+import App_Double_Text from "@/components/shared/App_Double_Text";
 
 const Single_Product_Section_Two = () => {
-  const [active, selectActive] = useState<ActiveType>("More Info");
-  const tabs = ["More Info", "Review"];
-  const display = {
-    "More Info": <Single_Product_More_Info />,
-    Review: <Single_Product_Add_Review />,
-  };
   return (
-    <section className="containerclass mb-20 flex gap-6">
-      <div className="w-[30%]">
-        {tabs.map((item) => (
-          <div key={item}>
-            <App_Button
-              text={item}
-              btnStyle={`rounded-none w-full py-6 ${active == item ? "bg-primary text-white" : "bg-white text-gray-500"}`}
-              onPress={() => selectActive(item as ActiveType)}
-            />
-          </div>
+    <section className="containerclass">
+      <div className="flex justify-between gap-4 mb-20">
+        <Single_Product_Add_Review />
+        <div className="w-[30%] p-6 rounded-xl bg-white from-primary/20 via-secondary/10 to-transparent">
+          <App_Text children="Similar Products" variant="sectionTitle" />
+          {[1, 2, 3, 4].map((item) => (
+            <div key={item} className="flex gap-4 mb-4">
+              <div className="flex items-center gap-4">
+                <Image
+                  src={"/conference_chair-2.png"}
+                  alt={"name"}
+                  width={400}
+                  height={400}
+                  className="w-20 h-20 object-cover group-hover:scale-105 transition-transform duration-700 bg-primary/20 rounded-lg"
+                />
+                <App_Double_Text
+                  className="gap-y-0"
+                  header={{
+                    children: "Back Chair",
+                    variant: "sectionSub",
+                    className: "md:text-base",
+                  }}
+                  para={{
+                    children: "$ 10000",
+                    className: "text-sm lg:text-sm text-primary font-bold",
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <App_Text children="Related Products" variant="sectionTitle" />
+      <div className="flex gap-4 mb-10">
+        {[1, 2, 3, 4].map((item) => (
+          <Single_Product
+            key={item}
+            category="Category"
+            description="some product"
+            id="1"
+            image="/conference_chair-2.png"
+            name="Back Chair"
+            price={10000}
+          />
         ))}
       </div>
-      <div className="p-6 bg-white rounded-xl flex-1">{display[active]}</div>
     </section>
   );
 };

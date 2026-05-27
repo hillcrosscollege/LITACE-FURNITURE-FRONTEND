@@ -1,8 +1,9 @@
 import App_Button from "@/components/app_ui/App_Button";
 import App_Paragraph from "@/components/app_ui/App_Paragraph";
-import { ShoppingCart } from "lucide-react";
+import { ArrowRight, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { IProduct } from "../home_types";
+import Link from "next/link";
 
 const Home_Product_Card = (product: IProduct) => {
   return (
@@ -38,12 +39,14 @@ const Home_Product_Card = (product: IProduct) => {
             style="font-black text-primary"
           />
 
-          <App_Button
-            icon={<ShoppingCart size={18} />}
-            text=""
-            onPress={() => {}}
-            btnStyle="bg-white text-primary w-12 h-12 rounded-full shadow-sm hover:bg-primary hover:text-white transition-colors border border-purple-100"
-          />
+          <Link href={"/products/1"}>
+            <App_Button
+              icon={<ArrowRight size={18} />}
+              text=""
+              onPress={() => {}}
+              btnStyle="bg-white text-primary w-12 h-12 rounded-full shadow-sm hover:bg-primary hover:text-white transition-colors border border-purple-100"
+            />
+          </Link>
         </div>
       </div>
     </div>
