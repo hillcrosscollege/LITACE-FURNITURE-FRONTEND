@@ -53,7 +53,7 @@ export const productColumns: ColumnDef<Product>[] = [
     header: () => <App_Text variant="tableHeader">Category</App_Text>,
     cell: ({ row }) => (
       <span
-        className={`text-xs px-2.5 py-1 rounded-full font-medium ${categoryStyles[row.getValue("category")] ?? "bg-[#f5f5f5] text-[#555]"}`}
+        className={`text-xs px-2.5 py-1 rounded-full font-medium ${categoryStyles[row.getValue("category") as any] ?? "bg-[#f5f5f5] text-[#555]"}`}
       >
         {row.getValue("category")}
       </span>
