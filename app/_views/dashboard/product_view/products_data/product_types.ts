@@ -1,4 +1,4 @@
-// types/products.ts
+// types/products.ts (update existing)
 export type ProductStatus = "Published" | "Draft" | "Trash";
 export type StockStatus = "In Stock" | "Low Stock" | "Out of Stock";
 
@@ -48,7 +48,7 @@ export const products: Product[] = [
     sku: "FC-BED-003",
     image: "/conference_chair-2.png",
     category: "Bedroom",
-    price: 420000,
+    price: 350000,
     originalPrice: 500000,
     stock: 2,
     stockStatus: "Low Stock",
@@ -79,6 +79,18 @@ export const products: Product[] = [
     status: "Published",
     createdAt: "May 17, 2024\n04:10 PM",
   },
+  {
+    id: "6",
+    name: "Outdoor Patio Set",
+    sku: "FC-OUT-006",
+    image: "/conference_chair-2.png",
+    category: "Outdoor",
+    price: 120000,
+    stock: 0,
+    stockStatus: "Out of Stock",
+    status: "Draft",
+    createdAt: "May 16, 2024\n03:30 PM",
+  },
 ];
 
 export const productTabs = [
@@ -86,6 +98,44 @@ export const productTabs = [
   { label: "Published", count: 128 },
   { label: "Draft", count: 14 },
   { label: "Trash", count: 0 },
+];
+
+export const productListStats = [
+  {
+    title: "Total Products",
+    value: "142",
+    subLabel: "All products",
+    iconClassName: "text-[#7048b6]",
+    iconWrapperClassName: "bg-[#f0ebf7]",
+  },
+  {
+    title: "In Stock",
+    value: "89",
+    subLabel: "63.7% of total",
+    iconClassName: "text-[#2e7d52]",
+    iconWrapperClassName: "bg-[#edf7f2]",
+  },
+  {
+    title: "Low Stock",
+    value: "23",
+    subLabel: "16.2% of total",
+    iconClassName: "text-[#c87941]",
+    iconWrapperClassName: "bg-[#fdf0e6]",
+  },
+  {
+    title: "Out of Stock",
+    value: "30",
+    subLabel: "21.7% of total",
+    iconClassName: "text-[#c0392b]",
+    iconWrapperClassName: "bg-[#fdecea]",
+  },
+  {
+    title: "Total Value",
+    value: "R 18,450,000",
+    subLabel: "Inventory value",
+    iconClassName: "text-[#3266ad]",
+    iconWrapperClassName: "bg-[#edf2fb]",
+  },
 ];
 
 export const categoryStyles: Record<string, string> = {
@@ -98,7 +148,7 @@ export const categoryStyles: Record<string, string> = {
 };
 
 export const stockStatusStyles: Record<StockStatus, string> = {
-  "In Stock": "text-[#2e7d52]",
-  "Low Stock": "text-[#c0392b]",
-  "Out of Stock": "text-[#888]",
+  "In Stock": "bg-[#e8fdf0] text-[#157a45]",
+  "Low Stock": "bg-[#fdf5e0] text-[#8a6300]",
+  "Out of Stock": "bg-[#fdecea] text-[#a32020]",
 };

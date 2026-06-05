@@ -9,7 +9,7 @@ const Single_Product_Section_Two = () => {
       <Single_Product_Reviews />
 
       <App_Text children="Related Products" variant="heading" />
-      <div className="flex gap-4 mb-10 mt-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mb-10 mt-6">
         {[1, 2, 3, 4].map((item) => (
           <Single_Product
             key={item}

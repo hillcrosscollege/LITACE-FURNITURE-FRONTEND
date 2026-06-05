@@ -36,7 +36,7 @@ const Single_Product_Top = () => {
 
   return (
     <section className="containerclass my-10">
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
+      <div className="flex flex-col-reverse lg:flex-row gap-10 lg:gap-16 items-start">
         {/* ── Left: gallery ── */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -88,6 +88,11 @@ const Single_Product_Top = () => {
               </button>
             ))}
           </div>
+
+          {/* CTA — only visible on mobile, sits right below gallery */}
+          <div className="lg:hidden">
+            <CTABlock wishlisted qty={qty} setQty={setQty} setWish={setWish} />
+          </div>
         </motion.div>
 
         {/* ── Right: details ── */}
@@ -99,93 +104,27 @@ const Single_Product_Top = () => {
           className="w-full lg:w-1/2 flex flex-col gap-6"
         >
           <div className="pb-4 border-b border-muted">
-            <App_Text variant="body" className="leading-tight max-w-md ">
+            <App_Text variant="body" className="leading-tight max-w-md">
               OFFICE COLLECTION
             </App_Text>
           </div>
-          {/* Name */}
+
           <App_Text variant="heading" className="leading-tight max-w-md">
             {product.name}
           </App_Text>
 
-          {/* Prices */}
-          {/* <div className="flex items-start gap-10">
-            <div>
-              <App_Text
-                variant="sectionLabel"
-                className="text-muted-foreground mb-1"
-              >
-                Regular price
-              </App_Text>
-              <App_Text
-                variant="cardTitle"
-                className="text-2xl font-bold text-black"
-              >
-                £{product.regularPrice.toLocaleString()}
-              </App_Text>
-            </div>
-            <div>
-              <App_Text
-                variant="sectionLabel"
-                className="text-muted-foreground mb-1"
-              >
-                Member{" "}
-                <span className="text-primary font-medium">
-                  (Save £{product.memberSaving} for £100 per year)
-                </span>
-              </App_Text>
-              <App_Text
-                variant="cardTitle"
-                className="text-2xl font-bold text-primary"
-              >
-                £{product.memberPrice.toLocaleString()}
-              </App_Text>
-            </div>
-          </div> */}
-
-          {/* Qty + wishlist */}
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-3 border border-gray-200 rounded-full px-4 py-2">
-              <App_Button
-                text=""
-                icon={<Minus size={14} />}
-                onPress={() => setQty((q) => Math.max(1, q - 1))}
-                btnStyle="p-0 h-auto bg-transparent border-0 shadow-none text-muted-foreground hover:text-primary"
-              />
-              <span className="text-sm font-medium w-5 text-center">{qty}</span>
-              <App_Button
-                text=""
-                icon={<Plus size={14} />}
-                onPress={() => setQty((q) => q + 1)}
-                btnStyle="p-0 h-auto bg-transparent border-0 shadow-none text-muted-foreground hover:text-primary"
-              />
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setWish((w) => !w)}
-              className={`p-2.5 rounded-full border transition-colors ${
-                wishlisted
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-gray-200 text-muted-foreground hover:border-primary/40 hover:text-primary"
-              }`}
-            >
-              <Heart size={18} fill={wishlisted ? "currentColor" : "none"} />
-            </button>
-          </div>
-
-          {/* CTA buttons */}
-          <div className="flex gap-3 w-full">
-            <App_Button
-              text="Add to cart"
-              btnStyle="flex-1 py-3 h-auto rounded-full border border-gray-300 bg-white text-black hover:bg-gray-50 text-sm font-medium"
-            />
-            <App_Button
-              text="Buy Now"
-              btnStyle="flex-1 py-3 h-auto rounded-full bg-primary text-white hover:bg-primary/85 text-sm font-medium"
+          {/* CTA — only visible on desktop, inside right column */}
+          <div className="hidden lg:block">
+            <CTABlock
+              wishlisted={wishlisted}
+              qty={qty}
+              setQty={setQty}
+              setWish={setWish}
             />
           </div>
-          <div className="my-6">
+
+          {/* Description */}
+          <div className="my-2">
             <App_Text
               variant="subheading"
               className="text-xs tracking-widest font-semibold pb-4"
@@ -196,8 +135,7 @@ const Single_Product_Top = () => {
           </div>
 
           {/* Accordions */}
-          <div className=" bg-white border border-[#ede8e2] rounded-2xl p-5 shadow-sm pt-4 flex flex-col gap-0 divide-y divide-gray-100">
-            {/* Dimensions */}
+          <div className="bg-white border border-[#ede8e2] rounded-2xl p-5 shadow-sm flex flex-col gap-0 divide-y divide-gray-100">
             <AccordionRow
               label="DIMENSIONS"
               isOpen={open === "dimensions"}
@@ -223,7 +161,6 @@ const Single_Product_Top = () => {
               </div>
             </AccordionRow>
 
-            {/* Fabric */}
             <AccordionRow
               label="FABRIC DETAILS"
               isOpen={open === "fabric"}
@@ -238,7 +175,6 @@ const Single_Product_Top = () => {
               </App_Text>
             </AccordionRow>
 
-            {/* Delivery */}
             <AccordionRow
               label="LARGE ITEM DELIVERY & RETURNS"
               isOpen={open === "delivery"}
@@ -306,105 +242,58 @@ const AccordionRow = ({
 );
 
 export default Single_Product_Top;
-
-// "use client";
-// import App_Double_Btn from "@/components/app_ui/App_Double_Btn";
-// import App_Text from "@/components/app_ui/App_Text";
-// import App_Full_Text from "@/components/shared/App_Full_Text";
-// import Image from "next/image";
-// import { useState } from "react";
-// import { motion } from "framer-motion";
-
-// const Single_Product_Top = () => {
-//   const images = [
-//     "/conference_chair-2.png",
-//     "/home_sofa.png",
-//     "/conference_chair-2.png",
-//   ];
-//   const [active, setActive] = useState(0);
-//   return (
-//     <section className="containerclass my-10 gap-x-8 flex justify-between">
-//       <motion.div
-//         initial={{ opacity: 0, x: -50 }}
-//         whileInView={{ opacity: 1, x: 0 }}
-//         viewport={{ once: true }}
-//         transition={{ duration: 0.8, delay: 0.2 }}
-//         className="w-[50%] flex flex-col gap-8"
-//       >
-//         <motion.div
-//           key={active}
-//           initial={{ opacity: 0, scale: 0.9 }}
-//           animate={{ opacity: 1, scale: 1 }}
-//           transition={{ duration: 0.45, ease: "easeOut" }}
-//           className="bg-linear-to-br from-primary/20 via-secondary/10 to-transparent flex justify-center items-center rounded-lg py-8"
-//         >
-//           <Image
-//             src={images[active]}
-//             alt={"Product"}
-//             className=" object-cover rounded cursor-pointer"
-//             width={400}
-//             height={400}
-//           />
-//         </motion.div>
-//         <div className=" flex gap-4 justify-between">
-//           {images.map((item, index) => (
-//             <div
-//               key={index}
-//               className="flex-1 flex justify-between items-center bg-linear-to-br from-primary/20 via-secondary/10 to-transparent rounded cursor-pointer"
-//               onClick={() => setActive(index)}
-//             >
-//               <Image
-//                 key={item}
-//                 src={item}
-//                 alt={"Product"}
-//                 className=" object-cover rounded cursor-pointer"
-//                 width={400}
-//                 height={400}
-//               />
-//             </div>
-//           ))}
-//         </div>
-//       </motion.div>
-//       <motion.div
-//         initial={{ opacity: 0, x: 50 }}
-//         whileInView={{ opacity: 1, x: 0 }}
-//         viewport={{ once: true }}
-//         transition={{ duration: 0.8, delay: 0.3 }}
-//         className="w-[50%] flex flex-col gap-8 justify-center"
-//       >
-//         <App_Full_Text
-//           className="flex-col-reverse gap-y-10"
-//           text={{
-//             className: "gap-y-4",
-//             header: {
-//               children: product.name,
-//               variant: "heading",
-//               className: "font-semibold max-w-md leading-tight",
-//             },
-//             para: {
-//               children: `$ ${product.price}`,
-//               className: "text-primary font-bold font-accent lg:text-2xl",
-//             },
-//           }}
-//           extra={
-//             <App_Text
-//               children={product.description}
-//               className="text-base max-w-xl"
-//             />
-//           }
-//         />
-//         <App_Double_Btn
-//           className="w-[80%] gap-2"
-//           btn1={{ text: "Add to Cart", btnStyle: "text-white flex-1 py-5" }}
-//           btn2={{
-//             text: "Buy Now",
-//             btnStyle:
-//               "text-primary bg-transparent border border-primary flex-1 py-5",
-//           }}
-//         />
-//       </motion.div>
-//     </section>
-//   );
-// };
-
-// export default Single_Product_Top;
+{
+  /* ── Shared CTA block — shown below gallery on mobile ── */
+}
+const CTABlock = ({
+  wishlisted,
+  setQty,
+  qty,
+  setWish,
+}: {
+  wishlisted: boolean;
+  setQty: React.Dispatch<React.SetStateAction<number>>;
+  qty: number;
+  setWish: React.Dispatch<React.SetStateAction<boolean>>;
+}) => (
+  <div className="flex flex-col gap-4">
+    <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 border border-gray-200 rounded-full px-4 py-2">
+        <App_Button
+          text=""
+          icon={<Minus size={14} />}
+          onPress={() => setQty((q) => Math.max(1, q - 1))}
+          btnStyle="p-0 h-auto bg-transparent border-0 shadow-none text-muted-foreground hover:text-primary"
+        />
+        <span className="text-sm font-medium w-5 text-center">{qty}</span>
+        <App_Button
+          text=""
+          icon={<Plus size={14} />}
+          onPress={() => setQty((q) => q + 1)}
+          btnStyle="p-0 h-auto bg-transparent border-0 shadow-none text-muted-foreground hover:text-primary"
+        />
+      </div>
+      <button
+        type="button"
+        onClick={() => setWish((w) => !w)}
+        className={`p-2.5 rounded-full border transition-colors ${
+          wishlisted
+            ? "border-primary bg-primary/10 text-primary"
+            : "border-gray-200 text-muted-foreground hover:border-primary/40 hover:text-primary"
+        }`}
+      >
+        <Heart size={18} fill={wishlisted ? "currentColor" : "none"} />
+      </button>
+    </div>
+    <div className="flex gap-3 w-full">
+      <App_Button
+        text="Add to cart"
+        btnStyle="flex-1 py-3 h-auto rounded-full border border-gray-300 bg-white text-black hover:bg-gray-50 text-sm font-medium"
+      />
+      <App_Button
+        text="Buy Now"
+        btnStyle="flex-1 py-3 h-auto rounded-full bg-primary text-white hover:bg-primary/85 text-sm font-medium"
+      />
+    </div>
+  </div>
+);

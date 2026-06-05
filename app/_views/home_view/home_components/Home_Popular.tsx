@@ -6,7 +6,7 @@ import App_Text from "@/components/app_ui/App_Text";
 
 const Home_Popular = () => {
   return (
-    <section className="containerclass py-12 grid gap-8">
+    <section className="containerclass md:py-12 grid gap-8">
       <App_Full_Text
         className="flex flex-col md:flex-row-reverse justify-between md:items-center gap-4 md:gap-0"
         text={{

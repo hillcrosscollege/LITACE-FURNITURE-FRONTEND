@@ -7,44 +7,65 @@ import Link from "next/link";
 
 const Home_Product_Card = (product: IProduct) => {
   return (
-    <div
-      className="bg-surface-container-low p-4 rounded-2xl group transition-all bg-white duration-500 hover:bg-surface-container border border-purple-50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.12)] hover:border-2 hover:border-primary/50
-    "
-    >
-      <div className="aspect-square relative bg-white rounded-xl overflow-hidden mb-4 border border-purple-50">
-        {product.tag && (
-          <div className="bg-secondary text-xs absolute top-2 left-2 rounded-lg text-white px-3 py-1">
-            <p>New</p>
-          </div>
-        )}
+    <div className="group relative overflow-hidden rounded-3xl bg-white border border-purple-100 p-4 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-primary/30">
+      {/* Glow Effect */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-linear-to-br from-primary/5 via-transparent to-secondary/10" />
+
+      {/* Image */}
+      <div className="relative aspect-square overflow-hidden rounded-2xl">
         <Image
           src={product.image}
-          alt={product.name || "Product image"}
-          width={400}
-          height={400}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          alt={product.name}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
+
+        {product.tag && (
+          <div className="absolute top-3 left-3 bg-primary text-white text-xs px-3 py-1 rounded-full">
+            New Arrival
+          </div>
+        )}
+
+        <div className=" absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100">
+          <App_Button
+            text=""
+            icon={<ShoppingCart size={18} />}
+            onPress={() => {}}
+            btnStyle=" !w-12 !h-12 !min-w-12 rounded-full bg-white text-primary shadow-xl hover:scale-110 transition-transform"
+          />
+        </div>
       </div>
 
-      <div className="space-y-1">
-        <h3 className="font-headline font-semibold">{product.name}</h3>
+      {/* Content */}
+      <div className="mt-5 space-y-3">
+        <div>
+          <h3 className="font-headline text-lg font-semibold">
+            {product.name}
+          </h3>
 
-        <p className="text-sm font-body text-on-surface-variant italic">
-          {product.category}
-        </p>
+          <App_Paragraph
+            text={product.category}
+            style="text-sm text-gray-500"
+          />
+        </div>
 
-        <div className="flex justify-between items-center pt-4">
+        <div className="flex flex-col md:flex-row items-center gap-1 text-amber-500">
+          ★★★★☆
+          <span className="text-gray-500 text-xs ml-1">(24 Reviews)</span>
+        </div>
+
+        <div className="flex items-center justify-between">
           <App_Paragraph
             text={`R ${product.price}`}
-            style="font-black text-primary"
+            style="text-xl font-black text-primary"
           />
 
-          <Link href={"/products/1"}>
+          <Link href={`/products/${product.id}`}>
             <App_Button
-              icon={<ArrowRight size={18} />}
               text=""
+              icon={<ArrowRight size={18} />}
               onPress={() => {}}
-              btnStyle="bg-white text-primary w-12 h-12 rounded-full shadow-sm hover:bg-primary hover:text-white transition-colors border border-purple-100"
+              btnStyle=" !w-11 !h-11 !min-w-11 rounded-full bg-primary text-white flex items-center justify-center hover:scale-110 transition-transform"
             />
           </Link>
         </div>

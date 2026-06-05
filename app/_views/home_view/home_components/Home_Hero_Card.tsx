@@ -4,7 +4,7 @@ import { features } from "../home_data";
 const Home_Hero_Card = () => {
   return (
     <section className="py-12 bg-primary">
-      <div className="flex flex-wrap md:flex-nowrap gap-y-10 justify-between containerclass">
+      <div className="flex flex-wrap md:flex-nowrap gap-y-8 md:gap-y-10 justify-between containerclass">
         {features.map((item, index) => {
           const Icon = item.icon;
           return (
@@ -17,11 +17,11 @@ const Home_Hero_Card = () => {
                   children: item.title,
                   variant: "cardTitle",
                   className:
-                    "uppercase tracking-widest text-white text-sm lg:text-lg",
+                    "uppercase tracking-widest text-white text-[11px] md:text-sm lg:text-lg",
                 },
                 para: {
                   children: item.subtitle,
-                  className: "text-sm text-white",
+                  className: "text-[11px] md:text-sm text-white",
                 },
               }}
               extra={<Icon size={18} className="text-white" />}
