@@ -1,153 +1,86 @@
-// app/dashboard/customers/page.tsx
 "use client";
-
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import {
-  Search,
-  SlidersHorizontal,
-  Plus,
-  Users,
-  UserCheck,
-  UserPlus,
-  RefreshCw,
-} from "lucide-react";
-import App_Text from "@/components/app_ui/App_Text";
-import App_Input from "@/components/app_ui/App_Input";
-import App_Button from "@/components/app_ui/App_Button";
-import {
-  customerColumns,
-  customers,
-  customerStats,
-} from "./cusomer_data/customer_col";
-import { StatCard } from "../dashboard_view/dashboard_components/Stat_Card";
-import App_Table from "@/components/app_ui/App_Table";
 import App_Paginate from "@/components/app_ui/App_Paginate";
+import App_Table from "@/components/app_ui/App_Table";
+import App_Text from "@/components/app_ui/App_Text";
+import Edit_Customer_Modal from "./customer_modals/Edit_Customer_Modal";
+import { Skeleton_Customer_Row } from "./customers_components/Customer_Skeleton";
+import Customer_Header from "./customers_components/Customer_Header";
+import { useCustomerContext } from "@/app/contexts/admin/Customer_Context";
+import useTable from "@/app/_hooks/useTable";
 
-type SearchForm = { search: string };
-
-const statIcons = [Users, UserCheck, UserPlus, RefreshCw];
-
-const Customers_View = () => {
-  const [page, setPage] = useState(1);
+const CustomersPage = () => {
   const {
-    register,
-    formState: { errors },
-  } = useForm<SearchForm>();
+    page,
+    setPage,
+    editId,
+    columns,
+    data,
+    isLoading,
+    isError,
+    editCustomer,
+  } = useCustomerContext();
+
+  const { tableData, totalPages, startItem, endItem, totalItems } = useTable({
+    data: data?.customers,
+    page,
+  });
+
+  // const customers = data?.customers ?? [];
 
   return (
-    <div className="space-y-4">
-      {/* Header */}
-      <div className="bg-linear-to-b from-[#1F1033] to-[#2E1246] border-white/10 p-5 rounded-2xl mb-6 grid gap-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <App_Text variant="pageTitle" className="text-white">
-              Customers
-            </App_Text>
-            <App_Text variant="pageSub" className="text-white">
-              Manage your customers and their information.
-            </App_Text>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-            {/* Search — hidden on mobile */}
-            <div className="hidden md:block">
-              <App_Input
-                name="search"
-                register={register}
-                errors={errors}
-                placeholder="Search customers..."
-                showLabel={false}
-                icon1={<Search size={14} className="text-muted-foreground" />}
-                containerStyle="w-56"
-              />
+    <>
+      <div className="space-y-4">
+        <Customer_Header />
+        {/* Table card */}
+        <div className="bg-white rounded-2xl border border-[#ede8e2] shadow-sm overflow-hidden">
+          {isError ? (
+            <div className="flex items-center justify-center py-20">
+              <App_Text variant="tableCellMuted" className="text-[#c0392b]">
+                Failed to load customers. Please try again.
+              </App_Text>
             </div>
-            <App_Button
-              text="Add Customer"
-              icon={<Plus size={13} />}
-              btnStyle="text-xs bg-primary text-white hover:bg-primary/90 rounded-lg px-3 py-2 h-auto"
-            />
-          </div>
-        </div>
+          ) : (
+            <>
+              <div className="overflow-x-auto">
+                {isLoading ? (
+                  <table className="w-full">
+                    <tbody>
+                      {Array.from({ length: 6 }).map((_, i) => (
+                        <Skeleton_Customer_Row key={i} />
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <App_Table
+                    columns={columns}
+                    data={tableData!}
+                    style="mt-0"
+                    childRowStyle="hover:bg-[#faf9f7] cursor-pointer"
+                  />
+                )}
+              </div>
 
-        {/* Mobile search */}
-        <div className="md:hidden">
-          <App_Input
-            name="search"
-            register={register}
-            errors={errors}
-            placeholder="Search customers..."
-            showLabel={false}
-            icon1={<Search size={14} className="text-muted-foreground" />}
-            containerStyle="w-full"
-          />
-        </div>
-
-        {/* Stat cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {customerStats.map((stat, i) => (
-            <StatCard
-              key={stat.title}
-              title={stat.title}
-              value={stat.value}
-              icon={statIcons[i]}
-              iconClassName={stat.iconClassName}
-              iconWrapperClassName={stat.iconWrapperClassName}
-              change={stat.change}
-              changeDirection={stat.changeDirection}
-              changeLabel={stat.changeLabel}
-            />
-          ))}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-4 border-t border-[#ede8e2]">
+                <App_Text variant="tableCellMuted" className="shrink-0">
+                  {isLoading
+                    ? "Loading..."
+                    : ` Showing ${startItem + 1} to ${endItem} of ${totalItems} customers`}
+                </App_Text>
+                <App_Paginate
+                  page={page}
+                  setPage={setPage}
+                  totalPages={totalPages}
+                  paginateStyle="mt-4 mb-4"
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
 
-      {/* Table card */}
-      <div className="bg-white rounded-2xl border border-[#ede8e2] shadow-sm overflow-hidden">
-        {/* Search + filter bar */}
-        <div className="flex items-center justify-between gap-3 p-4 border-b border-[#ede8e2]">
-          <div className="flex-1 max-w-sm">
-            <App_Input
-              name="search"
-              register={register}
-              errors={errors}
-              placeholder="Search by name, email or phone..."
-              showLabel={false}
-              icon1={<Search size={14} className="text-muted-foreground" />}
-              containerStyle="w-full"
-            />
-          </div>
-          <App_Button
-            text="Filters"
-            icon={<SlidersHorizontal size={13} />}
-            btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto flex-shrink-0"
-          />
-        </div>
-
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <App_Table
-            columns={customerColumns}
-            data={customers}
-            style="mt-0"
-            childRowStyle="hover:bg-[#faf9f7]"
-          />
-        </div>
-
-        {/* Footer */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-4 border-t border-[#ede8e2]">
-          <App_Text variant="tableCellMuted" className="shrink-0">
-            Showing 1 to {customers.length} of 1,248 customers
-          </App_Text>
-          <App_Paginate
-            page={page}
-            setPage={setPage}
-            totalPages={208}
-            paginateStyle="mt-4 mb-4"
-          />
-        </div>
-      </div>
-    </div>
+      {editId && editCustomer && <Edit_Customer_Modal />}
+    </>
   );
 };
 
-export default Customers_View;
+export default CustomersPage;

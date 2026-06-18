@@ -1,4 +1,5 @@
 import { variants } from "@/components/app_ui/App_Text";
+import { LucideIcon } from "lucide-react";
 import { HTMLMotionProps } from "motion/react";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import type { ReactNode } from "react";
@@ -93,4 +94,18 @@ export interface IAppInput<T extends Record<string, any>> {
   showLabel?: boolean;
   basic?: boolean;
   onChange?: () => {};
+}
+
+export interface IApp_Drop_Down {
+  icon: LucideIcon;
+  text: string;
+  action: () => void;
+  className?: string;
+  separatorBefore?: boolean;
+}
+
+export interface IApp_Modal {
+  onClose: () => void;
+  children: ReactNode;
+  text: string;
 }

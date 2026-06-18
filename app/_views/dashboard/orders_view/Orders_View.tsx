@@ -1,138 +1,97 @@
-// app/orders/page.tsx
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Search, SlidersHorizontal, Upload } from "lucide-react";
-import App_Text from "@/components/app_ui/App_Text";
-import App_Input from "@/components/app_ui/App_Input";
-import App_Button from "@/components/app_ui/App_Button";
-import { orderColumns, orders, orderTabs } from "./orders_view_data/orders_col";
-import App_Table from "@/components/app_ui/App_Table";
 import App_Paginate from "@/components/app_ui/App_Paginate";
+import App_Table from "@/components/app_ui/App_Table";
+import App_Text from "@/components/app_ui/App_Text";
+import { Skeleton_Order_Row } from "./orders_view_components/Order_Skeleton";
+import { orderTabs } from "./orders_view_data/orders_data";
+import Order_Header from "./orders_view_components/Order_Header";
+import { useOrder } from "./order_hooks/useOrders";
+import App_Tabs from "@/components/app_ui/App_Tabs";
+import { useOrderContext } from "@/app/contexts/admin/Orders_Context";
+import useTable from "@/app/_hooks/useTable";
 
-type SearchForm = { search: string };
-
-const Orders_View = () => {
-  const [activeTab, setActiveTab] = useState("All Orders");
-  const [page, setPage] = useState(1);
+const OrdersPage = () => {
   const {
-    register,
-    formState: { errors },
-  } = useForm<SearchForm>();
-
+    page,
+    setPage,
+    activeTab,
+    columns,
+    isLoading,
+    isError,
+    setActiveTab,
+    orders,
+  } = useOrder();
+  const {} = useOrderContext();
+  const { tableData, totalPages, startItem, endItem, totalItems } = useTable({
+    data: orders,
+    page,
+  });
   return (
-    <div className="space-y-4">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <App_Text variant="pageTitle">Orders</App_Text>
-          <App_Text variant="pageSub">
-            View and manage customer orders and their status.
-          </App_Text>
-        </div>
+    <>
+      <div className="space-y-4">
+        <Order_Header />
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-          {/* Search — hidden on mobile */}
-          <div className="hidden md:block">
-            <App_Input
-              name="search"
-              register={register}
-              errors={errors}
-              placeholder="Search orders..."
-              showLabel={false}
-              icon1={<Search size={14} className="text-muted-foreground" />}
-              containerStyle="w-56"
-            />
-          </div>
+        {/* Table card */}
+        <div className="bg-white rounded-2xl border border-[#ede8e2] shadow-sm overflow-hidden">
+          {/* Tabs */}
+          <App_Tabs
+            activeTab={activeTab}
+            detailTabs={orderTabs}
+            setActiveTab={setActiveTab}
+          />
 
-          <div className="flex items-center gap-2">
-            <App_Button
-              text="Filters"
-              icon={<SlidersHorizontal size={13} />}
-              btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
-            />
-            <App_Button
-              text="Export"
-              icon={<Upload size={13} />}
-              btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile search */}
-      <div className="md:hidden">
-        <App_Input
-          name="search"
-          register={register}
-          errors={errors}
-          placeholder="Search orders..."
-          showLabel={false}
-          icon1={<Search size={14} className="text-muted-foreground" />}
-          containerStyle="w-full"
-        />
-      </div>
-
-      {/* Card wrapper */}
-      <div className="bg-white rounded-2xl border border-[#ede8e2] shadow-sm overflow-hidden">
-        {/* Tabs */}
-        <div className="flex items-center border-b border-[#ede8e2] overflow-x-auto scrollbar-none px-4">
-          {orderTabs.map((tab) => (
-            <button
-              key={tab.label}
-              onClick={() => setActiveTab(tab.label)}
-              className={`flex items-center gap-1.5 px-3 py-3.5 whitespace-nowrap border-b-2 transition-colors ${
-                activeTab === tab.label
-                  ? "border-[#a0522d]"
-                  : "border-transparent"
-              }`}
-            >
-              <App_Text
-                variant="sectionLabel"
-                className={
-                  activeTab === tab.label
-                    ? "text-[#a0522d] font-medium"
-                    : "hover:text-[#1e1a17]"
-                }
-              >
-                {tab.label}
+          {/* Error state */}
+          {isError && (
+            <div className="flex items-center justify-center py-20">
+              <App_Text variant="tableCellMuted" className="text-[#c0392b]">
+                Failed to load orders. Please try again.
               </App_Text>
-              <span
-                className={`px-1.5 py-0.5 rounded text-[10px] ${
-                  activeTab === tab.label
-                    ? "bg-[#fdf0e6] text-[#a0522d]"
-                    : "bg-[#f5f2ee] text-muted-foreground"
-                }`}
-              >
-                {tab.count}
-              </span>
-            </button>
-          ))}
-        </div>
+            </div>
+          )}
 
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <App_Table
-            columns={orderColumns}
-            data={orders}
-            style="mt-0"
-            childRowStyle="hover:bg-[#faf9f7]"
-          />
-        </div>
+          {/* Table */}
+          {!isError && (
+            <div className="overflow-x-auto">
+              {isLoading ? (
+                <table className="w-full">
+                  <tbody>
+                    {Array.from({ length: 7 }).map((_, i) => (
+                      <Skeleton_Order_Row key={i} />
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <App_Table
+                  columns={columns}
+                  data={tableData!}
+                  style="mt-0"
+                  childRowStyle="hover:bg-[#faf9f7] cursor-pointer"
+                />
+              )}
+            </div>
+          )}
 
-        {/* Pagination */}
-        <div className="border-t border-[#ede8e2] px-4">
-          <App_Paginate
-            page={page}
-            setPage={setPage}
-            totalPages={13}
-            paginateStyle="mt-4 mb-4"
-          />
+          {/* Footer */}
+          {!isError && (
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-4 border-t border-[#ede8e2]">
+              <App_Text variant="tableCellMuted" className="shrink-0">
+                {isLoading
+                  ? "Loading..."
+                  : `Showing ${startItem + 1} to ${endItem} of ${totalItems} orders`}
+              </App_Text>
+              <App_Paginate
+                page={page}
+                setPage={setPage}
+                totalPages={totalPages}
+                paginateStyle="mt-4 mb-4"
+              />
+            </div>
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default Orders_View;
+export default OrdersPage;

@@ -18,14 +18,10 @@ import {
   ShoppingCart,
   Users,
   Archive,
-  Star,
-  Ticket,
-  BarChart2,
-  FileText,
-  Megaphone,
   UsersRound,
   Settings,
   LogOut,
+  BarChart2,
 } from "lucide-react";
 
 const sidebar_items = [
@@ -64,13 +60,13 @@ const sidebar_items = [
     icon: Users,
     match: "prefix",
   },
-  {
-    id: 6,
-    label: "Inventory",
-    href: "/dashboard/inventory",
-    icon: Archive,
-    match: "prefix",
-  },
+  // {
+  //   id: 6,
+  //   label: "Inventory",
+  //   href: "/dashboard/inventory",
+  //   icon: Archive,
+  //   match: "prefix",
+  // },
   // {
   //   id: 7,
   //   label: "Reviews",
@@ -85,13 +81,13 @@ const sidebar_items = [
   //   icon: Ticket,
   //   match: "prefix",
   // },
-  // {
-  //   id: 9,
-  //   label: "Sales & Analytics",
-  //   href: "/dashboard/analytics",
-  //   icon: BarChart2,
-  //   match: "prefix",
-  // },
+  {
+    id: 9,
+    label: "Sales & Analytics",
+    href: "/dashboard/analytics",
+    icon: BarChart2,
+    match: "prefix",
+  },
   // {
   //   id: 10,
   //   label: "Reports",
@@ -106,13 +102,13 @@ const sidebar_items = [
   //   icon: Megaphone,
   //   match: "prefix",
   // },
-  {
-    id: 12,
-    label: "Staff Management",
-    href: "/dashboard/staff",
-    icon: UsersRound,
-    match: "prefix",
-  },
+  // {
+  //   id: 12,
+  //   label: "Staff Management",
+  //   href: "/dashboard/staff",
+  //   icon: UsersRound,
+  //   match: "prefix",
+  // },
   {
     id: 13,
     label: "Settings",

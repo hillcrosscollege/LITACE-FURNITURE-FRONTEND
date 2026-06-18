@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
+import { GlobalProvider } from "./contexts/Global_Context";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -44,7 +45,9 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${bodoni.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <GlobalProvider>{children}</GlobalProvider>
+      </body>
     </html>
   );
 }

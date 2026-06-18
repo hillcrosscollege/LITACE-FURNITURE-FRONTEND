@@ -113,6 +113,13 @@ const Single_Product_Top = () => {
             {product.name}
           </App_Text>
 
+          <App_Text
+            variant="heading"
+            className="leading-tight max-w-md text-primary font-accent font-semibold text-base lg:text-lg"
+          >
+            R {product.regularPrice}
+          </App_Text>
+
           {/* CTA — only visible on desktop, inside right column */}
           <div className="hidden lg:block">
             <CTABlock

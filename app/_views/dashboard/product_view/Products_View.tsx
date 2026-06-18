@@ -1,4 +1,3 @@
-// app/dashboard/products/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -27,6 +26,7 @@ import App_Button from "@/components/app_ui/App_Button";
 import { StatCard } from "../dashboard_view/dashboard_components/Stat_Card";
 import App_Table from "@/components/app_ui/App_Table";
 import App_Paginate from "@/components/app_ui/App_Paginate";
+import App_Double_Text from "@/components/shared/App_Double_Text";
 
 type SearchForm = { search: string };
 
@@ -50,6 +50,16 @@ const ProductsPage = () => {
       <div className="bg-linear-to-b from-[#1F1033] to-[#2E1246] border-white/10 p-5 rounded-2xl mb-6 grid gap-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
+            <App_Double_Text
+              header={{
+                children: "Products",
+                variant: "pageTitle",
+              }}
+              para={{
+                children: "Manage your store products, stock and pricing.",
+                variant: "pageSub",
+              }}
+            />
             <App_Text variant="pageTitle" className="text-white">
               Products
             </App_Text>

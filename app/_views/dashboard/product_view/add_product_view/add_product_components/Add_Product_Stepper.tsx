@@ -1,4 +1,3 @@
-// components/products/add/Product_Stepper.tsx
 "use client";
 
 import App_Text from "@/components/app_ui/App_Text";
@@ -19,7 +18,7 @@ const Product_Stepper = ({
   onStepClick,
 }: Props) => {
   return (
-    <div className="w-64 flex-shrink-0 hidden lg:block">
+    <div className="w-64 shrink-0 hidden lg:block">
       <div className="bg-white rounded-2xl border border-[#ede8e2] shadow-sm p-4 sticky top-6">
         <App_Text variant="cardHeading" className="mb-4 px-2">
           Add Product
@@ -39,21 +38,17 @@ const Product_Stepper = ({
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-colors w-full ${
                   isActive
                     ? "bg-primary/10 border border-primary/20"
-                    : isCompleted
+                    : isCompleted || isAccessible
                       ? "hover:bg-[#f5f2ee] cursor-pointer"
-                      : isAccessible
-                        ? "hover:bg-[#f5f2ee] cursor-pointer"
-                        : "opacity-50 cursor-not-allowed"
+                      : "opacity-50 cursor-not-allowed"
                 }`}
               >
                 {/* Step number / check */}
                 <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-semibold transition-colors ${
-                    isCompleted
+                  className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 text-xs font-semibold transition-colors ${
+                    isCompleted || isActive
                       ? "bg-primary text-white"
-                      : isActive
-                        ? "bg-primary text-white"
-                        : "bg-[#f5f2ee] text-muted-foreground"
+                      : "bg-[#f5f2ee] text-muted-foreground"
                   }`}
                 >
                   {isCompleted ? <Check size={13} /> : step.id}
@@ -66,10 +61,7 @@ const Product_Stepper = ({
                   >
                     {step.label}
                   </App_Text>
-                  <App_Text
-                    variant="tableCellMuted"
-                    className="truncate text-[10px]"
-                  >
+                  <App_Text variant="tableCellMuted" className=" text-xs">
                     {step.description}
                   </App_Text>
                 </div>

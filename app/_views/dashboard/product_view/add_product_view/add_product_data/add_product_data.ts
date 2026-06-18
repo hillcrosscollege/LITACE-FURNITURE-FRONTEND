@@ -37,9 +37,9 @@ export const steps: Step[] = [
     label: "Shipping",
     description: "Weight, dimensions & shipping class",
   },
-  {
-    id: 6,
-    label: "SEO & Settings",
-    description: "Meta tags, slug & visibility",
-  },
+  //   {
+  //     id: 6,
+  //     label: "SEO & Settings",
+  //     description: "Meta tags, slug & visibility",
+  //   },
 ];

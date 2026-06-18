@@ -1,7 +1,5 @@
-// app/dashboard/products/add/page.tsx
 "use client";
-
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight, Save } from "lucide-react";
@@ -23,7 +21,7 @@ const stepComponents = [
   Step_Variants,
   Step_Images,
   Step_Shipping,
-  Step_SEO,
+  //   Step_SEO,
 ];
 
 const Add_Product_View = () => {
@@ -42,7 +40,10 @@ const Add_Product_View = () => {
 
   const { handleSubmit, trigger } = form;
 
-  const CurrentStepComponent = stepComponents[currentStep - 1];
+  const CurrentStepComponent = useMemo(
+    () => stepComponents[currentStep - 1],
+    [currentStep],
+  );
 
   const goNext = async () => {
     const valid = await trigger();
@@ -100,7 +101,7 @@ const Add_Product_View = () => {
             <div className="bg-white rounded-2xl border border-[#ede8e2] shadow-sm p-6">
               {/* Mobile step indicator */}
               <div className="lg:hidden flex items-center gap-2 mb-4 pb-4 border-b border-[#ede8e2]">
-                <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-semibold flex-shrink-0">
+                <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-semibold shrink-0">
                   {currentStep}
                 </div>
                 <App_Text variant="cardHeading">
