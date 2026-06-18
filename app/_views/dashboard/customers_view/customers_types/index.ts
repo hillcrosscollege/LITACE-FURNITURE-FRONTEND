@@ -7,7 +7,7 @@ export type Customer = {
   email: string;
   phone: string;
   avatar: string;
-  orders: number;
+  totalOrders: number;
   totalSpent: number;
   lastOrder: string;
   status: CustomerStatus;

@@ -7,7 +7,7 @@ import {
   Category,
   CategoryStatus,
 } from "@/app/_views/dashboard/categories_view/categories_types";
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext, JSX } from "react";
 
 export interface ICategoryContext {
   page: number;
