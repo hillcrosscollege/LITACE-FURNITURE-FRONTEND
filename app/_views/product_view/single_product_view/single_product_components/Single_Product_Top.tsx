@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Minus, Plus, Heart, ChevronDown, ChevronUp } from "lucide-react";
 import App_Text from "@/components/app_ui/App_Text";
 import App_Button from "@/components/app_ui/App_Button";
+import { useGlobal } from "@/app/contexts/Global_Context";
 
 const product = {
   name: "Theodore Accent Chair",
@@ -262,9 +263,14 @@ const CTABlock = ({
   setQty: React.Dispatch<React.SetStateAction<number>>;
   qty: number;
   setWish: React.Dispatch<React.SetStateAction<boolean>>;
-}) => (
-  <div className="flex flex-col gap-4">
-    <div className="flex items-center gap-3">
+}) => {
+  const { updateQty, addToCart, items } = useGlobal();
+  const item = items.find((item) => item.id == "2");
+  console.log({ item, items });
+
+  return (
+    <div className="flex flex-col gap-4">
+      {/* <div className="flex items-center gap-3">
       <div className="flex items-center gap-3 border border-gray-200 rounded-full px-4 py-2">
         <App_Button
           text=""
@@ -291,16 +297,50 @@ const CTABlock = ({
       >
         <Heart size={18} fill={wishlisted ? "currentColor" : "none"} />
       </button>
+    </div> */}
+      <div className="flex gap-3 w-full">
+        {item ? (
+          <div className="flex items-center gap-2 border border-[#e0dbd4] rounded-lg w-fit px-2 py-1">
+            <button
+              onClick={() => updateQty(item.id, -1)}
+              className="text-muted-foreground hover:text-[#1e1a17] transition-colors"
+              type="button"
+            >
+              <Minus size={13} />
+            </button>
+            <span className="text-xs font-medium w-4 text-center">
+              {item.quantity}
+            </span>
+            <button
+              onClick={() => updateQty(item.id, 1)}
+              className="text-muted-foreground hover:text-[#1e1a17] transition-colors"
+              type="button"
+            >
+              <Plus size={13} />
+            </button>
+          </div>
+        ) : (
+          <App_Button
+            onPress={() =>
+              addToCart({
+                id: (items.length + 1).toString(),
+                name: "Accent Chair",
+                image: "/conference_chair-2.png",
+                price: 200,
+                category: "",
+                quantity: 1,
+              })
+            }
+            text="Add to cart"
+            btnStyle="flex-1 py-3 h-auto rounded-full border border-gray-300 bg-white text-black hover:bg-gray-50 text-sm font-medium"
+          />
+        )}
+
+        <App_Button
+          text="Buy Now"
+          btnStyle="flex-1 py-3 h-auto rounded-full bg-primary text-white hover:bg-primary/85 text-sm font-medium"
+        />
+      </div>
     </div>
-    <div className="flex gap-3 w-full">
-      <App_Button
-        text="Add to cart"
-        btnStyle="flex-1 py-3 h-auto rounded-full border border-gray-300 bg-white text-black hover:bg-gray-50 text-sm font-medium"
-      />
-      <App_Button
-        text="Buy Now"
-        btnStyle="flex-1 py-3 h-auto rounded-full bg-primary text-white hover:bg-primary/85 text-sm font-medium"
-      />
-    </div>
-  </div>
-);
+  );
+};

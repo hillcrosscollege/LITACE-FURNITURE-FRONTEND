@@ -63,7 +63,7 @@ export const createOrderColumns = (
     header: () => <App_Text variant="tableHeader">Total</App_Text>,
     cell: ({ row }) => (
       <App_Text variant="tableCell" className="font-semibold">
-        ₦{Number(row.getValue("total")).toLocaleString()}
+        R {Number(row.getValue("total")).toLocaleString()}
       </App_Text>
     ),
   },

@@ -1,6 +1,6 @@
 import App_Double_Text from "@/components/shared/App_Double_Text";
 import { StatCard } from "./Stat_Card";
-import { stats } from "./dash_data";
+import { stats } from "../dash_data";
 
 const Dash_Top = () => {
   return (

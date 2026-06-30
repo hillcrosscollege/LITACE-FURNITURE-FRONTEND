@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/chart";
 import App_Text from "@/components/app_ui/App_Text";
 import Recent_Orders from "./Recent_Orders";
-import { salesChartConfig, salesData } from "./dash_data";
+import { salesChartConfig, salesData } from "../dash_data";
 
 const Dash_Section_Two = () => {
   return (
@@ -41,12 +41,12 @@ const Dash_Section_Two = () => {
               tick={{ fontSize: 10, fill: "#aaa" }}
               tickLine={false}
               axisLine={false}
-              tickFormatter={(v) => `₦${v / 1000}K`}
+              tickFormatter={(v) => `R ${v / 1000}K`}
             />
             <ChartTooltip
               content={
                 <ChartTooltipContent
-                  formatter={(value) => `₦${Number(value).toLocaleString()}`}
+                  formatter={(value) => `R ${Number(value).toLocaleString()}`}
                 />
               }
             />

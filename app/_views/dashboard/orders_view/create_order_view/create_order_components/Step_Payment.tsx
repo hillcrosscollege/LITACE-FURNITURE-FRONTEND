@@ -151,7 +151,7 @@ const Step_Payment = ({
               <div key={label} className="flex items-center justify-between">
                 <App_Text variant="tableCellMuted">{label}</App_Text>
                 <App_Text variant="tableCell">
-                  ₦{value.toLocaleString()}
+                  R {value.toLocaleString()}
                 </App_Text>
               </div>
             ))}
@@ -159,7 +159,7 @@ const Step_Payment = ({
           <div className="flex items-center justify-between">
             <App_Text variant="cardHeading">Total Amount</App_Text>
             <App_Text variant="statValue" className="text-lg text-primary">
-              ₦{total.toLocaleString()}
+              R {total.toLocaleString()}
             </App_Text>
           </div>
         </div>

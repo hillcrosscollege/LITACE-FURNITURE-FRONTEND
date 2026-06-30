@@ -15,31 +15,31 @@ export const topProducts: TopProduct[] = [
     product: "Modern L-Shaped Sofa",
     category: "Living Room",
     sold: 32,
-    revenue: "₦2,560,000",
+    revenue: "R 2,560,000",
   },
   {
     product: "Wooden Dining Set",
     category: "Dining Room",
     sold: 28,
-    revenue: "₦2,240,000",
+    revenue: "R 2,240,000",
   },
   {
     product: "Luxury Wooden Bed",
     category: "Bedroom",
     sold: 24,
-    revenue: "₦1,920,000",
+    revenue: "R 1,920,000",
   },
   {
     product: "Ergonomic Office Chair",
     category: "Office",
     sold: 20,
-    revenue: "₦1,500,000",
+    revenue: "R 1,500,000",
   },
   {
     product: "Marble Coffee Table",
     category: "Living Room",
     sold: 18,
-    revenue: "₦1,080,000",
+    revenue: "R 1,080,000",
   },
 ];
 

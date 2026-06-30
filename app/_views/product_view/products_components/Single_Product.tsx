@@ -4,8 +4,10 @@ import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { IProduct } from "../../home_view/home_types";
+import { useGlobal } from "@/app/contexts/Global_Context";
 
 const Single_Product = ({ name, tag, price, image }: IProduct) => {
+  const { addToCart, items } = useGlobal();
   return (
     <Link
       href={"/products/1"}
@@ -66,7 +68,17 @@ const Single_Product = ({ name, tag, price, image }: IProduct) => {
 
           <App_Button
             text="Add to Cart"
-            onPress={() => {}}
+            onPress={(e) => {
+              // e.stopPropagation();
+              addToCart({
+                id: (items.length + 1).toString(),
+                name,
+                image,
+                price,
+                category: "",
+                quantity: 1,
+              });
+            }}
             btnStyle="bg-primary text-white shadow-sm transition-all duration-300 hover:scale-110 hidden md:block"
           />
           <App_Button

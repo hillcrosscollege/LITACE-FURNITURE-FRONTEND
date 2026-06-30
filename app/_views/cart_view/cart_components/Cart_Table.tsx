@@ -66,7 +66,7 @@ const Cart_Table = ({
 
             {/* Price */}
             <App_Text variant="cardHeading">
-              ₦{item.price.toLocaleString()}
+              R {item.price.toLocaleString()}
             </App_Text>
 
             {/* Quantity */}
@@ -92,7 +92,7 @@ const Cart_Table = ({
 
             {/* Total */}
             <App_Text variant="cardHeading" className="font-semibold">
-              ₦{(item.price * item.quantity).toLocaleString()}
+              R {(item.price * item.quantity).toLocaleString()}
             </App_Text>
 
             {/* Delete */}

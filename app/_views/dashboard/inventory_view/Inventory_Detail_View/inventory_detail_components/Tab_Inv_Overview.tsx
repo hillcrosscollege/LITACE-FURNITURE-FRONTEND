@@ -79,11 +79,11 @@ const Tab_Inv_Overview = ({ product, onAdjust, onBarcode }: Props) => {
           { label: "Supplier", value: product.supplier },
           {
             label: "Cost Price",
-            value: `₦${product.costPrice.toLocaleString()}`,
+            value: `R ${product.costPrice.toLocaleString()}`,
           },
           {
             label: "Selling Price",
-            value: `₦${product.sellingPrice.toLocaleString()}`,
+            value: `R ${product.sellingPrice.toLocaleString()}`,
           },
         ].map(({ label, value }) => (
           <div

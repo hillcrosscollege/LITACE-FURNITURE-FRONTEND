@@ -1,6 +1,6 @@
 import App_Table from "@/components/app_ui/App_Table";
 import App_Text from "@/components/app_ui/App_Text";
-import { topProducts, topProductsColumns } from "./dash_data/Top_Selling";
+import { topProducts, topProductsColumns } from "../dash_data/Top_Selling";
 
 const Dash_Top_Selling = () => {
   return (

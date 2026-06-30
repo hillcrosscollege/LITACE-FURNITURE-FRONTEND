@@ -22,6 +22,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
   style?: string;
   childRowStyle?: string;
+  onRowClick?: (row: TData) => void;
 }
 
 const App_Table = <TData, TValue>({
@@ -29,6 +30,7 @@ const App_Table = <TData, TValue>({
   data,
   style,
   childRowStyle,
+  onRowClick,
 }: DataTableProps<TData, TValue>) => {
   const table = useReactTable({
     data,
@@ -65,7 +67,15 @@ const App_Table = <TData, TValue>({
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id} className={cn("border-b", childRowStyle)}>
+              <TableRow
+                key={row.id}
+                className={cn(
+                  "border-b",
+                  childRowStyle,
+                  onRowClick && "cursor-pointer",
+                )}
+                onClick={() => onRowClick?.(row.original)}
+              >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id} className="py-2 ">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

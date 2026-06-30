@@ -90,10 +90,10 @@ const Tab_Order_Overview = () => {
                 </div>
                 <App_Text variant="tableCell">{item.qty}</App_Text>
                 <App_Text variant="tableCell">
-                  ₦{item.price.toLocaleString()}
+                  R {item.price.toLocaleString()}
                 </App_Text>
                 <App_Text variant="tableCell" className="font-semibold">
-                  ₦{(item.price * item.qty).toLocaleString()}
+                  R {(item.price * item.qty).toLocaleString()}
                 </App_Text>
               </div>
             ))}
@@ -107,22 +107,22 @@ const Tab_Order_Overview = () => {
             {[
               {
                 label: "Items Total",
-                value: `₦${summary.itemsTotal.toLocaleString()}`,
+                value: `R ${summary.itemsTotal.toLocaleString()}`,
               },
               {
                 label: "Shipping Fee",
-                value: `₦${summary.shippingFee.toLocaleString()}`,
+                value: `R ${summary.shippingFee.toLocaleString()}`,
               },
               {
                 label: "Tax (7.5%)",
-                value: `₦${summary.tax.toLocaleString()}`,
+                value: `R ${summary.tax.toLocaleString()}`,
               },
               {
                 label: "Discount",
                 value:
                   summary.discount > 0
-                    ? `-₦${summary.discount.toLocaleString()}`
-                    : "—₦0",
+                    ? `-R ${summary.discount.toLocaleString()}`
+                    : "—R 0",
               },
             ].map(({ label, value }) => (
               <div key={label} className="flex items-center justify-between">
@@ -133,7 +133,7 @@ const Tab_Order_Overview = () => {
             <div className="flex items-center justify-between pt-2 border-t border-[#ede8e2]">
               <App_Text variant="cardHeading">Total Amount</App_Text>
               <App_Text variant="statValue" className="text-lg text-primary">
-                ₦{summary.totalAmount.toLocaleString()}
+                R {summary.totalAmount.toLocaleString()}
               </App_Text>
             </div>
           </div>

@@ -26,7 +26,7 @@ export const productDetail = {
   stats: {
     stock: { label: "Stock", value: "12 Units" },
     sold: { label: "Sold", value: "48 Units" },
-    revenue: { label: "Total Revenue", value: "₦12,000,000" },
+    revenue: { label: "Total Revenue", value: "R 12,000,000" },
     created: { label: "Created", value: "May 10, 2024" },
   },
   information: {
@@ -37,9 +37,9 @@ export const productDetail = {
     SKU: "FC-SOFA-001",
   },
   pricing: {
-    Price: "₦250,000",
-    "Compare at Price": "₦300,000",
-    "Cost Price": "₦150,000",
+    Price: "R 250,000",
+    "Compare at Price": "R 300,000",
+    "Cost Price": "R 150,000",
     "Profit Margin": "40%",
   },
   shipping: {

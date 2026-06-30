@@ -124,7 +124,7 @@ const Step_Items = ({
                     variant="tableCell"
                     className="font-semibold shrink-0"
                   >
-                    ₦{product.price.toLocaleString()}
+                    R {product.price.toLocaleString()}
                   </App_Text>
                   <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                     <Plus size={13} className="text-primary" />
@@ -175,7 +175,7 @@ const Step_Items = ({
                 </div>
 
                 <App_Text variant="tableCell">
-                  ₦{item.price.toLocaleString()}
+                  R {item.price.toLocaleString()}
                 </App_Text>
 
                 <div className="flex items-center gap-1.5 border border-[#e0dbd4] rounded-lg px-2 py-1 w-fit bg-white">
@@ -199,7 +199,7 @@ const Step_Items = ({
                 </div>
 
                 <App_Text variant="tableCell" className="font-semibold">
-                  ₦{(item.price * item.qty).toLocaleString()}
+                  R {(item.price * item.qty).toLocaleString()}
                 </App_Text>
 
                 <App_Button
@@ -225,14 +225,14 @@ const Step_Items = ({
               >
                 <App_Text variant="tableCellMuted">{label}</App_Text>
                 <App_Text variant="tableCell">
-                  ₦{value.toLocaleString()}
+                  R {value.toLocaleString()}
                 </App_Text>
               </div>
             ))}
             <div className="flex items-center justify-between px-2 pt-2 border-t border-[#ede8e2]">
               <App_Text variant="cardHeading">Total</App_Text>
               <App_Text variant="statValue" className="text-lg text-primary">
-                ₦{total.toLocaleString()}
+                R {total.toLocaleString()}
               </App_Text>
             </div>
           </div>

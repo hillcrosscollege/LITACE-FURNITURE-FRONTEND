@@ -6,35 +6,47 @@ import { cartItems } from "./cart_data/cart_data";
 import Cart_Table from "./cart_components/Cart_Table";
 import App_Full_Text from "@/components/shared/App_Full_Text";
 import Cart_Order_Summary from "./cart_components/Cart_Order_Summary";
+import { useGlobal } from "@/app/contexts/Global_Context";
 
 const SHIPPING = 15000;
 const TAX_RATE = 0.075;
 
 const Cart_View = () => {
-  const [items, setItems] = useState<CartItem[]>(cartItems);
-  const [showSuccess, setShowSuccess] = useState(true);
+  // const [items, setItems] = useState<CartItem[]>(cartItems);
+  // const [showSuccess, setShowSuccess] = useState(true);
 
-  const updateQty = (id: string, delta: number) => {
-    setItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-          : item,
-      ),
-    );
-  };
+  // const updateQty = (id: string, delta: number) => {
+  //   setItems((prev) =>
+  //     prev.map((item) =>
+  //       item.id === id
+  //         ? { ...item, quantity: Math.max(1, item.quantity + delta) }
+  //         : item,
+  //     ),
+  //   );
+  // };
 
-  const removeItem = (id: string) => {
-    setItems((prev) => prev.filter((item) => item.id !== id));
-    setShowSuccess(true);
-  };
+  // const removeItem = (id: string) => {
+  //   setItems((prev) => prev.filter((item) => item.id !== id));
+  //   setShowSuccess(true);
+  // };
 
-  const subtotal = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
-  const tax = Math.round(subtotal * TAX_RATE);
-  const total = subtotal + SHIPPING + tax;
+  // const subtotal = items.reduce(
+  //   (sum, item) => sum + item.price * item.quantity,
+  //   0,
+  // );
+  // const tax = Math.round(subtotal * TAX_RATE);
+  // const total = subtotal + SHIPPING + tax;
+
+  const {
+    items,
+    addToCart,
+    updateQty,
+    removeItem,
+    subtotal,
+    tax,
+    // shipping: SHIPPING,
+    total,
+  } = useGlobal();
 
   return (
     <div className="min-h-screen">

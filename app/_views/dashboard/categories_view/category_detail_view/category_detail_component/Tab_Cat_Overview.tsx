@@ -87,7 +87,7 @@ const Tab_Cat_Overview = () => {
         {[
           { label: "Total Products", value: "28" },
           { label: "Active Products", value: "27" },
-          { label: "Total Revenue", value: "₦12,450,000" },
+          { label: "Total Revenue", value: "R 12,450,000" },
           { label: "Total Orders", value: "156" },
         ].map(({ label, value }) => (
           <div

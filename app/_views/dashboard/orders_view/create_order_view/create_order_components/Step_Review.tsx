@@ -129,7 +129,7 @@ const Step_Review = ({
                 variant="tableCell"
                 className="font-semibold flex-shrink-0"
               >
-                ₦{(item.price * item.qty).toLocaleString()}
+                R {(item.price * item.qty).toLocaleString()}
               </App_Text>
             </div>
           ))}
@@ -153,7 +153,7 @@ const Step_Review = ({
               <span className="font-medium text-[#1e1a17]">
                 {shippingFee === 0
                   ? "Free"
-                  : `₦${shippingFee.toLocaleString()}`}
+                  : `R ${shippingFee.toLocaleString()}`}
               </span>
             </App_Text>
           </div>
@@ -179,7 +179,7 @@ const Step_Review = ({
         ].map(({ label, value }) => (
           <div key={label} className="flex items-center justify-between">
             <App_Text variant="tableCellMuted">{label}</App_Text>
-            <App_Text variant="tableCell">₦{value.toLocaleString()}</App_Text>
+            <App_Text variant="tableCell">R {value.toLocaleString()}</App_Text>
           </div>
         ))}
         <div className="flex items-center justify-between pt-3 border-t border-[#ede8e2]">
@@ -187,7 +187,7 @@ const Step_Review = ({
             Total Amount
           </App_Text>
           <App_Text variant="statValue" className="text-xl text-primary">
-            ₦{total.toLocaleString()}
+            R {total.toLocaleString()}
           </App_Text>
         </div>
       </div>

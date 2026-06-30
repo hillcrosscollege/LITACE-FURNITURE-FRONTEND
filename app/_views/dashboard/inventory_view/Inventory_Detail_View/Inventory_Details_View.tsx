@@ -183,7 +183,7 @@ const InventoryDetailPage = () => {
                           variant="statValue"
                           className="text-2xl text-primary mt-2"
                         >
-                          ₦{product.sellingPrice.toLocaleString()}
+                          R {product.sellingPrice.toLocaleString()}
                         </App_Text>
                         <App_Text variant="tableCellMuted" className="mt-1">
                           {product.description}

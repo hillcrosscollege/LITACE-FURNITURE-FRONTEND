@@ -64,7 +64,7 @@ export const createCustomerColumns = (
     header: () => <App_Text variant="tableHeader">Total Spent</App_Text>,
     cell: ({ row }) => (
       <App_Text variant="tableCell" className="font-semibold">
-        ₦{Number(row.getValue("totalSpent")).toLocaleString()}
+        R {Number(row.getValue("totalSpent")).toLocaleString()}
       </App_Text>
     ),
   },

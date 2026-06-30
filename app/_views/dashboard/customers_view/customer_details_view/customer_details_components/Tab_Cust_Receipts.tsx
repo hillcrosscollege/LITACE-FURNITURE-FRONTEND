@@ -56,7 +56,7 @@ const columns: ColumnDef<CustomerReceipt>[] = [
     header: () => <App_Text variant="tableHeader">Amount</App_Text>,
     cell: ({ row }) => (
       <App_Text variant="tableCell" className="font-semibold">
-        ₦{Number(row.getValue("amount")).toLocaleString()}
+        R {Number(row.getValue("amount")).toLocaleString()}
       </App_Text>
     ),
   },
@@ -115,7 +115,7 @@ const Tab_Cust_Receipts = ({ customerId }: { customerId: string }) => {
           {[
             {
               label: "Total Paid",
-              value: `₦${totalSpent.toLocaleString()}`,
+              value: `R ${totalSpent.toLocaleString()}`,
               color: "text-[#2e7d52]",
             },
             {

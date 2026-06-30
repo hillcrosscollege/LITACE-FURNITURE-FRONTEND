@@ -51,7 +51,7 @@ const columns: ColumnDef<CategoryProduct>[] = [
     header: () => <App_Text variant="tableHeader">Price</App_Text>,
     cell: ({ row }) => (
       <App_Text variant="tableCell" className="font-semibold">
-        ₦{Number(row.getValue("price")).toLocaleString()}
+        R {Number(row.getValue("price")).toLocaleString()}
       </App_Text>
     ),
   },

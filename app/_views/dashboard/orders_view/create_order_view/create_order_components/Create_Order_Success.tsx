@@ -48,7 +48,7 @@ const Create_Order_Success = ({ order, onAddAnother, onViewOrder }: Props) => (
         { label: "Status", value: order?.status },
         {
           label: "Total",
-          value: `₦${Number(order?.total ?? 0).toLocaleString()}`,
+          value: `R ${Number(order?.total ?? 0).toLocaleString()}`,
         },
         { label: "Date", value: order?.date },
       ].map(({ label, value }) => (

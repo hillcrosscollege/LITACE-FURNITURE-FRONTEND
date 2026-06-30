@@ -41,7 +41,7 @@ const Step_Pricing = ({ form }: Props) => {
             name="price"
             register={register}
             errors={errors}
-            placeholder="₦0.00"
+            placeholder="R 0.00"
             rules={{
               required: "Price is required",
               min: { value: 0, message: "Must be positive" },
@@ -51,13 +51,13 @@ const Step_Pricing = ({ form }: Props) => {
             name="comparePrice"
             register={register}
             errors={errors}
-            placeholder="₦0.00"
+            placeholder="R 0.00"
           />
           <App_Input
             name="costPrice"
             register={register}
             errors={errors}
-            placeholder="₦0.00"
+            placeholder="R 0.00"
           />
           <div className="space-y-1.5">
             <label className="text-sm font-medium">Profit Margin</label>

@@ -87,7 +87,7 @@ const InventoryPage = () => {
         },
         {
           title: "Total Inventory Value",
-          value: `₦${stats.totalInventoryValue.toLocaleString()}`,
+          value: `R ${stats.totalInventoryValue.toLocaleString()}`,
           subLabel: "At cost price",
         },
       ]

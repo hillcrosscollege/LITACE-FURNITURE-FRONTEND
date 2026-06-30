@@ -82,7 +82,7 @@ const Tab_Order_Shipping = () => {
                 </div>
               </div>
               <App_Text variant="tableCell" className="font-semibold">
-                {opt.price === 0 ? "Free" : `₦${opt.price.toLocaleString()}`}
+                {opt.price === 0 ? "Free" : `R ${opt.price.toLocaleString()}`}
               </App_Text>
             </div>
           ))}

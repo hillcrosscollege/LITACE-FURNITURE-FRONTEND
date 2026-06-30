@@ -155,7 +155,7 @@ export const fakeCustomerDetail: CustomerDetail = {
     },
     {
       id: "2",
-      description: "Payment of ₦250,000 received",
+      description: "Payment of R 250,000 received",
       date: "May 20, 2024 — 09:15 AM",
       type: "payment",
     },

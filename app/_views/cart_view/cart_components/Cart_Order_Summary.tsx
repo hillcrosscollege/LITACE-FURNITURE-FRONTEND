@@ -25,19 +25,19 @@ const Cart_Order_Summary = ({
           <div className="flex items-center justify-between">
             <App_Text variant="cardText">Subtotal</App_Text>
             <App_Text variant="cardText" className="font-medium">
-              ₦{subtotal.toLocaleString()}
+              R {subtotal.toLocaleString()}
             </App_Text>
           </div>
           <div className="flex items-center justify-between">
             <App_Text variant="cardText">Shipping</App_Text>
             <App_Text variant="cardText" className="font-medium">
-              ₦{shipping.toLocaleString()}
+              R {shipping.toLocaleString()}
             </App_Text>
           </div>
           <div className="flex items-center justify-between">
             <App_Text variant="cardText">Tax (7.5%)</App_Text>
             <App_Text variant="cardText" className="font-medium">
-              ₦{tax.toLocaleString()}
+              R {tax.toLocaleString()}
             </App_Text>
           </div>
         </div>
@@ -47,7 +47,7 @@ const Cart_Order_Summary = ({
             Total
           </App_Text>
           <App_Text variant="statValue" className="text-xl">
-            ₦{total.toLocaleString()}
+            R {total.toLocaleString()}
           </App_Text>
         </div>
 
@@ -86,7 +86,7 @@ const Cart_Order_Summary = ({
       <div className="bg-[#fdf5e0] border border-[#f5e0a0] rounded-2xl p-4 flex items-center gap-3">
         <Truck size={18} className="text-[#8a6300] shrink-0" />
         <App_Text variant="sectionLabel" className="text-[#8a6300]">
-          Free shipping on orders over ₦1,000,000
+          Free shipping on orders over R 1,000,000
         </App_Text>
       </div>
     </div>

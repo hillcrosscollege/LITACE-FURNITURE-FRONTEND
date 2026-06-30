@@ -43,7 +43,7 @@ export interface IButton {
   text: string;
   icon?: ReactNode;
   btnStyle?: string;
-  onPress?: () => void;
+  onPress?: (e?: any) => void;
   type?: "button" | "submit" | "reset";
 }
 

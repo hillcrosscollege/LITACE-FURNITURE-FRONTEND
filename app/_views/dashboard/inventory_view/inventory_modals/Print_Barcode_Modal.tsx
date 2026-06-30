@@ -56,7 +56,7 @@ const Print_Barcode_Modal = ({ product, onClose }: Props) => (
 
       <div className="space-y-1">
         <App_Text variant="tableCell" className="font-medium">
-          Price: ₦{product.sellingPrice.toLocaleString()}
+          Price: R {product.sellingPrice.toLocaleString()}
         </App_Text>
         <App_Text variant="tableCellMuted">
           Available: {product.available} Units

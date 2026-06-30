@@ -149,7 +149,7 @@ const Step_Shipping = ({ form, deliveryMethod, onMethodChange }: Props) => {
                 variant="tableCell"
                 className="font-semibold flex-shrink-0"
               >
-                {opt.price === 0 ? "Free" : `₦${opt.price.toLocaleString()}`}
+                {opt.price === 0 ? "Free" : `R ${opt.price.toLocaleString()}`}
               </App_Text>
             </button>
           ))}

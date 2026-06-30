@@ -21,8 +21,8 @@ const App_Number_Slider = ({
       />
 
       <div className="flex justify-between text-sm text-gray-300">
-        <span>₦{price[0]}</span>
-        <span>₦{price[1]}</span>
+        <span>R {price[0]}</span>
+        <span>R {price[1]}</span>
       </div>
     </div>
   );

@@ -49,7 +49,7 @@ const Refund_Order_Modal = () => {
       <div className="text-center">
         <App_Text variant="cardHeading">Refund Order {order?.id}</App_Text>
         <App_Text variant="tableCellMuted">
-          Total Refund Amount: ₦{order?.summary?.totalAmount.toLocaleString()}
+          Total Refund Amount: R {order?.summary?.totalAmount.toLocaleString()}
         </App_Text>
       </div>
 
