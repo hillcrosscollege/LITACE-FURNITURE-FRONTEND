@@ -5,10 +5,12 @@ import { UseFormReturn } from "react-hook-form";
 import { ProductFormData } from "../add_product_types";
 import App_Input from "@/components/app_ui/App_Input";
 import App_Text from "@/components/app_ui/App_Text";
+import { useProductContext } from "@/app/contexts/admin/Product_Context";
 
 type Props = { form: UseFormReturn<ProductFormData> };
 
-const Step_Pricing = ({ form }: Props) => {
+const Step_Pricing = () => {
+  const { form } = useProductContext();
   const {
     register,
     formState: { errors },

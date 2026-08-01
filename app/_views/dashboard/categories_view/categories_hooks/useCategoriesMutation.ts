@@ -8,13 +8,17 @@ import {
 import { CATEGORY_KEYS } from "./useCategoriesQueries";
 
 // ── Mutations ─────────────────────────────────────────────
-export const useAddCategory = () => {
+export const useAddCategory = (onClose: () => void) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (payload: AddCategoryPayload) =>
       categoriesApi.addCategory(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: CATEGORY_KEYS.lists() });
+      onClose();
+    },
+    onError: (e) => {
+      console.log(e);
     },
   });
 };
@@ -54,16 +58,16 @@ export const useDeleteCategory = () => {
   });
 };
 
-export const useReorderCategories = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (payload: ReorderPayload) =>
-      categoriesApi.reorderCategories(payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: CATEGORY_KEYS.lists() });
-    },
-  });
-};
+// export const useReorderCategories = () => {
+//   const queryClient = useQueryClient();
+//   return useMutation({
+//     mutationFn: (payload: ReorderPayload) =>
+//       categoriesApi.reorderCategories(payload),
+//     onSuccess: () => {
+//       queryClient.invalidateQueries({ queryKey: CATEGORY_KEYS.lists() });
+//     },
+//   });
+// };
 
 export const useExportCategories = () =>
   useMutation({

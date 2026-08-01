@@ -62,7 +62,7 @@ const Tab_Variants = () => {
                     {attr.values.map((val) => (
                       <span
                         key={val}
-                        className="text-xs px-2.5 py-1 rounded-full bg-white border border-[#e0dbd4] text-[#1e1a17]"
+                        className="text-xs px-2.5 py-1 rounded-full bg-white border border-[#e0dbd4] text-[text]"
                       >
                         {val}
                       </span>

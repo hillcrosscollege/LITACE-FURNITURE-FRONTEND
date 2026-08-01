@@ -63,7 +63,7 @@ export type CategoryMedia = {
 
 export type AddCategoryPayload = {
   name: string;
-  parentCategory: string;
+  // parentCategory: string;
   description: string;
   status: boolean;
   metaTitle?: string;
@@ -76,7 +76,7 @@ export type ReorderPayload = { ids: string[] };
 
 export type CategoryForm = {
   name: string;
-  parentCategory: string;
+  // parentCategory: string;
   description: string;
   status: boolean;
   metaTitle: string;

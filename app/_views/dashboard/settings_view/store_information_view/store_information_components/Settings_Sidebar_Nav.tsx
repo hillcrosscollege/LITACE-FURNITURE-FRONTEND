@@ -29,7 +29,7 @@ const Settings_Sidebar_Nav = () => {
                   isActive
                     ? "bg-primary/10 text-primary font-medium"
                     : item.built
-                      ? "text-[#1e1a17] hover:bg-[#f5f2ee]"
+                      ? "text-[text] hover:bg-[#f5f2ee]"
                       : "text-muted-foreground/50 cursor-not-allowed"
                 }`}
               >

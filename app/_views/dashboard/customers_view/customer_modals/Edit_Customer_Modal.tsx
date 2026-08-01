@@ -145,7 +145,7 @@ const Edit_Customer_Modal = () => {
               text="Cancel"
               type="button"
               onPress={onClose}
-              btnStyle="flex-1 text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-xl py-2.5 h-auto"
+              btnStyle="flex-1 text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-xl py-2.5 h-auto"
             />
             <App_Button
               text={isPending ? "Saving..." : "Save Changes"}

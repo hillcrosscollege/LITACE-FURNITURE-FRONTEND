@@ -1,35 +1,32 @@
 "use client";
 
-import { X } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { useAddLocation } from "../inventory_hooks/useInventoryQueries";
 import App_Button from "@/components/app_ui/App_Button";
 import App_Input from "@/components/app_ui/App_Input";
 import App_Text from "@/components/app_ui/App_Text";
 import App_Text_Area from "@/components/app_ui/App_Text_Area";
+import { X } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { useAddShippingMethod } from "../shipping_hooks/useShippingMutation";
+import { AddShippingMethodPayload } from "../shipping_types";
 
 type Props = { onClose: () => void };
-type Form = { name: string; address: string; manager: string; notes: string };
 
-const Add_Location_Modal = ({ onClose }: Props) => {
-  const { mutate: addLocation, isPending } = useAddLocation();
+const Add_Shipping_Method_Modal = ({ onClose }: Props) => {
+  const { mutate: addMethod, isPending } = useAddShippingMethod();
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors },
-  } = useForm<Form>();
+  } = useForm<AddShippingMethodPayload>({
+    defaultValues: { status: true },
+  });
 
-  const onSubmit = (data: Form) => {
-    addLocation(
-      {
-        name: data.name,
-        address: data.address,
-        manager: data.manager,
-        notes: data.notes,
-      },
-      { onSuccess: onClose },
-    );
-  };
+  const statusValue = watch("status");
+
+  const onSubmit = (data: AddShippingMethodPayload) =>
+    addMethod(data, { onSuccess: onClose });
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -37,10 +34,10 @@ const Add_Location_Modal = ({ onClose }: Props) => {
         className="absolute inset-0 bg-black/40 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-5">
+      <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-sm p-6 space-y-4">
         <div className="flex items-center justify-between">
           <App_Text variant="cardHeading" className="text-base">
-            Add Location
+            Add Shipping Method
           </App_Text>
           <button
             type="button"
@@ -56,41 +53,43 @@ const Add_Location_Modal = ({ onClose }: Props) => {
             name="name"
             register={register}
             errors={errors}
-            placeholder="Location Name"
-            rules={{ required: "Location name is required" }}
+            placeholder="Enter method name"
+            rules={{ required: "Method name is required" }}
           />
 
           <div className="space-y-1.5">
             <App_Text variant="tableCell" className="font-medium">
-              Address
+              Description
             </App_Text>
             <App_Text_Area
-              name="address"
+              name="description"
               register={register}
               errors={errors}
-              placeholder="12 Furniture Street, Ibadan, Oyo State"
-              rules={{ required: "Address is required" }}
-              className="min-h-20"
+              placeholder="Enter description"
             />
           </div>
 
           <App_Input
-            name="manager"
+            name="deliveryTime"
             register={register}
             errors={errors}
-            placeholder="John Manager"
+            placeholder="e.g. 3 - 5 business days"
+            rules={{ required: "Delivery time is required" }}
           />
 
-          <div className="space-y-1.5">
+          <div className="flex items-center justify-between">
             <App_Text variant="tableCell" className="font-medium">
-              Notes (Optional)
+              Status
             </App_Text>
-            <App_Text_Area
-              name="notes"
-              register={register}
-              errors={errors}
-              placeholder="New warehouse for Western region."
-            />
+            <button
+              type="button"
+              onClick={() => setValue("status", !statusValue)}
+              className={`w-11 h-6 rounded-full transition-colors relative flex-shrink-0 ${statusValue ? "bg-primary" : "bg-gray-200"}`}
+            >
+              <span
+                className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${statusValue ? "translate-x-5" : "translate-x-0.5"}`}
+              />
+            </button>
           </div>
 
           <div className="flex gap-3 pt-1">
@@ -98,10 +97,10 @@ const Add_Location_Modal = ({ onClose }: Props) => {
               text="Cancel"
               type="button"
               onPress={onClose}
-              btnStyle="flex-1 text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-xl py-2.5 h-auto"
+              btnStyle="flex-1 text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-xl py-2.5 h-auto"
             />
             <App_Button
-              text={isPending ? "Saving..." : "Save Location"}
+              text={isPending ? "Saving..." : "Save Method"}
               type="submit"
               btnStyle="flex-1 text-xs bg-primary text-white hover:bg-primary/90 rounded-xl py-2.5 h-auto"
             />
@@ -112,4 +111,4 @@ const Add_Location_Modal = ({ onClose }: Props) => {
   );
 };
 
-export default Add_Location_Modal;
+export default Add_Shipping_Method_Modal;

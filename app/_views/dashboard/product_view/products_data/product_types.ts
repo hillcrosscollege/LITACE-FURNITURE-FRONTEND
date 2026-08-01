@@ -13,85 +13,86 @@ export type Product = {
   stock: number;
   stockStatus: StockStatus;
   status: ProductStatus;
+  hasVariants: boolean;
   createdAt: string;
 };
 
-export const products: Product[] = [
-  {
-    id: "1",
-    name: "Modern L-Shaped Sofa",
-    sku: "FC-SOFA-001",
-    image: "/conference_chair-2.png",
-    category: "Living Room",
-    price: 250000,
-    originalPrice: 300000,
-    stock: 12,
-    stockStatus: "In Stock",
-    status: "Published",
-    createdAt: "May 20, 2024\n10:30 AM",
-  },
-  {
-    id: "2",
-    name: "Wooden Dining Set",
-    sku: "FC-DIN-002",
-    image: "/conference_chair-2.png",
-    category: "Dining Room",
-    price: 180000,
-    stock: 4,
-    stockStatus: "Low Stock",
-    status: "Published",
-    createdAt: "May 19, 2024\n02:15 PM",
-  },
-  {
-    id: "3",
-    name: "Luxury Wooden Bed",
-    sku: "FC-BED-003",
-    image: "/conference_chair-2.png",
-    category: "Bedroom",
-    price: 350000,
-    originalPrice: 500000,
-    stock: 2,
-    stockStatus: "Low Stock",
-    status: "Published",
-    createdAt: "May 18, 2024\n11:45 AM",
-  },
-  {
-    id: "4",
-    name: "Ergonomic Office Chair",
-    sku: "FC-CHAIR-004",
-    image: "/conference_chair-2.png",
-    category: "Office",
-    price: 75000,
-    stock: 20,
-    stockStatus: "In Stock",
-    status: "Published",
-    createdAt: "May 18, 2024\n09:20 AM",
-  },
-  {
-    id: "5",
-    name: "Marble Coffee Table",
-    sku: "FC-TABLE-005",
-    image: "/conference_chair-2.png",
-    category: "Living Room",
-    price: 95000,
-    stock: 6,
-    stockStatus: "Low Stock",
-    status: "Published",
-    createdAt: "May 17, 2024\n04:10 PM",
-  },
-  {
-    id: "6",
-    name: "Outdoor Patio Set",
-    sku: "FC-OUT-006",
-    image: "/conference_chair-2.png",
-    category: "Outdoor",
-    price: 120000,
-    stock: 0,
-    stockStatus: "Out of Stock",
-    status: "Draft",
-    createdAt: "May 16, 2024\n03:30 PM",
-  },
-];
+// export const products: Product[] = [
+//   {
+//     id: "1",
+//     name: "Modern L-Shaped Sofa",
+//     sku: "FC-SOFA-001",
+//     image: "/conference_chair-2.png",
+//     category: "Living Room",
+//     price: 250000,
+//     originalPrice: 300000,
+//     stock: 12,
+//     stockStatus: "In Stock",
+//     status: "Published",
+//     createdAt: "May 20, 2024\n10:30 AM",
+//   },
+//   {
+//     id: "2",
+//     name: "Wooden Dining Set",
+//     sku: "FC-DIN-002",
+//     image: "/conference_chair-2.png",
+//     category: "Dining Room",
+//     price: 180000,
+//     stock: 4,
+//     stockStatus: "Low Stock",
+//     status: "Published",
+//     createdAt: "May 19, 2024\n02:15 PM",
+//   },
+//   {
+//     id: "3",
+//     name: "Luxury Wooden Bed",
+//     sku: "FC-BED-003",
+//     image: "/conference_chair-2.png",
+//     category: "Bedroom",
+//     price: 350000,
+//     originalPrice: 500000,
+//     stock: 2,
+//     stockStatus: "Low Stock",
+//     status: "Published",
+//     createdAt: "May 18, 2024\n11:45 AM",
+//   },
+//   {
+//     id: "4",
+//     name: "Ergonomic Office Chair",
+//     sku: "FC-CHAIR-004",
+//     image: "/conference_chair-2.png",
+//     category: "Office",
+//     price: 75000,
+//     stock: 20,
+//     stockStatus: "In Stock",
+//     status: "Published",
+//     createdAt: "May 18, 2024\n09:20 AM",
+//   },
+//   {
+//     id: "5",
+//     name: "Marble Coffee Table",
+//     sku: "FC-TABLE-005",
+//     image: "/conference_chair-2.png",
+//     category: "Living Room",
+//     price: 95000,
+//     stock: 6,
+//     stockStatus: "Low Stock",
+//     status: "Published",
+//     createdAt: "May 17, 2024\n04:10 PM",
+//   },
+//   {
+//     id: "6",
+//     name: "Outdoor Patio Set",
+//     sku: "FC-OUT-006",
+//     image: "/conference_chair-2.png",
+//     category: "Outdoor",
+//     price: 120000,
+//     stock: 0,
+//     stockStatus: "Out of Stock",
+//     status: "Draft",
+//     createdAt: "May 16, 2024\n03:30 PM",
+//   },
+// ];
 
 export const productTabs = [
   { label: "All Products", count: 142 },
@@ -151,4 +152,26 @@ export const stockStatusStyles: Record<StockStatus, string> = {
   "In Stock": "bg-[#e8fdf0] text-[#157a45]",
   "Low Stock": "bg-[#fdf5e0] text-[#8a6300]",
   "Out of Stock": "bg-[#fdecea] text-[#a32020]",
+};
+
+// types/product-variants.ts
+export type AttributeOption = {
+  id: string;
+  value: string;
+};
+
+export type ProductAttribute = {
+  id: string;
+  name: string; // "Size", "Color", "Material"
+  options: AttributeOption[];
+};
+
+export type VariantCombination = {
+  id: string;
+  attributes: Record<string, string>; // { Size: "Small", Color: "Oak" }
+  label: string; // "Small / Oak"
+  price: number;
+  stock: number;
+  sku: string;
+  enabled: boolean;
 };

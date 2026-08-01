@@ -5,7 +5,7 @@ const App_Tabs = ({
   detailTabs,
   setActiveTab,
 }: {
-  detailTabs: { label: string; count?: number }[];
+  detailTabs: { label: string; count?: number; key?: string }[];
   activeTab: string;
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 }) => {
@@ -17,15 +17,17 @@ const App_Tabs = ({
           type="button"
           onClick={() => setActiveTab(tab.label)}
           className={`flex items-center gap-1.5 px-3 py-3.5 whitespace-nowrap border-b-2 transition-colors ${
-            activeTab === tab.label ? "border-primary" : "border-transparent"
+            activeTab === tab.key || activeTab === tab.label
+              ? "border-primary"
+              : "border-transparent"
           }`}
         >
           <App_Text
             variant="sectionLabel"
             className={
-              activeTab === tab.label
+              activeTab === tab.key || activeTab === tab.label
                 ? "text-primary font-medium"
-                : "hover:text-[#1e1a17]"
+                : "hover:text-[text]"
             }
           >
             {tab.label}

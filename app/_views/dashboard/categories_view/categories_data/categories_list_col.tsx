@@ -64,15 +64,6 @@ export const categoriesColumns: ColumnDef<Category>[] = [
     header: () => <App_Text variant="tableHeader">Category</App_Text>,
     cell: ({ row }) => (
       <div className="flex items-center gap-3 min-w-40">
-        <div className="w-10 h-10 rounded-lg bg-[#f0e8df] shrink-0 overflow-hidden">
-          <Image
-            src={row.original.image}
-            alt={row.original.name}
-            width={40}
-            height={40}
-            className="w-full h-full object-cover"
-          />
-        </div>
         <App_Text variant="tableCell" className="font-medium">
           {row.original.name}
         </App_Text>
@@ -92,14 +83,17 @@ export const categoriesColumns: ColumnDef<Category>[] = [
     accessorKey: "products",
     header: () => <App_Text variant="tableHeader">Products</App_Text>,
     cell: ({ row }) => (
-      <App_Text variant="tableCell">{row.getValue("products")}</App_Text>
+      <App_Text variant="tableCell">{row.getValue("products") || 0}</App_Text>
     ),
   },
   {
     accessorKey: "status",
     header: () => <App_Text variant="tableHeader">Status</App_Text>,
     cell: ({ row }) => {
-      const status = row.getValue("status") as CategoryStatus;
+      const status =
+        row.getValue("status") == "inactive"
+          ? "Inactive"
+          : ("Active" as CategoryStatus);
       return (
         <span
           className={`text-xs px-2.5 py-1 rounded-full font-medium ${categoryStatusStyles[status]}`}
@@ -109,20 +103,20 @@ export const categoriesColumns: ColumnDef<Category>[] = [
       );
     },
   },
-  {
-    accessorKey: "sortOrder",
-    header: () => <App_Text variant="tableHeader">Sort Order</App_Text>,
-    cell: ({ row }) => (
-      <App_Text variant="tableCell">{row.getValue("sortOrder")}</App_Text>
-    ),
-  },
-  {
-    accessorKey: "createdAt",
-    header: () => <App_Text variant="tableHeader">Created At</App_Text>,
-    cell: ({ row }) => (
-      <App_Text variant="tableCell">{row.getValue("createdAt")}</App_Text>
-    ),
-  },
+  // {
+  //   accessorKey: "sortOrder",
+  //   header: () => <App_Text variant="tableHeader">Sort Order</App_Text>,
+  //   cell: ({ row }) => (
+  //     <App_Text variant="tableCell">{row.getValue("sortOrder")}</App_Text>
+  //   ),
+  // },
+  // {
+  //   accessorKey: "createdAt",
+  //   header: () => <App_Text variant="tableHeader">Created At</App_Text>,
+  //   cell: ({ row }) => (
+  //     <App_Text variant="tableCell">{row.getValue("createdAt")}</App_Text>
+  //   ),
+  // },
   {
     id: "actions",
     header: () => <App_Text variant="tableHeader">Actions</App_Text>,

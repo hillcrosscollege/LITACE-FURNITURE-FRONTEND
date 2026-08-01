@@ -6,10 +6,12 @@ import App_Text from "@/components/app_ui/App_Text";
 import { UseFormReturn } from "react-hook-form";
 import { shippingClasses } from "../add_product_data/add_product_data";
 import { ProductFormData } from "../add_product_types";
+import { useProductContext } from "@/app/contexts/admin/Product_Context";
 
 type Props = { form: UseFormReturn<ProductFormData> };
 
-const Step_Shipping = ({ form }: Props) => {
+const Step_Shipping = () => {
+  const { form } = useProductContext();
   const {
     register,
     formState: { errors },
@@ -25,7 +27,7 @@ const Step_Shipping = ({ form }: Props) => {
         </App_Text>
       </div>
 
-      <div className="bg-[#faf9f7] rounded-xl p-4 space-y-4 border border-[#ede8e2]">
+      {/* <div className="bg-[#faf9f7] rounded-xl p-4 space-y-4 border border-[#ede8e2]">
         <App_Text variant="tableCell" className="font-semibold">
           Weight & Dimensions
         </App_Text>
@@ -55,7 +57,7 @@ const Step_Shipping = ({ form }: Props) => {
             placeholder="cm"
           />
         </div>
-      </div>
+      </div> */}
 
       <div className="bg-[#faf9f7] rounded-xl p-4 space-y-4 border border-[#ede8e2]">
         <App_Text variant="tableCell" className="font-semibold">

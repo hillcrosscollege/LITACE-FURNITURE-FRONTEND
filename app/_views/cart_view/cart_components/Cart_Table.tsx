@@ -73,7 +73,7 @@ const Cart_Table = ({
             <div className="flex items-center gap-2 border border-[#e0dbd4] rounded-lg w-fit px-2 py-1">
               <button
                 onClick={() => updateQty(item.id, -1)}
-                className="text-muted-foreground hover:text-[#1e1a17] transition-colors"
+                className="text-muted-foreground hover:text-[text] transition-colors"
                 type="button"
               >
                 <Minus size={13} />
@@ -83,7 +83,7 @@ const Cart_Table = ({
               </span>
               <button
                 onClick={() => updateQty(item.id, 1)}
-                className="text-muted-foreground hover:text-[#1e1a17] transition-colors"
+                className="text-muted-foreground hover:text-[text] transition-colors"
                 type="button"
               >
                 <Plus size={13} />
@@ -113,7 +113,7 @@ const Cart_Table = ({
           <App_Button
             text="Continue Shopping"
             icon={<ArrowLeft size={14} />}
-            btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
+            btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
           />
         </Link>
       </div>

@@ -28,7 +28,7 @@ const ActionsCell = ({ row }: { row: any }) => {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="p-1.5 rounded hover:bg-[#f5f2ee]  text-muted-foreground hover:text-[#1e1a17] transition-colors"
+          className="p-1.5 rounded hover:bg-[#f5f2ee]  text-muted-foreground hover:text-[text] transition-colors"
         >
           <MoreHorizontal size={15} />
         </button>
@@ -84,13 +84,13 @@ export const productColumns: ColumnDef<Product>[] = [
       </div>
     ),
   },
-  {
-    accessorKey: "sku",
-    header: () => <App_Text variant="tableHeader">SKU</App_Text>,
-    cell: ({ row }) => (
-      <App_Text variant="tableCellMuted">{row.getValue("sku")}</App_Text>
-    ),
-  },
+  // {
+  //   accessorKey: "sku",
+  //   header: () => <App_Text variant="tableHeader">SKU</App_Text>,
+  //   cell: ({ row }) => (
+  //     <App_Text variant="tableCellMuted">{row.getValue("sku")}</App_Text>
+  //   ),
+  // },
   {
     accessorKey: "category",
     header: () => <App_Text variant="tableHeader">Category</App_Text>,
@@ -100,6 +100,15 @@ export const productColumns: ColumnDef<Product>[] = [
       >
         {row.getValue("category")}
       </span>
+    ),
+  },
+  {
+    accessorKey: "hasVariants",
+    header: () => <App_Text variant="tableHeader">Has Variants</App_Text>,
+    cell: ({ row }) => (
+      <App_Text variant="tableCellMuted">
+        {row.getValue("hasVariants") ? "true" : "false"}
+      </App_Text>
     ),
   },
   {
@@ -132,27 +141,27 @@ export const productColumns: ColumnDef<Product>[] = [
       );
     },
   },
-  {
-    accessorKey: "createdAt",
-    header: () => <App_Text variant="tableHeader">Last Updated</App_Text>,
-    cell: ({ row }) => (
-      <div className="min-w-[100px]">
-        {String(row.getValue("createdAt"))
-          .split("\n")
-          .map((line, i) =>
-            i === 0 ? (
-              <App_Text key={i} variant="tableCell">
-                {line}
-              </App_Text>
-            ) : (
-              <App_Text key={i} variant="tableCellMuted">
-                {line}
-              </App_Text>
-            ),
-          )}
-      </div>
-    ),
-  },
+  // {
+  //   accessorKey: "createdAt",
+  //   header: () => <App_Text variant="tableHeader">Last Updated</App_Text>,
+  //   cell: ({ row }) => (
+  //     <div className="min-w-[100px]">
+  //       {String(row.getValue("createdAt"))
+  //         .split("\n")
+  //         .map((line, i) =>
+  //           i === 0 ? (
+  //             <App_Text key={i} variant="tableCell">
+  //               {line}
+  //             </App_Text>
+  //           ) : (
+  //             <App_Text key={i} variant="tableCellMuted">
+  //               {line}
+  //             </App_Text>
+  //           ),
+  //         )}
+  //     </div>
+  //   ),
+  // },
   {
     id: "actions",
     header: () => <App_Text variant="tableHeader">Actions</App_Text>,

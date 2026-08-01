@@ -91,7 +91,7 @@ const Store_Information_View = () => {
               </App_Text>
             </Link>
             <ChevronRight size={13} className="text-muted-foreground" />
-            <App_Text variant="tableCellMuted" className="text-[#1e1a17]">
+            <App_Text variant="tableCellMuted" className="text-[text]">
               Store Information
             </App_Text>
           </div>
@@ -136,7 +136,7 @@ const Store_Information_View = () => {
                         text="Change Logo"
                         icon={<Camera size={13} />}
                         type="button"
-                        btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
+                        btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
                       />
                       <App_Text variant="tableCellMuted" className="mt-1">
                         PNG, JPG or SVG. Max size 2MB.

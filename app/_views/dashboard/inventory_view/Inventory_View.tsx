@@ -1,107 +1,66 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import {
-  Search,
-  SlidersHorizontal,
-  Upload,
-  SlidersHorizontal as AdjustIcon,
-  Package,
-  PackageCheck,
-  PackageMinus,
-  PackageX,
-  DollarSign,
-} from "lucide-react";
+import { Search, SlidersHorizontal, Download, RotateCcw } from "lucide-react";
+import App_Text from "@/components/app_ui/App_Text";
 import App_Button from "@/components/app_ui/App_Button";
 import App_Input from "@/components/app_ui/App_Input";
-import App_Paginate from "@/components/app_ui/App_Paginate";
 import App_Table from "@/components/app_ui/App_Table";
-import App_Text from "@/components/app_ui/App_Text";
-import { Skeleton_Stat_Card } from "../customers_view/customers_components/Customer_Skeleton";
+import App_Paginate from "@/components/app_ui/App_Paginate";
 import { StatCard } from "../dashboard_view/dashboard_components/Stat_Card";
-import { Skeleton_Inventory_Row } from "./inventory_components/Inventory_Skeleton";
-import { useInventory } from "./inventory_hooks/useInventoryQueries";
-import { InventoryProduct } from "./inventory_types";
-import { createInventoryColumns } from "./inventory_data/inventory_cols";
+import {
+  Skeleton_Inv_Stat,
+  Skeleton_Inv_Row,
+} from "./inventory_components/Inventory_Skeleton";
+import useInventory from "./inventory_hooks/useInventory";
 import Adjust_Stock_Modal from "./inventory_modals/Adjust_Stock_Modal";
-import Export_Inventory_Modal from "./inventory_modals/Export_Inventory_Modal";
-import Print_Barcode_Modal from "./inventory_modals/Print_Barcode_Modal";
+import Export_Modal from "./inventory_modals/Export_Modal";
+import Filters_Modal from "./inventory_modals/Filters_Modal";
+import Restock_Modal from "./inventory_modals/Restock_Modal";
+import Transfer_Stock_Modal from "./inventory_modals/Transfer_Stock_Modal";
+import { statIcons, iconStyles } from "./inventory_data/inventory_data";
+import App_Tabs from "@/components/app_ui/App_Tabs";
+import { useInventoryContext } from "@/app/contexts/admin/Inventory_Context";
 
-type SearchForm = { search: string };
-
-const statIcons = [Package, PackageCheck, PackageMinus, PackageX, DollarSign];
-const iconStyles = [
-  { iconClassName: "text-[#7048b6]", iconWrapperClassName: "bg-[#f0ebf7]" },
-  { iconClassName: "text-[#2e7d52]", iconWrapperClassName: "bg-[#edf7f2]" },
-  { iconClassName: "text-[#c87941]", iconWrapperClassName: "bg-[#fdf0e6]" },
-  { iconClassName: "text-[#c0392b]", iconWrapperClassName: "bg-[#fdecea]" },
-  { iconClassName: "text-[#3266ad]", iconWrapperClassName: "bg-[#edf2fb]" },
-];
-
-const InventoryPage = () => {
+export default function InventoryPage() {
   const router = useRouter();
-  const [page, setPage] = useState(1);
-  const [adjustProduct, setAdjustProduct] = useState<InventoryProduct | null>(
-    null,
-  );
-  const [deleteProduct, setDeleteProduct] = useState<InventoryProduct | null>(
-    null,
-  );
-  const [barcodeProduct, setBarcodeProduct] = useState<InventoryProduct | null>(
-    null,
-  );
-  const [showExport, setShowExport] = useState(false);
 
-  const { data, isLoading, isError } = useInventory();
   const {
+    page,
+    setPage,
+    activeFilter,
+    setActiveFilter,
+    adjustProduct,
+    setAdjustProduct,
+    restockProduct,
+    setRestockProduct,
+    transferProduct,
+    setTransferProduct,
+    showFilters,
+    setShowFilters,
+    showExport,
+    setShowExport,
+    isLoading,
+    isError,
     register,
-    formState: { errors },
-  } = useForm<SearchForm>();
+    errors,
+    products,
+    totalPages,
+    startItem,
+    endItem,
+    columns,
+    statCards,
+    filtered,
+  } = useInventoryContext();
 
-  const products = data?.products ?? [];
-  const stats = data?.stats;
-
-  const statCards = stats
-    ? [
-        {
-          title: "Total Products",
-          value: stats.totalProducts.toString(),
-          subLabel: "All products",
-        },
-        {
-          title: "In Stock",
-          value: stats.inStock.toString(),
-          subLabel: "62.7% of total",
-        },
-        {
-          title: "Low Stock",
-          value: stats.lowStock.toString(),
-          subLabel: "16.2% of total",
-        },
-        {
-          title: "Out of Stock",
-          value: stats.outOfStock.toString(),
-          subLabel: "21.1% of total",
-        },
-        {
-          title: "Total Inventory Value",
-          value: `R ${stats.totalInventoryValue.toLocaleString()}`,
-          subLabel: "At cost price",
-        },
-      ]
-    : [];
-
-  const columns = useMemo(
-    () =>
-      createInventoryColumns(
-        (p) => setAdjustProduct(p),
-        (p) => setDeleteProduct(p),
-        (p) => setBarcodeProduct(p),
-      ),
-    [],
-  );
+  if (isError)
+    return (
+      <div className="p-6 flex items-center justify-center">
+        <App_Text variant="tableCellMuted" className="text-[#c0392b]">
+          Failed to load inventory. Please try again.
+        </App_Text>
+      </div>
+    );
 
   return (
     <>
@@ -109,123 +68,120 @@ const InventoryPage = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <App_Text variant="pageTitle">Inventory</App_Text>
+            <App_Text variant="pageTitle">Inventory Overview</App_Text>
             <App_Text variant="pageSub">
-              Track and manage your stock in real time.
+              Track your stock levels and manage inventory.
             </App_Text>
           </div>
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-            <div className="hidden md:block">
-              <App_Input
-                name="search"
-                register={register}
-                errors={errors}
-                placeholder="Search products, SKU..."
-                showLabel={false}
-                icon1={<Search size={14} className="text-muted-foreground" />}
-                containerStyle="w-56"
-              />
-            </div>
-            <div className="flex items-center gap-2">
-              <App_Button
-                text="Filters"
-                icon={<SlidersHorizontal size={13} />}
-                type="button"
-                btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
-              />
-              <App_Button
-                text="Export"
-                icon={<Upload size={13} />}
-                type="button"
-                onPress={() => setShowExport(true)}
-                btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
-              />
-              <App_Button
-                text="Adjust Stock"
-                icon={<AdjustIcon size={13} />}
-                type="button"
-                onPress={() => router.push("/dashboard/inventory/adjust")}
-                btnStyle="text-xs bg-primary text-white hover:bg-primary/90 rounded-lg px-3 py-2 h-auto"
-              />
-            </div>
+          <div className="flex items-center gap-2">
+            <App_Button
+              text="Filters"
+              icon={<SlidersHorizontal size={13} />}
+              type="button"
+              onPress={() => setShowFilters(true)}
+              btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
+            />
+            <App_Button
+              text="Export"
+              icon={<Download size={13} />}
+              type="button"
+              onPress={() => setShowExport(true)}
+              btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
+            />
+            <App_Button
+              text="Restock Inventory"
+              icon={<RotateCcw size={13} />}
+              type="button"
+              onPress={() => router.push("/dashboard/inventory/low-stock")}
+              btnStyle="text-xs bg-primary text-white hover:bg-primary/90 rounded-lg px-3 py-2 h-auto"
+            />
           </div>
-        </div>
-
-        {/* Mobile search */}
-        <div className="md:hidden">
-          <App_Input
-            name="search"
-            register={register}
-            errors={errors}
-            placeholder="Search products, SKU..."
-            showLabel={false}
-            icon1={<Search size={14} className="text-muted-foreground" />}
-            containerStyle="w-full"
-          />
         </div>
 
         {/* Stat cards */}
-        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
           {isLoading
-            ? Array.from({ length: 5 }).map((_, i) => (
-                <Skeleton_Stat_Card key={i} />
+            ? Array.from({ length: 6 }).map((_, i) => (
+                <Skeleton_Inv_Stat key={i} />
               ))
             : statCards.map((stat, i) => (
                 <StatCard
                   key={stat.title}
-                  title={stat.title}
-                  value={stat.value}
+                  {...stat}
                   icon={statIcons[i]}
                   iconClassName={iconStyles[i].iconClassName}
                   iconWrapperClassName={iconStyles[i].iconWrapperClassName}
-                  // subLabel={stat.subLabel}
                 />
               ))}
         </div>
 
         {/* Table card */}
         <div className="bg-white rounded-2xl border border-[#ede8e2] shadow-sm overflow-hidden">
-          {isError ? (
-            <div className="flex items-center justify-center py-20">
-              <App_Text variant="tableCellMuted" className="text-[#c0392b]">
-                Failed to load inventory. Please try again.
-              </App_Text>
-            </div>
-          ) : (
-            <>
-              <div className="overflow-x-auto">
-                {isLoading ? (
-                  <table className="w-full">
-                    <tbody>
-                      {Array.from({ length: 7 }).map((_, i) => (
-                        <Skeleton_Inventory_Row key={i} />
-                      ))}
-                    </tbody>
-                  </table>
-                ) : (
-                  <App_Table
-                    columns={columns}
-                    data={products}
-                    style="mt-0"
-                    childRowStyle="hover:bg-[#faf9f7] cursor-pointer"
-                  />
-                )}
-              </div>
+          <App_Tabs
+            activeTab={activeFilter}
+            setActiveTab={setActiveFilter}
+            detailTabs={[
+              { key: "all", label: "All Products", count: products.length },
+              {
+                key: "low",
+                label: "Low Stock",
+                count: products.filter((p) => p.status === "Low Stock").length,
+              },
+              {
+                key: "out",
+                label: "Out of Stock",
+                count: products.filter((p) => p.status === "Out of Stock")
+                  .length,
+              },
+            ]}
+          />
 
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-4 border-t border-[#ede8e2]">
-                <App_Text variant="tableCellMuted" className="shrink-0">
-                  {isLoading
-                    ? "Loading..."
-                    : `Showing 1 to ${products.length} of 142 products`}
-                </App_Text>
-                <App_Paginate
-                  page={page}
-                  setPage={setPage}
-                  totalPages={21}
-                  paginateStyle="mt-4 mb-4"
-                />
-              </div>
-            </>
+          {/* Search */}
+          <div className="px-4 py-3">
+            <App_Input
+              name="search"
+              register={register}
+              errors={errors}
+              placeholder="Search products..."
+              showLabel={false}
+              icon1={<Search size={13} className="text-muted-foreground" />}
+              containerStyle="w-full max-w-sm"
+            />
+          </div>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            {isLoading ? (
+              <table className="w-full">
+                <tbody>
+                  {Array.from({ length: 7 }).map((_, i) => (
+                    <Skeleton_Inv_Row key={i} />
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <App_Table
+                columns={columns}
+                data={filtered}
+                style="mt-0"
+                childRowStyle="hover:bg-[#faf9f7] cursor-pointer"
+              />
+            )}
+          </div>
+
+          {/* Footer */}
+          {!isLoading && (
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-4 border-t border-[#ede8e2]">
+              <App_Text variant="tableCellMuted" className="shrink-0">
+                Showing {startItem} to {endItem} of {filtered.length} products
+              </App_Text>
+              <App_Paginate
+                page={page}
+                setPage={setPage}
+                totalPages={totalPages}
+                paginateStyle="mt-4 mb-4"
+              />
+            </div>
           )}
         </div>
       </div>
@@ -236,17 +192,25 @@ const InventoryPage = () => {
           onClose={() => setAdjustProduct(null)}
         />
       )}
-      {barcodeProduct && (
-        <Print_Barcode_Modal
-          product={barcodeProduct}
-          onClose={() => setBarcodeProduct(null)}
+      {restockProduct && (
+        <Restock_Modal
+          product={restockProduct}
+          onClose={() => setRestockProduct(null)}
         />
       )}
-      {showExport && (
-        <Export_Inventory_Modal onClose={() => setShowExport(false)} />
+      {transferProduct && (
+        <Transfer_Stock_Modal
+          product={transferProduct}
+          onClose={() => setTransferProduct(null)}
+        />
       )}
+      {showFilters && (
+        <Filters_Modal
+          onClose={() => setShowFilters(false)}
+          onApply={(f) => console.log("Filters:", f)}
+        />
+      )}
+      {showExport && <Export_Modal onClose={() => setShowExport(false)} />}
     </>
   );
-};
-
-export default InventoryPage;
+}

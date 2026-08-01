@@ -16,7 +16,7 @@ const Single_Product_Section_Two = () => {
             category="Category"
             description="some product"
             id="1"
-            image="/conference_chair-2.png"
+            image="/tmp/images/Full_Back_Conference_Chair_blue_1.jpg"
             name="Back Chair"
             price={10000}
           />

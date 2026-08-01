@@ -160,7 +160,7 @@ const Revenue_Detail_Modal = ({ data, onClose }: Props) => {
             text="Close"
             type="button"
             onPress={onClose}
-            btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
+            btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
           />
         </div>
       </div>

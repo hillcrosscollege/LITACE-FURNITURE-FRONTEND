@@ -149,7 +149,7 @@ const Tab_Cust_Communications = ({ customerId }: { customerId: string }) => {
                     text="Cancel"
                     type="button"
                     onPress={() => setShowCompose(false)}
-                    btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
+                    btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
                   />
                   <App_Button
                     text={isPending ? "Sending..." : "Send Message"}
@@ -192,7 +192,7 @@ const Tab_Cust_Communications = ({ customerId }: { customerId: string }) => {
                   icon={<Send size={13} />}
                   type="button"
                   onPress={() => setShowCompose(true)}
-                  btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto flex-shrink-0"
+                  btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto flex-shrink-0"
                 />
               </div>
               <div className="bg-[#faf9f7] rounded-xl border border-[#ede8e2] p-4">

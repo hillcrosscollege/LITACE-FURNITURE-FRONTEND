@@ -42,7 +42,7 @@ const Analytics_Header = ({
             <span key={crumb} className="flex items-center gap-1.5">
               <App_Text
                 variant="tableCellMuted"
-                className={i === breadcrumbs.length - 1 ? "text-[#1e1a17]" : ""}
+                className={i === breadcrumbs.length - 1 ? "text-[text]" : ""}
               >
                 {crumb}
               </App_Text>
@@ -62,7 +62,7 @@ const Analytics_Header = ({
             <button
               type="button"
               onClick={() => setShowDateRange(true)}
-              className="flex items-center gap-2 text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 transition-colors"
+              className="flex items-center gap-2 text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 transition-colors"
             >
               <Calendar size={13} />
               {dateRange.label}
@@ -74,7 +74,7 @@ const Analytics_Header = ({
                 icon={<Filter size={13} />}
                 type="button"
                 onPress={onFiltersClick}
-                btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
+                btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
               />
             )}
             <App_Button
@@ -82,7 +82,7 @@ const Analytics_Header = ({
               icon={<Upload size={13} />}
               type="button"
               onPress={() => setShowExport(true)}
-              btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
+              btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
             />
           </div>
         </div>

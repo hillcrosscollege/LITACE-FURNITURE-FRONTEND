@@ -150,7 +150,7 @@ const Step_Review = ({
           <div className="pt-2 border-t border-[#ede8e2] mt-2">
             <App_Text variant="tableCellMuted">
               {deliveryLabels[deliveryMethod]} —{" "}
-              <span className="font-medium text-[#1e1a17]">
+              <span className="font-medium text-[text]">
                 {shippingFee === 0
                   ? "Free"
                   : `R ${shippingFee.toLocaleString()}`}

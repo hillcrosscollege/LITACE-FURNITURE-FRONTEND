@@ -200,7 +200,7 @@ const Single_Product_Reviews = () => {
                       onClick={() => setActiveSlide(dot)}
                       className={`h-1 rounded-full transition-all ${
                         activeSlide === dot
-                          ? "w-6 bg-[#1e1a17]"
+                          ? "w-6 bg-[text]"
                           : "w-2 bg-gray-200"
                       }`}
                     />
@@ -215,7 +215,7 @@ const Single_Product_Reviews = () => {
             <App_Button
               text="Load more reviews"
               onPress={() => setVisibleCount((c) => c + VISIBLE)}
-              btnStyle="self-start text-sm border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-xl px-5 py-2.5 h-auto"
+              btnStyle="self-start text-sm border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-xl px-5 py-2.5 h-auto"
             />
           )}
         </div>

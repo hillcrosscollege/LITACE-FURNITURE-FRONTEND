@@ -8,14 +8,14 @@ const Tab_Cat_Overview = () => {
   const { name, slug, status, showInMenu } = categoryDetail;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       {/* Category Information */}
       <div className="bg-[#faf9f7] rounded-xl border border-[#ede8e2] p-4 space-y-3">
         <App_Text variant="cardHeading">Category Information</App_Text>
         {[
           { label: "Category Name", value: name },
           { label: "Slug", value: slug },
-          { label: "Parent Category", value: "—" },
+          // { label: "Parent Category", value: "—" },
           { label: "Status", value: status },
           { label: "Show in Menu", value: showInMenu ? "Yes" : "No" },
         ].map(({ label, value }) => (
@@ -44,11 +44,11 @@ const Tab_Cat_Overview = () => {
       <div className="bg-[#faf9f7] rounded-xl border border-[#ede8e2] p-4 space-y-2">
         <App_Text variant="cardHeading">Quick Actions</App_Text>
         {[
-          {
-            label: "Add Subcategory",
-            icon: <Plus size={14} />,
-            style: "text-primary",
-          },
+          // {
+          //   label: "Add Subcategory",
+          //   icon: <Plus size={14} />,
+          //   style: "text-primary",
+          // },
           {
             label: "Add Product",
             icon: <Package size={14} />,
@@ -60,7 +60,7 @@ const Tab_Cat_Overview = () => {
             style: "text-[#3266ad]",
           },
           {
-            label: "View on Store",
+            label: "View Store",
             icon: <Store size={14} />,
             style: "text-[#7048b6]",
           },
@@ -82,7 +82,7 @@ const Tab_Cat_Overview = () => {
       </div>
 
       {/* Performance */}
-      <div className="bg-[#faf9f7] rounded-xl border border-[#ede8e2] p-4 space-y-3">
+      {/* <div className="bg-[#faf9f7] rounded-xl border border-[#ede8e2] p-4 space-y-3">
         <App_Text variant="cardHeading">Performance</App_Text>
         {[
           { label: "Total Products", value: "28" },
@@ -100,7 +100,7 @@ const Tab_Cat_Overview = () => {
             </App_Text>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

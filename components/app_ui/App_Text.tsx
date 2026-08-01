@@ -46,7 +46,7 @@ export const variants = {
   // Dashboard variants
   pageTitle: {
     tag: "h1",
-    className: "font-accent font-semibold text-xl text-[#1e1a17]",
+    className: "font-accent font-semibold text-xl text-[text]",
   },
 
   pageSub: {
@@ -61,12 +61,12 @@ export const variants = {
 
   cardHeading: {
     tag: "h3",
-    className: "font-accent font-semibold text-sm lg:text-base text-[#1e1a17]",
+    className: "font-accent font-semibold text-sm lg:text-base text-[text]",
   },
 
   statValue: {
     tag: "h2",
-    className: "font-accent font-semibold text-2xl text-[#1e1a17]",
+    className: "font-accent font-semibold text-2xl text-[text]",
   },
 
   statLabel: {
@@ -81,7 +81,7 @@ export const variants = {
 
   tableCell: {
     tag: "p",
-    className: "text-xs text-[#1e1a17]",
+    className: "text-xs text-[text]",
   },
 
   tableCellMuted: {

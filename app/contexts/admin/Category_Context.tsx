@@ -17,7 +17,7 @@ export interface ICategoryContext {
   data:
     | NoInfer<{
         categories: Category[];
-        stats: typeof categoryListStats;
+        stats: { total: number; active: number; inactive: number };
       }>
     | undefined;
   showAdd: boolean;
@@ -39,13 +39,27 @@ export interface ICategoryContext {
   setShowDelete: React.Dispatch<React.SetStateAction<boolean>>;
   showMore: boolean;
   setShowMore: React.Dispatch<React.SetStateAction<boolean>>;
+  categoryListStats: {
+    title: string;
+    value: string;
+    iconClassName: string;
+    iconWrapperClassName: string;
+  }[];
 }
 
 const CategoryContext = createContext<ICategoryContext | null>(null);
 
 const CategoryContextProvider = ({ children }: { children: ReactNode }) => {
-  const { data, isLoading, isError, page, setPage, showAdd, setShowAdd } =
-    useCategories();
+  const {
+    data,
+    isLoading,
+    isError,
+    page,
+    setPage,
+    showAdd,
+    setShowAdd,
+    categoryListStats,
+  } = useCategories();
   const {
     name,
     image,
@@ -92,6 +106,7 @@ const CategoryContextProvider = ({ children }: { children: ReactNode }) => {
         setShowDelete,
         showMore,
         setShowMore,
+        categoryListStats,
       }}
     >
       {children}

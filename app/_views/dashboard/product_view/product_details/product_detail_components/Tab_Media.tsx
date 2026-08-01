@@ -64,7 +64,7 @@ const Tab_Media = () => {
             className={`flex items-center gap-1.5 px-3 py-2.5 text-xs border-b-2 transition-colors ${
               activeTab === tab
                 ? "border-primary text-primary font-medium"
-                : "border-transparent text-muted-foreground hover:text-[#1e1a17]"
+                : "border-transparent text-muted-foreground hover:text-[text]"
             }`}
           >
             {tab}

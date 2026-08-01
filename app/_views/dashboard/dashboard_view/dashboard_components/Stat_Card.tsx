@@ -38,7 +38,7 @@ export function StatCard({
         </div>
       </div>
 
-      <h2 className="text-2xl font-semibold mt-3 text-[#1e1a17]">{value}</h2>
+      <h2 className="text-2xl font-semibold mt-3 text-[text]">{value}</h2>
 
       {change && (
         <div

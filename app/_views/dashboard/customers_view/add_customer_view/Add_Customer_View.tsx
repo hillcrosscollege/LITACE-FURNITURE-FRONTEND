@@ -41,7 +41,7 @@ const Add_Customer_View = () => {
           </App_Text>
         </Link>
         <ChevronRight size={13} className="text-muted-foreground" />
-        <App_Text variant="tableCellMuted" className="text-[#1e1a17]">
+        <App_Text variant="tableCellMuted" className="text-[text]">
           Add Customer
         </App_Text>
       </div>
@@ -62,7 +62,7 @@ const Add_Customer_View = () => {
             handleAddAnother();
             router.push("/dashboard/customers");
           }}
-          btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
+          btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
         />
       </div>
 
@@ -103,7 +103,7 @@ const Add_Customer_View = () => {
                   icon={<ArrowLeft size={14} />}
                   type="button"
                   onPress={goBack}
-                  btnStyle={`text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto ${
+                  btnStyle={`text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto ${
                     currentStep === 1 ? "invisible" : ""
                   }`}
                 />

@@ -33,7 +33,7 @@ const Customer_Details_Header = () => {
           </App_Text>
         </Link>
         <ChevronRight size={13} className="text-muted-foreground" />
-        <App_Text variant="tableCellMuted" className="text-[#1e1a17]">
+        <App_Text variant="tableCellMuted" className="text-[text]">
           {singleCustomerLoading ? "Loading..." : customer?.name}
         </App_Text>
       </div>
@@ -83,14 +83,14 @@ const Customer_Details_Header = () => {
                   icon={<MessageSquare size={13} />}
                   type="button"
                   onPress={() => setShowMsg(true)}
-                  btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
+                  btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
                 />
                 <App_Button
                   text="Edit"
                   icon={<Pencil size={13} />}
                   type="button"
                   onPress={() => setShowEdit(true)}
-                  btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
+                  btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
                 />
                 <More_Drop_Down
                   setShowBlock={setShowBlock}

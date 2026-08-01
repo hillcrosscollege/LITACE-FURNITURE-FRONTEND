@@ -25,6 +25,8 @@ import {
   BarChart2,
   LucideIcon,
 } from "lucide-react";
+import { useState } from "react";
+import Logout_Modal from "@/app/(auth)/logout/Logout_Modal";
 
 type SidebarItem = {
   id: number;
@@ -72,6 +74,20 @@ const sidebar_items: SidebarItem[] = [
     match: "prefix",
   },
   {
+    id: 6,
+    label: "Inventory",
+    href: "/dashboard/inventory",
+    icon: Package,
+    match: "prefix",
+  },
+  {
+    id: 7,
+    label: "Stores",
+    href: "/dashboard/stores",
+    icon: Package,
+    match: "prefix",
+  },
+  {
     id: 9,
     label: "Sales & Analytics",
     href: "/dashboard/analytics",
@@ -115,11 +131,12 @@ const sidebar_items: SidebarItem[] = [
     icon: Settings,
     match: "prefix",
   },
-  { id: 14, label: "Logout", href: "/logout", icon: LogOut, match: "exact" },
+  // { id: 14, label: "Logout", href: "/logout", icon: LogOut, match: "exact" },
 ];
 
 const App_Sidebar = () => {
   const { open } = useSidebar();
+  const [showLogout, setShowLogout] = useState(false);
 
   return (
     <Sidebar
@@ -129,7 +146,7 @@ const App_Sidebar = () => {
       {/* Header */}
       <SidebarHeader className="border-b border-white/10 px-4 py-4">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-white/20 border border-white/20 flex items-center justify-center flex-shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-white/20 border border-white/20 flex items-center justify-center shrink-0">
             <span className="text-white text-sm font-bold">L</span>
           </div>
           {open && (
@@ -165,7 +182,8 @@ const App_Sidebar = () => {
       </SidebarContent>
 
       {/* Footer */}
-      <SidebarFooter className="border-t border-white/10 px-3 py-3">
+      <SidebarFooter className="border-t border-white/10 px-3 py-3 space-y-2">
+        {/* User card */}
         <div
           className={`flex items-center gap-3 p-2.5 rounded-lg bg-white/10 border border-white/10 ${!open && "justify-center"}`}
         >
@@ -183,7 +201,18 @@ const App_Sidebar = () => {
             </div>
           )}
         </div>
+
+        {/* Logout button */}
+        <button
+          type="button"
+          onClick={() => setShowLogout(true)}
+          className={`flex items-center gap-2.5 w-full px-3 py-2.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors ${!open && "justify-center"}`}
+        >
+          <LogOut size={16} className="shrink-0" />
+          {open && <span className="text-xs font-medium">Log Out</span>}
+        </button>
       </SidebarFooter>
+      {showLogout && <Logout_Modal onClose={() => setShowLogout(false)} />}
     </Sidebar>
   );
 };

@@ -1,4 +1,11 @@
 export interface ISignInValues {
-  Email: string;
-  Password: string;
+  email: string;
+  password: string;
 }
+
+export type SignInPayload = {
+  email: string;
+  password: string;
+};
+
+export type SignInResponse = { accessToken: string };

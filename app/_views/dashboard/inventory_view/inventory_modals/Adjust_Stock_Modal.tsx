@@ -1,29 +1,40 @@
 "use client";
 
 import { X } from "lucide-react";
-import { useForm } from "react-hook-form";
 import Image from "next/image";
+import { useForm } from "react-hook-form";
+import App_Text from "@/components/app_ui/App_Text";
 import App_Button from "@/components/app_ui/App_Button";
 import App_Input from "@/components/app_ui/App_Input";
 import App_Select from "@/components/app_ui/App_Select";
-import App_Text from "@/components/app_ui/App_Text";
 import App_Text_Area from "@/components/app_ui/App_Text_Area";
-import { useAdjustStock } from "../inventory_hooks/useInventoryQueries";
+import { useAdjustStock } from "../inventory_hooks/useInventoryMutation";
 import { InventoryProduct } from "../inventory_types";
 
 type Props = { product: InventoryProduct; onClose: () => void };
-type Form = { type: string; qty: number; reason: string; note: string };
+type Form = {
+  adjustmentType: string;
+  store: string;
+  quantity: number;
+  reason: string;
+  notes: string;
+};
 
+const stores = [
+  { label: "Main Warehouse", key: "main" },
+  { label: "Lekki Showroom", key: "lekki" },
+  { label: "Victoria Island Showroom", key: "vi" },
+];
 const reasons = [
+  { label: "Balance stock", key: "balance" },
+  { label: "Damaged item", key: "damaged" },
   { label: "New stock received", key: "new_stock" },
   { label: "Sold / Customer Order", key: "sold" },
-  { label: "Damaged unit", key: "damaged" },
-  { label: "Stock count correction", key: "correction" },
   { label: "Other", key: "other" },
 ];
 
 const Adjust_Stock_Modal = ({ product, onClose }: Props) => {
-  const { mutate: adjustStock, isPending } = useAdjustStock();
+  const { mutate, isPending } = useAdjustStock();
   const {
     register,
     handleSubmit,
@@ -31,24 +42,14 @@ const Adjust_Stock_Modal = ({ product, onClose }: Props) => {
     watch,
     formState: { errors },
   } = useForm<Form>({
-    defaultValues: { type: "Increase Stock", qty: 1 },
+    defaultValues: { adjustmentType: "Increase Stock", quantity: 5 },
   });
-
-  const typeValue = watch("type") ?? "Increase Stock";
+  const typeValue = watch("adjustmentType") ?? "Increase Stock";
+  const storeValue = watch("store") ?? "";
   const reasonValue = watch("reason") ?? "";
 
-  const onSubmit = (data: Form) => {
-    adjustStock(
-      {
-        productId: product.id,
-        type: data.type as any,
-        qty: data.qty,
-        reason: data.reason,
-        note: data.note,
-      },
-      { onSuccess: onClose },
-    );
-  };
+  const onSubmit = (data: Form) =>
+    mutate({ ...data, productId: product.id }, { onSuccess: onClose });
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -56,7 +57,7 @@ const Adjust_Stock_Modal = ({ product, onClose }: Props) => {
         className="absolute inset-0 bg-black/40 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-5">
+      <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4">
         <div className="flex items-center justify-between">
           <App_Text variant="cardHeading" className="text-base">
             Adjust Stock
@@ -70,76 +71,89 @@ const Adjust_Stock_Modal = ({ product, onClose }: Props) => {
           </button>
         </div>
 
-        {/* Product info */}
         <div className="flex items-center gap-3 p-3 bg-[#faf9f7] rounded-xl border border-[#ede8e2]">
-          <div className="w-10 h-10 rounded-lg bg-[#f0e8df] overflow-hidden shrink-0">
+          <div className="w-12 h-12 rounded-lg bg-[#f0e8df] overflow-hidden shrink-0">
             <Image
               src={product.image}
               alt={product.name}
-              width={40}
-              height={40}
+              width={48}
+              height={48}
               className="w-full h-full object-cover"
             />
           </div>
           <div>
-            <App_Text variant="tableCell" className="font-medium">
+            <App_Text variant="tableCell" className="font-semibold">
               {product.name}
             </App_Text>
             <App_Text variant="tableCellMuted">SKU: {product.sku}</App_Text>
-            <App_Text variant="tableCellMuted">
-              Available Stock: {product.available} Units
-            </App_Text>
           </div>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {/* Adjustment Type */}
           <div className="space-y-1.5">
             <App_Text variant="tableCell" className="font-medium">
               Adjustment Type
             </App_Text>
-            <App_Select
-              data={[
-                { label: "Decrease Stock", key: "Decrease Stock" },
-                { label: "Increase Stock", key: "Increase Stock" },
-              ]}
-              value={typeValue}
-              placeholder="Select type"
-              title=""
-              onChange={(val) => setValue("type", val)}
-              style="gap-0"
-            />
+            <div className="flex gap-4">
+              {["Increase Stock", "Decrease Stock"].map((opt) => (
+                <label
+                  key={opt}
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    checked={typeValue === opt}
+                    onChange={() => setValue("adjustmentType", opt)}
+                    className="accent-primary"
+                  />
+                  <App_Text
+                    variant="tableCell"
+                    className={
+                      typeValue === opt ? "text-primary font-medium" : ""
+                    }
+                  >
+                    {opt}
+                  </App_Text>
+                </label>
+              ))}
+            </div>
           </div>
 
+          <App_Select
+            data={stores}
+            value={storeValue}
+            placeholder="Select store"
+            title="Store"
+            onChange={(v) => setValue("store", v)}
+            style="gap-1.5"
+          />
           <App_Input
-            name="qty"
+            name="quantity"
             register={register}
             errors={errors}
-            placeholder="Enter quantity"
+            placeholder="5"
             rules={{
-              required: "Quantity is required",
-              min: { value: 1, message: "Must be at least 1" },
+              required: "Quantity required",
+              min: { value: 1, message: "At least 1" },
             }}
           />
-
           <App_Select
             data={reasons}
             value={reasonValue}
-            placeholder="Select a reason"
+            placeholder="Select reason"
             title="Reason"
-            onChange={(val) => setValue("reason", val)}
+            onChange={(v) => setValue("reason", v)}
             style="gap-1.5"
           />
-
           <div className="space-y-1.5">
             <App_Text variant="tableCell" className="font-medium">
               Notes (Optional)
             </App_Text>
             <App_Text_Area
-              name="note"
+              name="notes"
               register={register}
               errors={errors}
-              placeholder="Add a note..."
+              placeholder="One unit damaged during delivery."
             />
           </div>
 
@@ -151,7 +165,7 @@ const Adjust_Stock_Modal = ({ product, onClose }: Props) => {
               btnStyle="flex-1 text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-xl py-2.5 h-auto"
             />
             <App_Button
-              text={isPending ? "Updating..." : "Update Stock"}
+              text={isPending ? "Saving..." : "Save Changes"}
               type="submit"
               btnStyle="flex-1 text-xs bg-primary text-white hover:bg-primary/90 rounded-xl py-2.5 h-auto"
             />
@@ -161,5 +175,4 @@ const Adjust_Stock_Modal = ({ product, onClose }: Props) => {
     </div>
   );
 };
-
 export default Adjust_Stock_Modal;

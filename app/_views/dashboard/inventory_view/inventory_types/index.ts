@@ -1,16 +1,5 @@
-export type InventoryStatus = "In Stock" | "Low Stock" | "Out of Stock";
-export type AdjustmentType = "Increase Stock" | "Decrease Stock";
-
-export type InventoryItem = {
-  id: string;
-  name: string;
-  image: string;
-  sku: string;
-  category: string;
-  stock: number;
-  status: InventoryStatus;
-  lastUpdated: string;
-};
+// types/inventory-api.ts
+export type InventoryStatus = "Healthy" | "Low Stock" | "Out of Stock";
 
 export type InventoryProduct = {
   id: string;
@@ -19,59 +8,79 @@ export type InventoryProduct = {
   images: string[];
   sku: string;
   category: string;
-  stock: number;
-  reserved: number;
-  available: number;
-  status: InventoryStatus;
-  location: string;
-  lastUpdated: string;
   brand: string;
-  supplier: string;
-  weight: string;
-  dimensions: string;
-  warranty: string;
-  costPrice: number;
+  totalStock: number;
+  available: number;
+  reserved: number;
+  damaged: number;
+  lowStockLevel: number;
+  maxStockLevel: number;
+  status: InventoryStatus;
+  locations: number;
+  unit: string;
   sellingPrice: number;
-  lowStockAlert: number;
-  reorderLevel: number;
-  description: string;
+  costPrice: number;
+  inventoryValue: number;
+  lastRestocked: string;
+  createdAt: string;
 };
 
 export type InventoryLocation = {
   id: string;
-  name: string;
-  address: string;
-  manager: string;
-  inStock: number;
-  reserved: number;
+  store: string;
   available: number;
+  reserved: number;
+  damaged: number;
+  onHold: number;
+  totalStock: number;
+  status: InventoryStatus;
+};
+
+export type StockHistoryEntry = {
+  id: string;
+  date: string;
+  quantity: number;
+  purpose: string;
+  reference: string;
+  user: string;
   notes: string;
 };
 
 export type StockMovement = {
   id: string;
-  type: "Restock" | "Sale" | "Adjustment" | "Transfer" | "Return";
+  date: string;
+  movementType: string;
   quantity: number;
   from: string;
   to: string;
-  date: string;
-  note: string;
   reference: string;
+};
+
+export type RestockHistory = {
+  id: string;
+  date: string;
+  quantity: number;
+  supplier: string;
+  unitCost: number;
+  totalCost: number;
+  reference: string;
+};
+
+export type LowStockItem = {
+  id: string;
+  name: string;
+  image: string;
+  store: string;
+  available: number;
+  minimumLevel: number;
+  shortage: number;
 };
 
 export type InventoryStats = {
   totalProducts: number;
-  inStock: number;
+  totalStock: number;
+  availableStock: number;
   lowStock: number;
   outOfStock: number;
-  totalInventoryValue: number;
-};
-
-export type LowStockAlert = {
-  id: string;
-  name: string;
-  image: string;
-  sku: string;
-  available: number;
-  reorderLevel: number;
+  inventoryValue: number;
 };

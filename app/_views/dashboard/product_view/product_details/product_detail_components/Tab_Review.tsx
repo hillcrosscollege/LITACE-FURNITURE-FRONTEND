@@ -203,7 +203,7 @@ const Tab_Reviews = () => {
         <App_Button
           text="Add Review"
           type="button"
-          btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
+          btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
         />
       </div>
 
@@ -211,7 +211,7 @@ const Tab_Reviews = () => {
       <div className="flex flex-col sm:flex-row gap-6 bg-[#faf9f7] rounded-2xl border border-[#ede8e2] p-5">
         {/* Average */}
         <div className="flex flex-col items-center justify-center flex-shrink-0 gap-1">
-          <span className="text-5xl font-bold text-[#1e1a17] leading-none">
+          <span className="text-5xl font-bold text-[text] leading-none">
             {averageRating}
           </span>
           <StarRow rating={Math.round(Number(averageRating))} />

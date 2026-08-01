@@ -8,11 +8,13 @@ import { Skeleton_Order_Row } from "../orders_view/orders_view_components/Order_
 import Category_Header from "./categories_components/Category_Header";
 import { useCategoryContext } from "@/app/contexts/admin/Category_Context";
 import useTable from "@/app/_hooks/useTable";
+import { useCategoriesQuery } from "./categories_hooks/useCategoriesQueries";
 
 const PAGE_SIZE = 5;
 
 const CategoriesPage = () => {
-  const { data, isLoading, isError, page, setPage } = useCategoryContext();
+  // const { data, isLoading, isError } = useCategoriesQuery();
+  const { page, setPage, data, isLoading, isError } = useCategoryContext();
   const { tableData, totalPages, startItem, endItem, totalItems } = useTable({
     data: data?.categories,
     page,
@@ -27,7 +29,7 @@ const CategoriesPage = () => {
         {/* Table card */}
         <div className="bg-white rounded-2xl border border-[#ede8e2] shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
-            {isLoading ? (
+            {isLoading && (
               <table className="w-full">
                 <tbody>
                   {Array.from({ length: PAGE_SIZE }).map((_, i) => (
@@ -35,13 +37,15 @@ const CategoriesPage = () => {
                   ))}
                 </tbody>
               </table>
-            ) : isError ? (
+            )}
+            {isError && (
               <div className="flex items-center justify-center py-16">
                 <App_Text variant="tableCellMuted" className="text-[#c0392b]">
                   Failed to load categories. Please try again.
                 </App_Text>
               </div>
-            ) : (
+            )}
+            {tableData && (
               <App_Table
                 columns={categoriesColumns}
                 data={tableData!}

@@ -72,7 +72,7 @@ const warehouseColumns: ColumnDef<WarehouseStock>[] = [
       <App_Button
         text="Adjust"
         type="button"
-        btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-1.5 h-auto"
+        btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-3 py-1.5 h-auto"
       />
     ),
   },
@@ -201,7 +201,7 @@ const Tab_Inventory = () => {
               className={`flex items-center gap-1.5 px-3 py-3 whitespace-nowrap border-b-2 transition-colors text-xs ${
                 activeTab === tab
                   ? "border-primary text-primary font-medium"
-                  : "border-transparent text-muted-foreground hover:text-[#1e1a17]"
+                  : "border-transparent text-muted-foreground hover:text-[text]"
               }`}
             >
               {tab}

@@ -27,10 +27,10 @@ const useCategoriesDetails = () => {
     switch (activeTab) {
       case "Overview":
         return <Tab_Cat_Overview />;
-      case "Products":
-        return <Tab_Cat_Products />;
-      case "Subcategories":
-        return <Tab_Cat_Subcategories />;
+      // case "Products":
+      //   return <Tab_Cat_Products />;
+      // case "Subcategories":
+      //   return <Tab_Cat_Subcategories />;
       case "Activity":
         return <Tab_Cat_Activity />;
       default:

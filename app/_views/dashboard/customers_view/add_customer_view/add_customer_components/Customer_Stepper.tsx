@@ -58,7 +58,7 @@ const Customer_Stepper = ({
                   isActive
                     ? "text-primary"
                     : isCompleted
-                      ? "text-[#1e1a17]"
+                      ? "text-[text]"
                       : "text-muted-foreground"
                 }`}
               >

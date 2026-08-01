@@ -89,7 +89,7 @@ const Filters_Modal = ({ onClose, onApply }: Props) => {
               setFrom("2024-05-12");
               setTo("2024-05-18");
             }}
-            btnStyle="flex-1 text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-xl py-2.5 h-auto"
+            btnStyle="flex-1 text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-xl py-2.5 h-auto"
           />
           <App_Button
             text="Apply Filters"

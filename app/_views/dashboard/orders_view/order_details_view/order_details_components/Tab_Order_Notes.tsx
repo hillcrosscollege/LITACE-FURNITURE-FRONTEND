@@ -28,7 +28,7 @@ const Tab_Order_Notes = () => {
             className={`px-3 py-2.5 text-xs border-b-2 transition-colors capitalize ${
               activeTab === tab
                 ? "border-primary text-primary font-medium"
-                : "border-transparent text-muted-foreground hover:text-[#1e1a17]"
+                : "border-transparent text-muted-foreground hover:text-[text]"
             }`}
           >
             {tab === "notes" ? "Order Notes" : "Activity Log"}

@@ -21,7 +21,7 @@ const Settings_Mobile_Nav = () => {
               isActive
                 ? "bg-primary text-white"
                 : item.built
-                  ? "border border-[#e0dbd4] bg-white text-[#1e1a17]"
+                  ? "border border-[#e0dbd4] bg-white text-[text]"
                   : "border border-[#ede8e2] bg-[#f5f2ee] text-muted-foreground/50"
             }`}
           >

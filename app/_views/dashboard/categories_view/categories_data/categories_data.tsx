@@ -1,3 +1,4 @@
+import api from "@/lib/axios";
 import {
   Category,
   CategoryStatus,
@@ -10,6 +11,7 @@ import {
   AddCategoryPayload,
   ReorderPayload,
 } from "../categories_types";
+import { useMemo } from "react";
 
 export const categoriesList: Category[] = [
   {
@@ -24,71 +26,6 @@ export const categoriesList: Category[] = [
     slug: "living-room",
     showInMenu: true,
     subcategories: 5,
-  },
-  {
-    id: "2",
-    name: "Bedroom",
-    image: "/conference_chair-2.png",
-    description: "Beds, wardrobes, dressers and bedroom furniture.",
-    products: 24,
-    status: "Active",
-    sortOrder: 2,
-    createdAt: "May 11, 2024",
-    slug: "bedroom",
-    showInMenu: true,
-    subcategories: 3,
-  },
-  {
-    id: "3",
-    name: "Dining Room",
-    image: "/conference_chair-2.png",
-    description: "Dining tables, chairs, cabinets and accessories.",
-    products: 18,
-    status: "Active",
-    sortOrder: 3,
-    createdAt: "May 9, 2024",
-    slug: "dining-room",
-    showInMenu: true,
-    subcategories: 2,
-  },
-  {
-    id: "4",
-    name: "Office",
-    image: "/conference_chair-2.png",
-    description: "Desks, office chairs, shelves and office furniture.",
-    products: 16,
-    status: "Active",
-    sortOrder: 4,
-    createdAt: "May 8, 2024",
-    slug: "office",
-    showInMenu: true,
-    subcategories: 2,
-  },
-  {
-    id: "5",
-    name: "Outdoor",
-    image: "/conference_chair-2.png",
-    description: "Outdoor furniture and garden accessories.",
-    products: 12,
-    status: "Active",
-    sortOrder: 5,
-    createdAt: "May 8, 2024",
-    slug: "outdoor",
-    showInMenu: true,
-    subcategories: 1,
-  },
-  {
-    id: "6",
-    name: "Decor",
-    image: "/conference_chair-2.png",
-    description: "Home decor, mirrors, lamps and decorations.",
-    products: 10,
-    status: "Inactive",
-    sortOrder: 6,
-    createdAt: "May 7, 2024",
-    slug: "decor",
-    showInMenu: false,
-    subcategories: 0,
   },
 ];
 
@@ -133,8 +70,8 @@ export const categoryDetail: Category = categoriesList[0];
 
 export const categoryDetailTabs: CategoryTab[] = [
   { label: "Overview" },
-  { label: "Products", count: 28 },
-  { label: "Subcategories", count: 5 },
+  // { label: "Products", count: 28 },
+  // { label: "Subcategories", count: 5 },
   { label: "Activity" },
 ];
 
@@ -267,11 +204,18 @@ const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 export const categoriesApi = {
   getCategories: async (): Promise<{
     categories: Category[];
-    stats: typeof categoryListStats;
+    stats: { total: number; active: number; inactive: number };
   }> => {
-    await delay(1200);
-    return { categories: categoriesList, stats: categoryListStats };
+    const response = await api.get("/admin/categories");
+    return response.data;
   },
+  // getCategories: async (): Promise<{
+  //   categories: Category[];
+  //   stats: typeof categoryListStats;
+  // }> => {
+  //   await delay(1200);
+  //   return { categories: categoriesList, stats: categoryListStats };
+  // },
 
   getCategoryById: async (id: string) => {
     await delay(1000);
@@ -288,25 +232,29 @@ export const categoriesApi = {
   },
 
   addCategory: async (payload: AddCategoryPayload): Promise<Category> => {
-    await delay(900);
-    return {
-      id: String(Date.now()),
-      name: payload.name,
-      image: "/conference_chair-2.png",
-      description: payload.description,
-      products: 0,
-      status: payload.status ? "Active" : "Inactive",
-      sortOrder: categoriesList.length + 1,
-      createdAt: new Date().toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-      }),
-      slug: payload.name.toLowerCase().replace(/\s+/g, "-"),
-      showInMenu: true,
-      subcategories: 0,
-    };
+    const response = await api.post("/admin/categories", payload);
+    return response.data;
   },
+  // addCategory: async (payload: AddCategoryPayload): Promise<Category> => {
+  //   await delay(900);
+  //   return {
+  //     id: String(Date.now()),
+  //     name: payload.name,
+  //     image: "/conference_chair-2.png",
+  //     description: payload.description,
+  //     products: 0,
+  //     status: payload.status ? "Active" : "Inactive",
+  //     sortOrder: categoriesList.length + 1,
+  //     createdAt: new Date().toLocaleDateString("en-US", {
+  //       month: "long",
+  //       day: "numeric",
+  //       year: "numeric",
+  //     }),
+  //     slug: payload.name.toLowerCase().replace(/\s+/g, "-"),
+  //     showInMenu: true,
+  //     subcategories: 0,
+  //   };
+  // },
 
   updateCategory: async (
     id: string,
@@ -337,10 +285,10 @@ export const categoriesApi = {
     console.log("Delete category:", { id, reassign, targetId });
   },
 
-  reorderCategories: async (payload: ReorderPayload): Promise<void> => {
-    await delay(700);
-    console.log("Reorder:", payload.ids);
-  },
+  // reorderCategories: async (payload: ReorderPayload): Promise<void> => {
+  //   await delay(700);
+  //   console.log("Reorder:", payload.ids);
+  // },
 
   exportCategories: async (
     format: string,

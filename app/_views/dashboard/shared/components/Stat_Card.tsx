@@ -1,6 +1,7 @@
 import { TrendingUp, TrendingDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { StatCardProps } from "../types";
+import App_Text from "@/components/app_ui/App_Text";
 
 export function StatCard({
   title,
@@ -17,7 +18,7 @@ export function StatCard({
   return (
     <div className="bg-white rounded-2xl border border-[#ede8e2] p-4 shadow-sm">
       <div className="flex items-start justify-between">
-        <p className="text-xs text-muted-foreground">{title}</p>
+        <App_Text children={title} variant="sectionLabel" />
         <div
           className={cn(
             "p-2 rounded-lg flex items-center justify-center",
@@ -28,7 +29,9 @@ export function StatCard({
         </div>
       </div>
 
-      <h2 className="text-2xl font-semibold mt-3 text-[#1e1a17]">{value}</h2>
+      <App_Text children={value} variant="sectionTitle" className="font-body" />
+
+      {/* <h2 className="text-2xl font-semibold  text-[text]">{value}</h2> */}
 
       {change && (
         <div

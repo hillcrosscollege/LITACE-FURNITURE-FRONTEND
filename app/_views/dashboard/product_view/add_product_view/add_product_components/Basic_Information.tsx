@@ -1,4 +1,4 @@
-// components/products/add/steps/Step_Basic_Info.tsx
+//  components/products/add/steps/Step_Basic_Info.tsx
 "use client";
 
 import { UseFormReturn } from "react-hook-form";
@@ -19,10 +19,14 @@ import { categories, brands } from "../add_product_data/add_product_data";
 import { ProductFormData } from "../add_product_types";
 import App_Text from "@/components/app_ui/App_Text";
 import App_Input from "@/components/app_ui/App_Input";
+import { useProductContext } from "@/app/contexts/admin/Product_Context";
+import Settings_Toggle from "../../../settings_view/email_view/email_components/Settings_Toggle";
+import { useCategoriesQuery } from "../../../categories_view/categories_hooks/useCategoriesQueries";
 
 type Props = { form: UseFormReturn<ProductFormData> };
 
-const Step_Basic_Info = ({ form }: Props) => {
+const Step_Basic_Info = () => {
+  const { form, onToggle } = useProductContext();
   const {
     register,
     formState: { errors },
@@ -30,6 +34,7 @@ const Step_Basic_Info = ({ form }: Props) => {
     watch,
   } = form;
   const shortDesc = watch("shortDescription") ?? "";
+  const hasVariants = watch("hasVariants");
 
   const generateSKU = () => {
     const name = watch("name") ?? "";
@@ -40,6 +45,15 @@ const Step_Basic_Info = ({ form }: Props) => {
       Math.floor(Math.random() * 900 + 100);
     setValue("sku", sku);
   };
+
+  const { data, isLoading, isError } = useCategoriesQuery();
+
+  // const onToggle = (value: boolean) => {
+  //   setValue("hasVariants", value, {
+  //     shouldValidate: true,
+  //     shouldDirty: true,
+  //   });
+  // };
 
   return (
     <div className="space-y-6">
@@ -63,7 +77,27 @@ const Step_Basic_Info = ({ form }: Props) => {
           containerStyle="flex-1"
         />
 
-        <div className="flex-1 space-y-1">
+        <div className="space-y-1.5">
+          <label className="text-sm font-medium">Category</label>
+          <select
+            {...register("category", { required: "Category is required" })}
+            className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2.5 bg-white outline-none focus:border-primary transition-colors"
+          >
+            <option value="">Select category</option>
+            {data?.categories.map((c) => (
+              <option key={c.name} value={c.id}>
+                {c.name}
+              </option>
+            ))}
+          </select>
+          {errors.category && (
+            <p className="text-xs text-destructive">
+              {errors.category.message}
+            </p>
+          )}
+        </div>
+
+        {/* <div className="flex-1 space-y-1">
           <div className="flex items-center justify-between">
             <label className="text-sm font-medium capitalize">SKU</label>
             <button
@@ -82,21 +116,21 @@ const Step_Basic_Info = ({ form }: Props) => {
             showLabel={false}
             rules={{ required: "SKU is required" }}
           />
-        </div>
+        </div> */}
       </div>
 
       {/* Category + Brand */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="space-y-1.5">
+        {/* <div className="space-y-1.5">
           <label className="text-sm font-medium">Category</label>
           <select
             {...register("category", { required: "Category is required" })}
             className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2.5 bg-white outline-none focus:border-primary transition-colors"
           >
             <option value="">Select category</option>
-            {categories.map((c) => (
-              <option key={c} value={c}>
-                {c}
+            {data?.categories.map((c) => (
+              <option key={c.name} value={c.id}>
+                {c.name}
               </option>
             ))}
           </select>
@@ -105,9 +139,9 @@ const Step_Basic_Info = ({ form }: Props) => {
               {errors.category.message}
             </p>
           )}
-        </div>
+        </div> */}
 
-        <div className="space-y-1.5">
+        {/* <div className="space-y-1.5">
           <label className="text-sm font-medium">Brand</label>
           <select
             {...register("brand")}
@@ -120,7 +154,30 @@ const Step_Basic_Info = ({ form }: Props) => {
               </option>
             ))}
           </select>
+        </div> */}
+      </div>
+
+      <div>
+        <App_Text variant="cardHeading" className="text-base mb-0.5">
+          Variants
+        </App_Text>
+        <App_Text variant="pageSub">
+          Does this product come in different sizes, colors or materials?
+        </App_Text>
+      </div>
+
+      {/* Toggle */}
+      <div className="flex items-center justify-between p-4 bg-[#faf9f7] rounded-xl border border-[#ede8e2]">
+        <div>
+          <App_Text variant="tableCell" className="font-semibold">
+            This product has variants
+          </App_Text>
+          <App_Text variant="tableCellMuted">
+            Enable if you sell this product in different sizes, colors,
+            materials, etc.
+          </App_Text>
         </div>
+        <Settings_Toggle value={hasVariants} onChange={onToggle} />
       </div>
 
       {/* Short description */}
@@ -170,7 +227,7 @@ const Step_Basic_Info = ({ form }: Props) => {
                 key={label}
                 type="button"
                 title={label}
-                className="p-1.5 rounded hover:bg-[#ede8e2] text-muted-foreground hover:text-[#1e1a17] transition-colors"
+                className="p-1.5 rounded hover:bg-[#ede8e2] text-muted-foreground hover:text-[text] transition-colors"
               >
                 <Icon size={14} />
               </button>

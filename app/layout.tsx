@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 import { GlobalProvider } from "./contexts/Global_Context";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -47,6 +48,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <GlobalProvider>{children}</GlobalProvider>
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   );

@@ -62,7 +62,7 @@ const User_Management_View = () => {
               </App_Text>
             </Link>
             <ChevronRight size={13} className="text-muted-foreground" />
-            <App_Text variant="tableCellMuted" className="text-[#1e1a17]">
+            <App_Text variant="tableCellMuted" className="text-[text]">
               User Management
             </App_Text>
           </div>
@@ -97,7 +97,7 @@ const User_Management_View = () => {
                 className={`px-3 py-2.5 text-xs border-b-2 transition-colors ${
                   activeTab === tab
                     ? "border-primary text-primary font-medium"
-                    : "border-transparent text-muted-foreground hover:text-[#1e1a17]"
+                    : "border-transparent text-muted-foreground hover:text-[text]"
                 }`}
               >
                 {tab}

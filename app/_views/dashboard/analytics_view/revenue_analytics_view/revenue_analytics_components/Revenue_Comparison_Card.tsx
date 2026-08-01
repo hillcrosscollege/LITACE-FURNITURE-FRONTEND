@@ -27,7 +27,7 @@ const Revenue_Comparison_Card = ({
           <button
             type="button"
             onClick={() => setShowCompare(true)}
-            className="flex items-center gap-1.5 text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-2.5 py-1.5 transition-colors"
+            className="flex items-center gap-1.5 text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-2.5 py-1.5 transition-colors"
           >
             This Month vs Last Month <ChevronDown size={12} />
           </button>

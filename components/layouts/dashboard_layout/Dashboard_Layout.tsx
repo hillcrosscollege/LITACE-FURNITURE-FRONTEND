@@ -2,9 +2,17 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import App_Sidebar from "./App_Sidebar";
 import { ArrowDown, Bell } from "lucide-react";
-import Image from "next/image";
+import { useDashboardContext } from "@/app/contexts/admin/Dashboard_Context";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Dashboard_Layout = ({ children }: { children: React.ReactNode }) => {
+  const { admin } = useDashboardContext();
+  const router = useRouter();
+  useEffect(() => {
+    if (!admin) router.replace("sign-in");
+  }, []);
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full">

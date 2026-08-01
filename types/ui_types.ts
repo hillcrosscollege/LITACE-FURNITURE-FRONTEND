@@ -45,6 +45,7 @@ export interface IButton {
   btnStyle?: string;
   onPress?: (e?: any) => void;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 export interface IImg {

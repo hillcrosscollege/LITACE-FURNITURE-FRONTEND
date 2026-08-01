@@ -11,6 +11,7 @@ const Sign_Up_View = () => {
     handleSubmit,
     onSubmit,
     register,
+    isPending,
     formState: { errors },
   } = useSignUp();
 
@@ -26,16 +27,25 @@ const Sign_Up_View = () => {
       />
       <App_Input
         icon1={<User size={20} className="text-primary" />}
-        name="FullName"
+        name="firstName"
         register={register}
         errors={errors}
         rules={{
-          required: "Full Name is required",
+          required: "First Name is required",
+        }}
+      />
+      <App_Input
+        icon1={<User size={20} className="text-primary" />}
+        name="lastName"
+        register={register}
+        errors={errors}
+        rules={{
+          required: "Last Name is required",
         }}
       />
       <App_Input
         icon1={<Mail size={20} className="text-primary" />}
-        name="Email"
+        name="email"
         register={register}
         errors={errors}
         rules={{
@@ -45,7 +55,7 @@ const Sign_Up_View = () => {
       <App_Input
         icon1={<Lock size={20} className="text-primary" />}
         icon2={<EyeIcon size={20} />}
-        name="Password"
+        name="password"
         register={register}
         errors={errors}
         rules={{
@@ -55,7 +65,7 @@ const Sign_Up_View = () => {
       <App_Input
         icon1={<Lock size={20} className="text-primary" />}
         icon2={<EyeIcon size={20} />}
-        name="ConfirmPassword"
+        name="confirmPassword"
         register={register}
         errors={errors}
         rules={{
@@ -63,9 +73,9 @@ const Sign_Up_View = () => {
         }}
       />
       <App_Button
-        text="Sign Up"
+        text={isPending ? "Creating account..." : "Sign Up"}
         type="submit"
-        btnStyle="w-full text-white py-6"
+        btnStyle={`w-full text-white py-6 ${isPending ? "opacity-60 cursor-not-allowed" : ""}`}
       />
       <div className="flex justify-center gap-2 w-full">
         <div className="w-[30%] bg-primary h-3"></div>

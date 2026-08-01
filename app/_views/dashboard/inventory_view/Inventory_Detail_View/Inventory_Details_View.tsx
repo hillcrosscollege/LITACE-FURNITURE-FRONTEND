@@ -3,81 +3,53 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
-import { ChevronRight, Pencil, MoreHorizontal } from "lucide-react";
+import { useParams } from "next/navigation";
+import {
+  ChevronLeft,
+  SlidersHorizontal,
+  ArrowLeftRight,
+  MoreHorizontal,
+} from "lucide-react";
+import App_Text from "@/components/app_ui/App_Text";
+import App_Button from "@/components/app_ui/App_Button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import App_Button from "@/components/app_ui/App_Button";
-import App_Text from "@/components/app_ui/App_Text";
-import { Skeleton_Inventory_Detail } from "../inventory_components/Inventory_Skeleton";
-import { inventoryStatusStyles } from "../inventory_data/inventory_data";
-import { useInventoryProduct } from "../inventory_hooks/useInventoryQueries";
+import { useInventoryDetail } from "../inventory_hooks/useInventoryQueries";
+import { Skeleton_Inv_Detail } from "../inventory_components/Inventory_Skeleton";
+import { statusStyles } from "../inventory_data/inventory_cols";
 import Adjust_Stock_Modal from "../inventory_modals/Adjust_Stock_Modal";
-import Print_Barcode_Modal from "../inventory_modals/Print_Barcode_Modal";
+import Restock_Modal from "../inventory_modals/Restock_Modal";
+import Transfer_Stock_Modal from "../inventory_modals/Transfer_Stock_Modal";
 import Tab_Inv_Locations from "./inventory_detail_components/Tab_Inv_Locations";
-import Tab_Inv_LowStock from "./inventory_detail_components/Tab_Inv_LowStock";
 import Tab_Inv_Overview from "./inventory_detail_components/Tab_Inv_Overview";
-import Tab_Inv_StockMovement from "./inventory_detail_components/Tab_Inv_StockMovement";
+import Tab_Inv_RestockHistory from "./inventory_detail_components/Tab_Inv_RestockHistory";
+import Tab_Inv_StockHistory from "./inventory_detail_components/Tab_Inv_StockHistory";
+import Tab_Inv_StockMovements from "./inventory_detail_components/Tab_Inv_StockMovement";
 
 const detailTabs = [
-  { label: "Overview" },
-  { label: "Stock Movement" },
-  { label: "Locations" },
-  { label: "Variants", count: 3 },
-  { label: "Suppliers" },
-  { label: "Purchase History" },
-  { label: "Sales" },
-  { label: "Activity" },
+  "Overview",
+  "Locations",
+  "Stock History",
+  "Stock Movements",
+  "Restock History",
+  "Suppliers",
 ];
 
-const THUMBNAIL_VISIBLE = 3;
-
-const InventoryDetailPage = () => {
+const Inventory_Detail_View = () => {
   const params = useParams();
-  const router = useRouter();
   const id = params.id as string;
 
   const [activeTab, setActiveTab] = useState("Overview");
-  const [activeImage, setActiveImage] = useState(0);
   const [showAdjust, setShowAdjust] = useState(false);
-  const [showBarcode, setShowBarcode] = useState(false);
+  const [showRestock, setShowRestock] = useState(false);
+  const [showTransfer, setShowTransfer] = useState(false);
+  const [activeImage, setActiveImage] = useState(0);
 
-  const { data: product, isLoading, isError } = useInventoryProduct(id);
-
-  const visibleThumbs = product?.images.slice(0, THUMBNAIL_VISIBLE) ?? [];
-  const overflowCount = (product?.images.length ?? 0) - THUMBNAIL_VISIBLE;
-
-  const renderTab = () => {
-    if (!product) return null;
-    switch (activeTab) {
-      case "Overview":
-        return (
-          <Tab_Inv_Overview
-            product={product}
-            onAdjust={() => setShowAdjust(true)}
-            onBarcode={() => setShowBarcode(true)}
-          />
-        );
-      case "Stock Movement":
-        return <Tab_Inv_StockMovement productId={id} />;
-      case "Locations":
-        return <Tab_Inv_Locations />;
-      case "Low Stock":
-        return <Tab_Inv_LowStock />;
-      default:
-        return (
-          <div className="flex items-center justify-center py-20">
-            <App_Text variant="tableCellMuted">
-              {activeTab} coming soon.
-            </App_Text>
-          </div>
-        );
-    }
-  };
+  const { data: product, isLoading, isError } = useInventoryDetail(id);
 
   if (isError)
     return (
@@ -90,79 +62,56 @@ const InventoryDetailPage = () => {
 
   return (
     <>
-      <div className="p-4 md:p-6 space-y-4">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-1.5">
-          <Link href="/dashboard/inventory">
-            <App_Text
-              variant="tableCellMuted"
-              className="hover:text-primary cursor-pointer transition-colors"
-            >
-              Inventory
-            </App_Text>
-          </Link>
-          <ChevronRight size={13} className="text-muted-foreground" />
-          <App_Text variant="tableCellMuted" className="text-[#1e1a17]">
-            {isLoading ? "Loading..." : product?.name}
-          </App_Text>
-        </div>
+      <div className="space-y-4">
+        {/* Back link */}
+        <Link
+          href="/dashboard/inventory"
+          className="flex items-center gap-1.5 text-xs text-primary hover:underline w-fit"
+        >
+          <ChevronLeft size={13} /> Back to Inventory
+        </Link>
 
         {isLoading ? (
-          <Skeleton_Inventory_Detail />
+          <Skeleton_Inv_Detail />
         ) : (
           product && (
             <>
-              {/* Product header card */}
-              <div className="bg-white rounded-2xl border border-[#ede8e2] shadow-sm p-5">
+              {/* Header card */}
+              <div className="bg-white rounded-2xl border border-[#ede8e2] shadow-sm p-5 space-y-4">
                 <div className="flex flex-col sm:flex-row gap-5">
                   {/* Image */}
-                  <div className="flex flex-col gap-3 shrink-0">
-                    <div className="w-full sm:w-52 h-48 rounded-xl bg-[#f0e8df] overflow-hidden">
+                  <div className="flex flex-col gap-2 shrink-0">
+                    <div className="w-24 h-24 rounded-xl bg-[#f0e8df] overflow-hidden">
                       <Image
                         src={product.images[activeImage] ?? product.image}
                         alt={product.name}
-                        width={208}
-                        height={192}
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    {/* Thumbnails */}
-                    <div className="flex gap-2">
-                      {visibleThumbs.map((img, i) => (
+                    <div className="flex gap-1.5">
+                      {product.images.slice(0, 3).map((img, i) => (
                         <button
                           key={i}
                           type="button"
                           onClick={() => setActiveImage(i)}
-                          className={`w-14 h-14 rounded-lg overflow-hidden border-2 transition-all shrink-0 ${
-                            activeImage === i
-                              ? "border-primary"
-                              : "border-transparent hover:border-primary/30"
-                          }`}
+                          className={`w-7 h-7 rounded-lg overflow-hidden border-2 transition-all ${activeImage === i ? "border-primary" : "border-transparent"}`}
                         >
                           <Image
                             src={img}
-                            alt={`View ${i + 1}`}
-                            width={56}
-                            height={56}
+                            alt=""
+                            width={28}
+                            height={28}
                             className="w-full h-full object-cover"
                           />
                         </button>
                       ))}
-                      {overflowCount > 0 && (
-                        <div className="w-14 h-14 rounded-lg bg-[#f0e8df] border-2 border-transparent flex items-center justify-center shrink-0">
-                          <App_Text
-                            variant="tableCell"
-                            className="font-semibold text-[#a0522d]"
-                          >
-                            +{overflowCount}
-                          </App_Text>
-                        </div>
-                      )}
                     </div>
                   </div>
 
                   {/* Info */}
-                  <div className="flex-1 min-w-0 space-y-3">
+                  <div className="flex-1 min-w-0 space-y-2">
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                       <div>
                         <div className="flex items-center gap-2 flex-wrap">
@@ -170,36 +119,29 @@ const InventoryDetailPage = () => {
                             {product.name}
                           </App_Text>
                           <span
-                            className={`text-xs px-2.5 py-1 rounded-full font-medium ${inventoryStatusStyles[product.status]}`}
+                            className={`text-xs px-2.5 py-1 rounded-full font-medium ${statusStyles[product.status]}`}
                           >
                             {product.status}
                           </span>
                         </div>
-                        <App_Text variant="tableCellMuted" className="mt-1">
-                          SKU: {product.sku} · Category: {product.category} ·
-                          Brand: {product.brand}
-                        </App_Text>
-                        <App_Text
-                          variant="statValue"
-                          className="text-2xl text-primary mt-2"
-                        >
-                          R {product.sellingPrice.toLocaleString()}
-                        </App_Text>
-                        <App_Text variant="tableCellMuted" className="mt-1">
-                          {product.description}
+                        <App_Text variant="tableCellMuted">
+                          SKU: {product.sku} · {product.category}
                         </App_Text>
                       </div>
-
-                      {/* Actions */}
                       <div className="flex items-center gap-2 shrink-0">
                         <App_Button
-                          text="Edit Product"
-                          icon={<Pencil size={13} />}
+                          text="Adjust Stock"
+                          icon={<SlidersHorizontal size={13} />}
                           type="button"
-                          onPress={() =>
-                            router.push(`/dashboard/products/${id}/edit`)
-                          }
+                          onPress={() => setShowAdjust(true)}
                           btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-3 py-2 h-auto"
+                        />
+                        <App_Button
+                          text="Transfer Stock"
+                          icon={<ArrowLeftRight size={13} />}
+                          type="button"
+                          onPress={() => setShowTransfer(true)}
+                          btnStyle="text-xs bg-primary text-white hover:bg-primary/90 rounded-lg px-3 py-2 h-auto"
                         />
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -213,18 +155,12 @@ const InventoryDetailPage = () => {
                           <DropdownMenuContent align="end" className="w-44">
                             <DropdownMenuItem
                               className="text-xs cursor-pointer"
-                              onClick={() => setShowAdjust(true)}
+                              onClick={() => setShowRestock(true)}
                             >
-                              Adjust Stock
+                              Restock Inventory
                             </DropdownMenuItem>
-                            <DropdownMenuItem
-                              className="text-xs cursor-pointer"
-                              onClick={() => setShowBarcode(true)}
-                            >
-                              Print Barcode
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="text-xs cursor-pointer text-[#c0392b] focus:text-[#c0392b] focus:bg-[#fdecea]">
-                              Delete Product
+                            <DropdownMenuItem className="text-xs cursor-pointer">
+                              Print Barcode Label
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -235,29 +171,29 @@ const InventoryDetailPage = () => {
                     <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                       {[
                         {
-                          label: "Stock",
-                          value: `${product.stock} Units`,
-                          color: "",
-                        },
-                        {
-                          label: "Reserved",
-                          value: `${product.reserved} Units`,
+                          label: "Total Stock",
+                          value: `${product.totalStock} Across ${product.locations} locations`,
                           color: "",
                         },
                         {
                           label: "Available",
-                          value: `${product.available} Units`,
-                          color: "text-primary",
+                          value: `${product.available} For sale`,
+                          color: "text-[#2e7d52]",
                         },
                         {
-                          label: "Low Stock Alert",
-                          value: `${product.lowStockAlert} Units`,
-                          color: "text-[#c87941]",
-                        },
-                        {
-                          label: "Reorder Level",
-                          value: `${product.reorderLevel} Units`,
+                          label: "Reserved",
+                          value: `${product.reserved} On hold`,
                           color: "",
+                        },
+                        {
+                          label: "Damaged",
+                          value: `${product.damaged} Not sellable`,
+                          color: "text-[#c0392b]",
+                        },
+                        {
+                          label: "Inventory Value",
+                          value: `R${product.inventoryValue.toLocaleString()}`,
+                          color: "text-primary",
                         },
                       ].map(({ label, value, color }) => (
                         <div
@@ -281,42 +217,66 @@ const InventoryDetailPage = () => {
               {/* Tabs */}
               <div className="bg-white rounded-2xl border border-[#ede8e2] shadow-sm overflow-hidden">
                 <div className="flex items-center border-b border-[#ede8e2] overflow-x-auto scrollbar-none px-4">
-                  {detailTabs.map((tab) => (
-                    <button
-                      key={tab.label}
-                      type="button"
-                      onClick={() => setActiveTab(tab.label)}
-                      className={`flex items-center gap-1.5 px-3 py-3.5 whitespace-nowrap border-b-2 transition-colors ${
-                        activeTab === tab.label
-                          ? "border-primary"
-                          : "border-transparent"
-                      }`}
-                    >
-                      <App_Text
-                        variant="sectionLabel"
-                        className={
-                          activeTab === tab.label
-                            ? "text-primary font-medium"
-                            : "hover:text-[#1e1a17]"
-                        }
+                  {detailTabs.map((tab, i) => {
+                    const count =
+                      tab === "Locations" ? product.locations : undefined;
+                    return (
+                      <button
+                        key={tab}
+                        type="button"
+                        onClick={() => setActiveTab(tab)}
+                        className={`flex items-center gap-1.5 px-3 py-3.5 whitespace-nowrap border-b-2 transition-colors ${activeTab === tab ? "border-primary" : "border-transparent"}`}
                       >
-                        {tab.label}
-                      </App_Text>
-                      {tab.count !== undefined && (
-                        <span
-                          className={`px-1.5 py-0.5 rounded text-[10px] ${
-                            activeTab === tab.label
-                              ? "bg-primary/10 text-primary"
-                              : "bg-[#f5f2ee] text-muted-foreground"
-                          }`}
+                        <App_Text
+                          variant="sectionLabel"
+                          className={
+                            activeTab === tab
+                              ? "text-primary font-medium"
+                              : "hover:text-[#1e1a17]"
+                          }
                         >
-                          {tab.count}
-                        </span>
-                      )}
-                    </button>
-                  ))}
+                          {tab}
+                        </App_Text>
+                        {count !== undefined && (
+                          <span
+                            className={`px-1.5 py-0.5 rounded text-[10px] ${activeTab === tab ? "bg-primary/10 text-primary" : "bg-[#f5f2ee] text-muted-foreground"}`}
+                          >
+                            {count}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
-                <div className="p-4">{renderTab()}</div>
+                <div className="p-4">
+                  {activeTab === "Overview" && (
+                    <Tab_Inv_Overview
+                      product={product}
+                      onAdjust={() => setShowAdjust(true)}
+                      onRestock={() => setShowRestock(true)}
+                      onTransfer={() => setShowTransfer(true)}
+                    />
+                  )}
+                  {activeTab === "Locations" && (
+                    <Tab_Inv_Locations productId={id} />
+                  )}
+                  {activeTab === "Stock History" && (
+                    <Tab_Inv_StockHistory productId={id} />
+                  )}
+                  {activeTab === "Stock Movements" && (
+                    <Tab_Inv_StockMovements productId={id} />
+                  )}
+                  {activeTab === "Restock History" && (
+                    <Tab_Inv_RestockHistory productId={id} product={product} />
+                  )}
+                  {activeTab === "Suppliers" && (
+                    <div className="flex items-center justify-center py-16">
+                      <App_Text variant="tableCellMuted">
+                        Suppliers coming soon.
+                      </App_Text>
+                    </div>
+                  )}
+                </div>
               </div>
             </>
           )
@@ -329,14 +289,20 @@ const InventoryDetailPage = () => {
           onClose={() => setShowAdjust(false)}
         />
       )}
-      {showBarcode && product && (
-        <Print_Barcode_Modal
+      {showRestock && product && (
+        <Restock_Modal
           product={product}
-          onClose={() => setShowBarcode(false)}
+          onClose={() => setShowRestock(false)}
+        />
+      )}
+      {showTransfer && product && (
+        <Transfer_Stock_Modal
+          product={product}
+          onClose={() => setShowTransfer(false)}
         />
       )}
     </>
   );
 };
 
-export default InventoryDetailPage;
+export default Inventory_Detail_View;

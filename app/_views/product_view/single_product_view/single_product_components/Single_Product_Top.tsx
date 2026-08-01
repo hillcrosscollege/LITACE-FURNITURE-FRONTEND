@@ -22,7 +22,10 @@ const product = {
   },
 };
 
-const images = ["/conference_chair-2.png", "/home_sofa.png"];
+const images = [
+  "/tmp/images/diamond_black_1.jpg",
+  "/tmp/images/Full_Back_Conference_Chair_blue_1.jpg",
+];
 
 type AccordionKey = "dimensions" | "fabric" | "delivery";
 
@@ -303,7 +306,7 @@ const CTABlock = ({
           <div className="flex items-center gap-2 border border-[#e0dbd4] rounded-lg w-fit px-2 py-1">
             <button
               onClick={() => updateQty(item.id, -1)}
-              className="text-muted-foreground hover:text-[#1e1a17] transition-colors"
+              className="text-muted-foreground hover:text-[text] transition-colors"
               type="button"
             >
               <Minus size={13} />
@@ -313,7 +316,7 @@ const CTABlock = ({
             </span>
             <button
               onClick={() => updateQty(item.id, 1)}
-              className="text-muted-foreground hover:text-[#1e1a17] transition-colors"
+              className="text-muted-foreground hover:text-[text] transition-colors"
               type="button"
             >
               <Plus size={13} />

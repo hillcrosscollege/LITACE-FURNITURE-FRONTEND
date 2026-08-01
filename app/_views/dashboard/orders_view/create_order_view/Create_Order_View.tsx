@@ -147,7 +147,7 @@ const Create_Order_View = () => {
           </App_Text>
         </Link>
         <BreadcrumbArrow size={13} className="text-muted-foreground" />
-        <App_Text variant="tableCellMuted" className="text-[#1e1a17]">
+        <App_Text variant="tableCellMuted" className="text-[text]">
           Create Order
         </App_Text>
       </div>
@@ -176,7 +176,7 @@ const Create_Order_View = () => {
             text="Cancel"
             type="button"
             onPress={() => router.push("/dashboard/orders")}
-            btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
+            btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
           />
 
           <div className="flex items-center gap-2">
@@ -186,7 +186,7 @@ const Create_Order_View = () => {
                 icon={<ChevronLeft size={14} />}
                 type="button"
                 onPress={goBack}
-                btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
+                btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
               />
             )}
 

@@ -1,22 +1,29 @@
 "use client";
 
 import App_Text from "@/components/app_ui/App_Text";
-import { Step } from "../add_product_types/index";
 import { Check } from "lucide-react";
+import { useProductContext } from "@/app/contexts/admin/Product_Context";
+import { steps } from "../add_product_data/add_product_data";
+import { useMemo } from "react";
+import Step_Basic_Info from "./Basic_Information";
+import Step_Pricing from "./Pricing_Inventory";
+import Step_Variants from "./Variants";
+import Step_Images from "./Add_Images";
+import Step_Shipping from "./Add_Shipping";
 
-type Props = {
-  steps: Step[];
-  currentStep: number;
-  completedSteps: number[];
-  onStepClick: (step: number) => void;
-};
+const Product_Stepper = () => {
+  const { currentStep, completedSteps, setCurrentStep, form, visibleSteps } =
+    useProductContext();
+  const { watch } = form;
+  const hasVariants = watch("hasVariants");
 
-const Product_Stepper = ({
-  steps,
-  currentStep,
-  completedSteps,
-  onStepClick,
-}: Props) => {
+  /**
+   * Only display steps whose condition is true
+   */
+  // const visibleSteps = useMemo(() => {
+  //   return allSteps.filter((step) => step.condition);
+  // }, [allSteps]);
+
   return (
     <div className="w-64 shrink-0 hidden lg:block">
       <div className="bg-white rounded-2xl border border-[#ede8e2] shadow-sm p-4 sticky top-6">
@@ -25,7 +32,7 @@ const Product_Stepper = ({
         </App_Text>
 
         <div className="flex flex-col gap-1">
-          {steps.map((step, i) => {
+          {visibleSteps.map((step, i) => {
             const isActive = currentStep === step.id;
             const isCompleted = completedSteps.includes(step.id);
             const isAccessible = step.id <= currentStep || isCompleted;
@@ -34,7 +41,7 @@ const Product_Stepper = ({
               <button
                 key={step.id}
                 type="button"
-                onClick={() => isAccessible && onStepClick(step.id)}
+                onClick={() => isAccessible && setCurrentStep(step.id)}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-colors w-full ${
                   isActive
                     ? "bg-primary/10 border border-primary/20"
@@ -78,14 +85,14 @@ const Product_Stepper = ({
               variant="tableCellMuted"
               className="text-primary font-medium"
             >
-              {Math.round((completedSteps.length / steps.length) * 100)}%
+              {Math.round((completedSteps.length / visibleSteps.length) * 100)}%
             </App_Text>
           </div>
           <div className="h-1.5 bg-[#f5f2ee] rounded-full overflow-hidden">
             <div
               className="h-full bg-primary rounded-full transition-all duration-500"
               style={{
-                width: `${(completedSteps.length / steps.length) * 100}%`,
+                width: `${(completedSteps.length / visibleSteps.length) * 100}%`,
               }}
             />
           </div>

@@ -100,7 +100,7 @@ const Product_Details_Modal = ({ productId, onClose }: Props) => {
                   className={`px-3 py-2 text-xs border-b-2 transition-colors ${
                     activeTab === tab
                       ? "border-primary text-primary font-medium"
-                      : "border-transparent text-muted-foreground hover:text-[#1e1a17]"
+                      : "border-transparent text-muted-foreground hover:text-[text]"
                   }`}
                 >
                   {tab}
@@ -191,7 +191,7 @@ const Product_Details_Modal = ({ productId, onClose }: Props) => {
             text="Close"
             type="button"
             onPress={onClose}
-            btnStyle="text-xs border border-[#e0dbd4] bg-white text-[#1e1a17] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
+            btnStyle="text-xs border border-[#e0dbd4] bg-white text-[text] hover:bg-[#f5f2ee] rounded-lg px-4 py-2 h-auto"
           />
           <App_Button
             text="View Full Report"
